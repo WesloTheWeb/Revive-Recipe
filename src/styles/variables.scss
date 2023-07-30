@@ -1,0 +1,69 @@
+// media queries
+$mq-smallScreen: "only screen and (max-width:769px)";
+$mq-smallScreenTwo: "only screen and (max-width:767px)";
+$mq-mediumScreen: "only screen and (min-width:769px)";
+$mq-largeScreen: "only screen and (max-width:1025px)";
+$mq-speciallargeScreen: "only screen and (min-width:1024px)";
+$mq-xLargeScreen: "only screen and (min-width:1200px)";
+$mq-xxLargeScreen: "only screen and (min-width:1400px)";
+
+// General Property
+$font-size: 1rem;
+
+
+// Brand Colors:
+$brandColorPrimary: #231F4D;
+$brandColorSecondary: #DF2468;
+$brandColorTertiary: #FFFFFF;
+
+// Supporting Colors:
+$red-100: #F6D8D8;
+$red-200: #F3B1B1;
+$red-300: #E27979;
+$red-400: #D55454;
+$red-500-primary: #B33E3E;
+$red-600: #982727;
+$red-700: #7E1818;
+$red-800: #5E0B0B;
+$red-900: #2A0202;
+
+$yellow-100: #FAF9CF;
+$yellow-200: #F7F496;
+$yellow-300: #E1DE87;
+$yellow-400: #E0DC63;
+$yellow-500-primary: #E7E24C;
+$yellow-600: #D9D32F;
+$yellow-700: #BCB715;
+$yellow-800: #A19C0F;
+$yellow-900: #827E07;
+
+$green-100: #F5FDF4;
+$green-200: #D3F1CD;
+$green-300: #98E189;
+$green-400: #7AD967;
+$green-500-primary: #59BC44;
+$green-600: #41A62C;
+$green-700: #2D891A;
+$green-800: #267D13;
+$green-900: #145806;
+
+// Neutral Colors:
+$neutral-100: #E9E9E9;
+$neutral-200: #CFCFCF;
+$neutral-300: #A8A0A0;
+$neutral-400: #665E5E;
+$neutral-500-primary: #3F3A3A;
+$neutral-600: #2D2727;
+$neutral-700: #1E1818;
+$neutral-800: #161111;
+$neutral-900: #090101;
+
+$neutral-secondary-100: #DCE2DF;
+$neutral-secondary-200: #AFD1C0;
+$neutral-secondary-300: #86BEA6;
+$neutral-secondary-400: #6EAF8E;
+$neutral-secondary-500-primary: #489071;
+$neutral-secondary-600: #2C6F52;
+$neutral-secondary-700: #154E35;
+$neutral-secondary-800: #0D3C28;
+$neutral-secondary-900: #03301C;

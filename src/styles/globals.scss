@@ -1,0 +1,68 @@
+@import './variables.scss';
+
+// custom fonts
+@font-face {
+    font-family: 'Lexend Exa Regular';
+    src: url('/fonts/LexendExa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend Exa Medium';
+    src: url('/fonts/lexend/LexendExa-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend Exa SemiBold';
+    src: url('/fonts/lexend/LexendExa-SemiBold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    background-color: $neutral-100;
+}
+
+p {
+    @media #{ $mq-smallScreen } {
+        p {
+            text-align: center;
+        }
+    }
+}
+
+.preview {
+    margin: 0 auto;
+    text-align: center;
+
+    h1 {
+        font-family: 'Lexend Exa SemiBold', sans-serif;
+        font-size: 5rem;
+    }
+
+    @media #{ $mq-smallScreen } {
+        h1 {
+            font-size: 2rem;
+        }
+    }
+}
+
+.rotate {
+    animation: rotation 5s infinite linear;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
