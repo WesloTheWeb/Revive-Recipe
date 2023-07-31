@@ -25,8 +25,52 @@
     font-display: swap;
 }
 
+// Plexans used for site instructions, guides, content.
+@font-face {
+    font-family: 'IBMPlexSans Medium';
+    src: url('/fonts/ibmplexsans/IBMPlexSans-Medium.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'IBMPlexSans Regular';
+    src: url('/fonts/ibmplexsans/IBMPlexSans-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'IBMPlexSans Semibold';
+    src: url('/fonts/ibmplexsans/IBMPlexSans-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'IBMPlexSans Semibold Italic';
+    src: url('/fonts/ibmplexsans/IBMPlexSans-SemiboldItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'IBMPlexSans Bold';
+    src: url('/fonts/ibmplexsans/IBMPlexSans-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
     background-color: $neutral-100;
+    font-size: 1.2rem;
+    font-family: 'IBMPlexSans Regular', sans-serif;
+    margin: 0 auto;
 }
 
 p {
@@ -35,6 +79,21 @@ p {
             text-align: center;
         }
     }
+}
+
+button {
+    cursor: pointer;
+}
+
+footer {
+    font-size: .8rem;
+    color: $neutral-100;
+    background-color: $neutral-900;
+    padding: 2.2rem 1rem;
+}
+
+.test {
+    font-family: $user-font-family;
 }
 
 .preview {

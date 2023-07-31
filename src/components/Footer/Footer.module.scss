@@ -1,0 +1,15 @@
+@import '../../styles/variables.scss';
+
+.information {
+    display: flex;
+    justify-content: space-between;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+        text-align: center;
+    }
+
+    label {
+        display: block;
+    }
+}
