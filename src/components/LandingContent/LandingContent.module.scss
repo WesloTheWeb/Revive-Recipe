@@ -1,0 +1,103 @@
+@import '../../styles/variables.scss';
+
+.landingContainer {
+    margin: 0 auto;
+    padding: 0 0 17rem 0;
+    background: linear-gradient(to bottom, $neutral-100 50%, $neutral-secondary-200 50%);
+
+    @media #{ $mq-smallScreen } {
+        padding: 2.5rem 0;
+    }
+
+    h1 {
+        font-family: 'Anton', sans-serif;
+        font-size: 5rem;
+        text-align: center;
+        text-transform: capitalize;
+        color: $brandColorPrimary;
+        margin-top: 0;
+
+        @media #{ $mq-smallScreen } {
+            font-size: 1.5rem;
+        }
+
+        span {
+            color: $brandColorSecondary;
+            background-image: linear-gradient(to top, $brandColorPrimary 0.175em, transparent 0.175em);
+        }
+    }
+
+    .blurb {
+        margin: 1rem;
+        width: 27%;
+        background-color: $neutral-200;
+        opacity: .8;
+        padding: 1.2rem;
+
+        @media #{ $mq-smallScreen } {
+            width: 90%;
+            margin: 1rem 0.15rem;
+        }
+
+        p {
+            opacity: 1;
+        }
+    }
+}
+
+.landingFlex {
+    display: flex;
+    justify-content: end;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+}
+
+.galleryContainer {
+    position: relative;
+
+    @media #{ $mq-smallScreen } {
+        display: none;
+    }
+
+    >img {
+        // Targeting the wrapper div of Next's Image component
+        position: absolute;
+        border: 10px solid $brandColorTertiary;
+
+        @media #{ $mq-smallScreen } {
+            position: static;
+            width: 50%;
+            height: 50%;
+            border: none;
+            z-index: 0;
+        }
+
+        &:nth-of-type(1) {
+            z-index: 1;
+            right: 32rem;
+        }
+
+        &:nth-of-type(2) {
+            z-index: 2;
+            left: -42rem;
+            top: -3rem;
+        }
+
+        &:nth-of-type(3) {
+            z-index: 3;
+            left: -46rem;
+            top: 10rem;
+        }
+    }
+}
+
+// Mobile Gallery
+.mobileGalleryContainer {
+    display: none;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+}
