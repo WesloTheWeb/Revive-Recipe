@@ -1,0 +1,7 @@
+.carouselImage {
+    height: 400px;
+    object-fit: cover;
+    /* Make sure the image covers the area without stretching */
+    display: block;
+    /* Ensures any default margin/padding is removed */
+}
