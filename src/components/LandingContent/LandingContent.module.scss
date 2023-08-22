@@ -3,6 +3,7 @@
 .landingContainer {
     text-transform: capitalize;
     margin: 0 auto;
+    padding: 0 0 43rem 0;
     text-align: center;
     background: linear-gradient(to bottom, $neutral-100 50%, $neutral-secondary-200 50%);
     display: flex;
@@ -13,4 +14,25 @@
 
 .galleryContainer {
     position: relative;
+
+    > img { 
+        position: absolute;
+
+        &:nth-child(1) > img {
+            right: 0;
+            z-index: 3;
+            // ... any other styles
+        }
+
+        &:nth-child(2) > img {
+            z-index: 2;
+            // ... any other styles
+        }
+
+        &:nth-child(3) > img {
+            z-index: 1;
+            left: -22rem;
+            top: 14rem;       
+        }
+    }
 }

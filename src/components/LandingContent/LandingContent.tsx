@@ -1,23 +1,30 @@
+import Image from 'next/image';
 import classes from './LandingContent.module.scss';
 
-const { landingContainer } = classes;
+const { landingContainer, galleryContainer } = classes;
 
 const LandingContent = ({ }) => {
 
     const gallery = [
         {
-            imagePath: 'https://placehold.co/600x400',
-            altTag: 'Girl medidating',
+            imagePath: '/assets/gallery/gallery-image-1.png',
+            altTag: 'Girl meditating',
+            width: 600,
+            height: 400,
             key: 0
         },
         {
-            imagePath: 'https://placehold.co/600x400',
+            imagePath: '/assets/gallery/gallery-image-2.png',
             altTag: 'A charcuterie board',
+            width: 600,
+            height: 400,
             key: 1
         },
         {
-            imagePath: 'https://placehold.co/600x400',
+            imagePath: '/assets/gallery/gallery-image-3.png',
             altTag: 'Close up of a salad',
+            width: 600,
+            height: 400,
             key: 2
         },
     ]
@@ -25,10 +32,16 @@ const LandingContent = ({ }) => {
     return (
         <div className={landingContainer}>
             <h1>Get cooking, get moving, get groov&apos;n</h1>
-            <section>
+            <section className={galleryContainer}>
                 {gallery.map((img) => {
                     return (
-                        <img src={img.imagePath} alt={img.altTag} key={img.key} />
+                        <Image
+                            src={img.imagePath}
+                            alt={img.altTag}
+                            key={img.key}
+                            width={img.width}
+                            height={img.height}
+                        />
                     );
                 })};
             </section>
