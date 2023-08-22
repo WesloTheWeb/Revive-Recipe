@@ -60,11 +60,13 @@
     >img {
         // Targeting the wrapper div of Next's Image component
         position: absolute;
+        border: 10px solid $brandColorTertiary;
 
         @media #{ $mq-smallScreen } {
             position: static;
             width: 50%;
             height: 50%;
+            border: none;
         }
 
         &:nth-of-type(1) {
