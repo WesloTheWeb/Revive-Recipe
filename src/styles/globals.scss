@@ -17,6 +17,9 @@
     font-display: swap;
 }
 
+// Landing Page
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 @font-face {
     font-family: 'Lexend Exa SemiBold';
     src: url('/fonts/lexend/LexendExa-SemiBold.ttf') format('truetype');
@@ -94,6 +97,10 @@ footer {
 
 .test {
     font-family: $user-font-family;
+}
+
+.flex {
+    display: flex;
 }
 
 .preview {
