@@ -47,7 +47,7 @@
 
 .landingFlex {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
 
     @media #{ $mq-smallScreen } {
         display: block;
