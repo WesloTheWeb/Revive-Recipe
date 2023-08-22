@@ -3,7 +3,7 @@
 // custom fonts
 @font-face {
     font-family: 'Lexend Exa Regular';
-    src: url('/fonts/LexendExa-Regular.ttf') format('truetype');
+    src: url('/fonts/lexend/LexendExa-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -82,6 +82,10 @@ p {
             text-align: center;
         }
     }
+}
+
+h2 {
+    font-family: "Lexend Exa Regular", serif;
 }
 
 button {
