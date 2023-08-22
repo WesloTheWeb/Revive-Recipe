@@ -5,6 +5,10 @@
     padding: 0 0 17rem 0;
     background: linear-gradient(to bottom, $neutral-100 50%, $neutral-secondary-200 50%);
 
+    @media #{ $mq-smallScreen } {
+        padding: 2.5rem 0;
+    }
+
     h1 {
         font-family: 'Anton', sans-serif;
         font-size: 5rem;
@@ -12,6 +16,10 @@
         text-transform: capitalize;
         color: $brandColorPrimary;
         margin-top: 0;
+
+        @media #{ $mq-smallScreen } {
+            font-size: 1.5rem;
+        }
 
         span {
             color: $brandColorSecondary;
@@ -25,6 +33,12 @@
         background-color: $neutral-200;
         opacity: .8;
         padding: 1.2rem;
+
+        @media #{ $mq-smallScreen } {
+            width: 90%;
+            margin: 1rem 0;
+        }
+
         p {
             opacity: 1;
         }
@@ -34,6 +48,10 @@
 .landingFlex {
     display: flex;
     justify-content: end;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
 }
 
 .galleryContainer {
@@ -42,6 +60,12 @@
     >img {
         // Targeting the wrapper div of Next's Image component
         position: absolute;
+
+        @media #{ $mq-smallScreen } {
+            position: static;
+            width: 50%;
+            height: 50%;
+        }
 
         &:nth-of-type(1) {
             z-index: 1;
