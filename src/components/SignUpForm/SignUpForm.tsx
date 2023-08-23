@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import ReactSelect from "react-select";
 import Image from 'next/image';
 import classes from './SignUpForm.module.scss';
 import Button, { ButtonTypes } from "@/containers/Button/Button";
@@ -16,10 +17,16 @@ interface Inputs {
     email: string;
 };
 
+const genderOptions: readonly { value: string, label: string }[] = [
+    { value: 'male', label: 'Male' },
+    { value: 'female', label: 'Female' },
+    { value: 'other', label: 'Other' },
+];
+
 const SignUpForm = ({ }) => {
 
     // RHF Properties
-    const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, watch, control, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
 
     return (
@@ -53,22 +60,43 @@ const SignUpForm = ({ }) => {
                         {errors.lastName && <span>This field is required</span>}
                     </div>
                     <div className={formGroup}>
-                        <label>*Email Address</label>
-                        <input placeholder="email address"{...register("email", { required: true })} />
-                        {errors.lastName && <span>Email cannot be empty.</span>}
+                        <label>*Gender</label>
+                        <Controller
+                            name="gender"
+                            control={control}
+                            render={({ field }) => (
+                                <ReactSelect
+                                    {...field}
+                                    options={genderOptions as any}
+                                    isClearable
+                                    placeholder="Select Gender"
+                                />
+                            )}
+                        />
+                        {errors.gender && <span>Select a gender</span>}
                     </div>
                     <section className={relatedFormGroup}>
+                        <div className={formGroup}>
+                            <label>*Email Address</label>
+                            <input placeholder="email address"{...register("email", { required: true })} />
+                            {errors.lastName && <span>Email cannot be empty.</span>}
+                        </div>
                         <div className={formGroup}>
                             <label>*Username </label>
                             <input {...register("username", { required: true })} />
                             {errors.lastName && <span>Email cannot be empty.</span>}
                         </div>
                         <p>
-                            Please ensure it is unique,appropriate and abides by our community guidelines.
+                            Please ensure it is unique, appropriate and abides by our community guidelines.
                         </p>
                     </section>
-
+                    <div className={formGroup}>
+                        <label>*Create password</label>
+                        <input {...register("password", { required: true })} />
+                        {errors.password && <span>Password needed.</span>}
+                    </div>
                 </section>
+
 
                 <section className={actionButtonsContainer}>
                     <Link href="/">
