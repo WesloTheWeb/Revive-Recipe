@@ -3,11 +3,19 @@
 .loginButton {
     color: $neutral-100;
     background-color: $blue-500-primary;
+
+    &:hover {
+        background-color: $blue-600;
+    }
 }
 
 .signUpButton {
     color: $neutral-100;
-    background-color: $green-500-primary;
+    background-color: $green-600;
+
+    &:hover {
+        background-color: $green-700;
+    }
 }
 
 .guestButton {
