@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import classes from './Modal.module.scss';
 
@@ -10,9 +9,13 @@ interface Inputs {
     password: string;
 };
 
-const Modal = ({ }) => {
+interface ModalProps {
+    closeModal: () => void;
+};
 
-    const { register, handleSubmit, watch, control, formState: { errors } } = useForm<Inputs>();
+const Modal = ({ closeModal }: ModalProps) => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
 
     return (
@@ -29,7 +32,7 @@ const Modal = ({ }) => {
                 <input placeholder="password"{...register("password", { required: true })} />
                 {errors.password && <span>Blank or invalid password</span>}
                 <div className={controls}>
-                    <Button buttonType={ButtonTypes.CANCEL} />
+                    <Button buttonType={ButtonTypes.CANCEL} handleClick={closeModal} />
                     <Button buttonType={ButtonTypes.LOGIN} />
                 </div>
             </form>

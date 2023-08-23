@@ -4,6 +4,7 @@ const { loginButton, signUpButton, guestButton, returnButton, cancelButton } = c
 
 interface ButtonProps {
     buttonType: ButtonTypes;
+    handleClick?: () => void;
 };
 
 // pass to the parent component for the prop calling allow multiple constants
@@ -27,7 +28,7 @@ const buttonPaths = {
 
 };
 
-const Button = ({ buttonType }: ButtonProps) => {
+const Button = ({ buttonType, handleClick }: ButtonProps) => {
 
     const determineButtonTypeFromProps = (type: ButtonTypes) => {
         switch (type) {
@@ -68,8 +69,18 @@ const Button = ({ buttonType }: ButtonProps) => {
         };
     };
 
+    // Specific button action:
+    const handleButtonClick = () => {
+        if (handleClick) {
+            handleClick();
+        };
+    };
+
     return (
-        <button className={determineButtonTypeFromProps(buttonType)}>
+        <button
+            className={determineButtonTypeFromProps(buttonType)}
+            onClick={handleButtonClick}
+        >
             {determineButtonText(buttonType)}
         </button>
     );

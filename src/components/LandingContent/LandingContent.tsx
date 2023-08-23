@@ -19,7 +19,15 @@ interface Photo {
 
 const LandingContent = ({ }) => {
 
-    const [modal, toggleModal] = useState(true);
+    const [modal, toggleModal] = useState(false);
+
+    const handleClose = () => {
+        return toggleModal(!true);
+    };
+
+    const handleOpenModal = () => {
+        return toggleModal(true);
+    };
 
     const gallery: Photo[] = [
         {
@@ -50,8 +58,8 @@ const LandingContent = ({ }) => {
             {
                 modal ? (
                     <>
-                        <Overlay />
-                        <Modal />
+                        <Overlay closeOverlay={handleClose} />
+                        <Modal closeModal={handleClose}/>
                     </>
                 ) : null
             }
@@ -85,7 +93,7 @@ const LandingContent = ({ }) => {
                             <Link href="/signup">
                                 <Button buttonType={ButtonTypes.SIGNUP} />
                             </Link>
-                            <Button buttonType={ButtonTypes.LOGIN} />
+                            <Button buttonType={ButtonTypes.LOGIN} handleClick={handleOpenModal}  />
                             <Button buttonType={ButtonTypes.GUEST} />
                         </div>
                     </section>
