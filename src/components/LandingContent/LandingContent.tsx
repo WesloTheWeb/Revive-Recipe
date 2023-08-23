@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import classes from './LandingContent.module.scss';
 import LandingMobileGallery from '../LandingMobileGallery/LandingMobileGallery';
@@ -67,7 +68,9 @@ const LandingContent = ({ }) => {
                         Join or log in now to start your journey to a nourished body and a vibrant community. Let's cook, stay fit, and make lasting connections together!
                     </p>
                     <div className={loginContainer}>
-                        <Button buttonType={ButtonTypes.SIGNUP} />
+                        <Link href="/signup">
+                            <Button buttonType={ButtonTypes.SIGNUP} />
+                        </Link>
                         <Button buttonType={ButtonTypes.LOGIN} />
                         <Button buttonType={ButtonTypes.GUEST} />
                     </div>

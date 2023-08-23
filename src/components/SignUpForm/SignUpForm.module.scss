@@ -1,0 +1,25 @@
+@import '../../styles/variables.scss';
+
+.signupInstructions {
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+        margin: 0;
+    }
+}
+
+.signupContainer {
+    margin: 0 10rem;
+
+    form {
+        border: 5px solid $brandColorSecondary;
+        border-radius: 10px;
+        margin: 2.5rem auto;
+        padding: 1.5rem 2.5rem;
+
+        h3 {
+            margin-top: 0;
+        }
+    }
+}
