@@ -5,6 +5,7 @@ import classes from './LandingContent.module.scss';
 import LandingMobileGallery from '../LandingMobileGallery/LandingMobileGallery';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import Modal from '../Modal/Modal';
+import Overlay from '../Overlay/Overlay';
 
 const { landingContainer, galleryContainer, mobileGalleryContainer, landingFlex, blurb, loginContainer } = classes;
 
@@ -48,7 +49,10 @@ const LandingContent = ({ }) => {
         <>
             {
                 modal ? (
-                    <Modal />
+                    <>
+                        <Overlay />
+                        <Modal />
+                    </>
                 ) : null
             }
             <div className={landingContainer}>
