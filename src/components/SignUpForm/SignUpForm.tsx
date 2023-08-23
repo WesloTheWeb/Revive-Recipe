@@ -1,7 +1,6 @@
 import Link from "next/link";
 import dynamic from "next/dynamic";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import ReactSelect from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Image from 'next/image';
@@ -30,7 +29,6 @@ const genderOptions: readonly { value: string, label: string }[] = [
     { value: 'female', label: 'Female' },
     { value: 'other', label: 'Other' },
 ];
-
 
 const SignUpForm = ({ }) => {
     // RHF Properties
