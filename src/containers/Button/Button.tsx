@@ -1,19 +1,19 @@
 import classes from './Button.module.scss';
 
-const { loginButton, signUpButton, guestButton, returnButton } = classes;
+const { loginButton, signUpButton, guestButton, returnButton, cancelButton } = classes;
 
 interface ButtonProps {
     buttonType: ButtonTypes;
 };
 
-// pass to the parent component for the prop calling allow multiple 
-// constants:
+// pass to the parent component for the prop calling allow multiple constants
 export enum ButtonTypes {
     LOGIN = 'login',
     SIGNUP = 'signup',
     GUEST = 'guest',
     SIGNUPACCOUNT = 'createAccount',
-    RETURN = 'returnButton'
+    RETURN = 'returnButton',
+    CANCEL = 'cancelButton'
 };
 
 // binds CSS classes to whatever prop is passed:
@@ -22,7 +22,9 @@ const buttonPaths = {
     [ButtonTypes.SIGNUP]: signUpButton,
     [ButtonTypes.GUEST]: guestButton,
     [ButtonTypes.SIGNUPACCOUNT]: signUpButton,
-    [ButtonTypes.RETURN]: returnButton
+    [ButtonTypes.RETURN]: returnButton,
+    [ButtonTypes.CANCEL]: cancelButton
+
 };
 
 const Button = ({ buttonType }: ButtonProps) => {
@@ -38,7 +40,9 @@ const Button = ({ buttonType }: ButtonProps) => {
             case ButtonTypes.SIGNUPACCOUNT:
                 return buttonPaths[ButtonTypes.SIGNUPACCOUNT];
             case ButtonTypes.RETURN:
-                return buttonPaths[ButtonTypes.RETURN]
+                return buttonPaths[ButtonTypes.RETURN];
+            case ButtonTypes.CANCEL:
+                return buttonPaths[ButtonTypes.CANCEL];
             default:
                 return undefined;
         };
@@ -57,6 +61,8 @@ const Button = ({ buttonType }: ButtonProps) => {
                 return 'Create Account';
             case ButtonTypes.RETURN:
                 return 'Return'
+            case ButtonTypes.CANCEL:
+                return 'Cancel'
             default:
                 return 'Click Me';
         };

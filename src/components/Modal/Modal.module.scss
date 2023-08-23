@@ -1,0 +1,58 @@
+@import '../../styles/variables.scss';
+
+.container {
+    z-index: 7;
+    background-color: $neutral-100;
+    border: 3px solid $brandColorPrimary;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 1rem;
+    color: #000;
+    width: 30%;
+    height: 55%;
+
+    
+    @media #{ $mq-smallScreen } {
+        z-index: 9999;
+        width: 90%;
+    }
+
+    .instructions {
+        text-align: center;
+    }
+
+    h3,
+    p {
+        margin: 0;
+    }
+
+    form {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input {
+            padding: .5rem;
+            border-radius: 6px;
+            font-size: 1.43rem;
+        }
+
+        span {
+            color: $red-400;
+        }
+    }
+}
+
+.controls {
+    display: flex;
+    justify-content: right;
+    margin: 1.5rem 0;
+}
