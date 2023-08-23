@@ -43,6 +43,13 @@
             opacity: 1;
         }
     }
+
+    .loginContainer {
+        display: flex;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+    }
 }
 
 .landingFlex {

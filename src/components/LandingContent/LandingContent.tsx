@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import classes from './LandingContent.module.scss';
 import LandingMobileGallery from '../LandingMobileGallery/LandingMobileGallery';
+import Button, { ButtonTypes } from '@/containers/Button/Button';
 
-const { landingContainer, galleryContainer, mobileGalleryContainer, landingFlex, blurb } = classes;
+const { landingContainer, galleryContainer, mobileGalleryContainer, landingFlex, blurb, loginContainer } = classes;
 
 interface Photo {
     imagePath: string;
@@ -65,9 +66,13 @@ const LandingContent = ({ }) => {
                     <p>
                         Join or log in now to start your journey to a nourished body and a vibrant community. Let's cook, stay fit, and make lasting connections together!
                     </p>
+                    <div className={loginContainer}>
+                        <Button buttonType={ButtonTypes.SIGNUP} />
+                        <Button buttonType={ButtonTypes.LOGIN} />
+                        <Button buttonType={ButtonTypes.GUEST} />
+                    </div>
                 </section>
             </div>
-
         </div>
     );
 };

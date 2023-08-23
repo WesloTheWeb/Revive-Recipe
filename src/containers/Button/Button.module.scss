@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.loginButton {
+    color: $neutral-100;
+    background-color: $blue-500-primary;
+}
+
+.signUpButton {
+    color: $neutral-100;
+    background-color: $green-500-primary;
+}
+
+.guestButton {
+    margin-top: 1.2rem;
+    background-color: $neutral-900;
+    color: $neutral-100;
+    border: 2px solid $neutral-900
+}
