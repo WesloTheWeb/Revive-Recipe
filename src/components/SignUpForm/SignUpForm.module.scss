@@ -1,6 +1,6 @@
 @import '../../styles/variables.scss';
 
-.signupInstructions {
+.signUpInstructions {
     margin: 0 auto;
     text-align: center;
 
@@ -9,7 +9,7 @@
     }
 }
 
-.signupContainer {
+.signUpContainer {
     margin: 0 10rem;
 
     form {
@@ -18,8 +18,50 @@
         margin: 2.5rem auto;
         padding: 1.5rem 2.5rem;
 
-        h3 {
+        p {
             margin-top: 0;
         }
+
+        h3 {
+            margin: 0;
+        }
+
+        input {
+            display: block;
+            border-radius: 7px;
+            padding: .5rem .25rem;
+            font-size: 1.43rem;
+        }
     }
+}
+
+.signUpFormContainer {
+
+    .relatedFormGroup {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .formGroup {
+        margin: .75rem;  // or adjust based on your design preference
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        span {
+            font-weight: bold;
+            color: $red-400; // or any other styling for error messages
+            display: block;  // ensures error is displayed on a new line
+            margin-top: 0.25rem; // space between input and error message
+        }
+    }
+}
+
+.actionButtonsContainer {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
 }

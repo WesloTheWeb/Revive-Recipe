@@ -1,6 +1,6 @@
 import classes from './Button.module.scss';
 
-const { loginButton, signUpButton, guestButton } = classes;
+const { loginButton, signUpButton, guestButton, returnButton } = classes;
 
 interface ButtonProps {
     buttonType: ButtonTypes;
@@ -11,14 +11,18 @@ interface ButtonProps {
 export enum ButtonTypes {
     LOGIN = 'login',
     SIGNUP = 'signup',
-    GUEST = 'guest'
+    GUEST = 'guest',
+    SIGNUPACCOUNT = 'createAccount',
+    RETURN = 'returnButton'
 };
 
-// determine the class from our props
+// binds CSS classes to whatever prop is passed:
 const buttonPaths = {
     [ButtonTypes.LOGIN]: loginButton,
     [ButtonTypes.SIGNUP]: signUpButton,
-    [ButtonTypes.GUEST]: guestButton
+    [ButtonTypes.GUEST]: guestButton,
+    [ButtonTypes.SIGNUPACCOUNT]: signUpButton,
+    [ButtonTypes.RETURN]: returnButton
 };
 
 const Button = ({ buttonType }: ButtonProps) => {
@@ -31,12 +35,17 @@ const Button = ({ buttonType }: ButtonProps) => {
                 return buttonPaths[ButtonTypes.SIGNUP];
             case ButtonTypes.GUEST:
                 return buttonPaths[ButtonTypes.GUEST];
+            case ButtonTypes.SIGNUPACCOUNT:
+                return buttonPaths[ButtonTypes.SIGNUPACCOUNT];
+            case ButtonTypes.RETURN:
+                return buttonPaths[ButtonTypes.RETURN]
             default:
                 return undefined;
         };
     };
 
     const determineButtonText = (type: ButtonTypes) => {
+        // returns text on button:
         switch (type) {
             case ButtonTypes.LOGIN:
                 return 'Log In';
@@ -44,6 +53,10 @@ const Button = ({ buttonType }: ButtonProps) => {
                 return 'Sign Up';
             case ButtonTypes.GUEST:
                 return 'view as Guest';
+            case ButtonTypes.SIGNUPACCOUNT:
+                return 'Create Account';
+            case ButtonTypes.RETURN:
+                return 'Return'
             default:
                 return 'Click Me';
         };

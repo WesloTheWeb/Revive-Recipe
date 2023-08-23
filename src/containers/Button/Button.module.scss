@@ -18,7 +18,18 @@
     }
 }
 
-.guestButton {
+.returnButton {
+    border: 1px solid $neutral-900;
+    background-color: #fff;
+    color: $neutral-900;
+
+    &:hover {
+        background-color: $neutral-900;
+        color: #fff;
+    }
+}
+
+.guestButton, .createAccountButton {
     margin-top: 1.2rem;
     background-color: $neutral-900;
     color: $neutral-100;
