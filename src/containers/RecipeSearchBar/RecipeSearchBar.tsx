@@ -9,9 +9,8 @@ interface searchInputs {
 
 const RecipeSearchBar = () => {
 
-    const { register, handleSubmit, watch, control, formState: { errors } } = useForm<searchInputs>();
+    const { register, handleSubmit } = useForm<searchInputs>();
     const onSubmit: SubmitHandler<searchInputs> = data => console.log(data);
-
 
     return (
         <>
@@ -19,8 +18,11 @@ const RecipeSearchBar = () => {
                 <h2>Recipe Finder</h2>
                 <span>Enter any food below to query for the nutritional data.</span>
             </section>
-            <form className={recipeSearch}>
-                <input type="text" placeholder="Recipe name" />
+            <form
+                className={recipeSearch}
+                onSubmit={handleSubmit(onSubmit)}
+            >
+                <input placeholder="Recipe name"{...register("recipe", { required: true })} />
             </form>
         </>
     );
