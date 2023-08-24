@@ -105,7 +105,19 @@ button {
     font-weight: bold;
 }
 
+// sticky footer
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;  // this ensures the page takes up the full viewport height at least
+}
+
+.content-wrap {
+    flex: 1 0 auto;  // this makes sure the content takes up all available space, pushing the footer down
+}
+
 footer {
+    flex-shrink: 0;  // this ensures the footer doesn't shrink if there's a lot of content in the main section
     font-size: .8rem;
     color: $neutral-100;
     background-color: $neutral-900;
