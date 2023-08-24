@@ -1,9 +1,28 @@
-
+import { useEffect } from 'react';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
 import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
 
 export default function Home() {
+
+  const URL = `https://api.edamam.com/api/recipes/v2`
+
+  useEffect(() => {
+    fetch(URL)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error.message);
+      });
+  }, []);
+
   return (
     <>
       <PageLayout>
@@ -11,11 +30,11 @@ export default function Home() {
           <div className="left-placeholder"></div>
           <div className="recipe-content">
             <RecipeSearchBar />
-            <RecipeRandomCard 
+            {/* <RecipeRandomCard 
               recipeName='Bangus Paksiw (Milkfish in Vinegar Stew)'
               
-              />
-          </div> 
+              /> */}
+          </div>
           <div className="right-placeholder"></div>
         </section>
       </PageLayout>
