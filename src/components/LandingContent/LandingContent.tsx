@@ -1,8 +1,13 @@
+import { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import classes from './LandingContent.module.scss';
 import LandingMobileGallery from '../LandingMobileGallery/LandingMobileGallery';
+import Button, { ButtonTypes } from '@/containers/Button/Button';
+import Modal from '../Modal/Modal';
+import Overlay from '../Overlay/Overlay';
 
-const { landingContainer, galleryContainer, mobileGalleryContainer, landingFlex, blurb } = classes;
+const { landingContainer, galleryContainer, mobileGalleryContainer, landingFlex, blurb, loginContainer } = classes;
 
 interface Photo {
     imagePath: string;
@@ -13,6 +18,16 @@ interface Photo {
 };
 
 const LandingContent = ({ }) => {
+
+    const [modal, toggleModal] = useState(false);
+
+    const handleClose = () => {
+        return toggleModal(!true);
+    };
+
+    const handleOpenModal = () => {
+        return toggleModal(true);
+    };
 
     const gallery: Photo[] = [
         {
@@ -39,36 +54,52 @@ const LandingContent = ({ }) => {
     ];
 
     return (
-        <div className={landingContainer}>
-            <h1>Get <span>cooking</span>.
-                get <span>moving</span>.<br />
-                get <span>groov&apos;n.</span></h1>
-            <div className={landingFlex}>
-                <section className={galleryContainer}>
-                    {gallery.map((img) => {
-                        return (
-                            <Image
-                                src={img.imagePath}
-                                alt={img.altTag}
-                                key={img.key}
-                                width={img.width}
-                                height={img.height}
-                            />
-                        );
-                    })}
-                </section>
-                <section className={mobileGalleryContainer}>
-                    <LandingMobileGallery galleryPhotos={gallery} />
-                </section>
-                <section className={blurb}>
-                    <h2>Discover a world of healthy living</h2>
-                    <p>
-                        Join or log in now to start your journey to a nourished body and a vibrant community. Let's cook, stay fit, and make lasting connections together!
-                    </p>
-                </section>
+        <>
+            {
+                modal ? (
+                    <>
+                        <Overlay closeOverlay={handleClose} />
+                        <Modal closeModal={handleClose}/>
+                    </>
+                ) : null
+            }
+            <div className={landingContainer}>
+                <h1>Get <span>cooking</span>.
+                    get <span>moving</span>.<br />
+                    get <span>groov&apos;n.</span></h1>
+                <div className={landingFlex}>
+                    <section className={galleryContainer}>
+                        {gallery.map((img) => {
+                            return (
+                                <Image
+                                    src={img.imagePath}
+                                    alt={img.altTag}
+                                    key={img.key}
+                                    width={img.width}
+                                    height={img.height}
+                                />
+                            );
+                        })}
+                    </section>
+                    <section className={mobileGalleryContainer}>
+                        <LandingMobileGallery galleryPhotos={gallery} />
+                    </section>
+                    <section className={blurb}>
+                        <h2>Discover a world of healthy living</h2>
+                        <p>
+                            Join or log in now to start your journey to a nourished body and a vibrant community. Let's cook, stay fit, and make lasting connections together!
+                        </p>
+                        <div className={loginContainer}>
+                            <Link href="/signup">
+                                <Button buttonType={ButtonTypes.SIGNUP} />
+                            </Link>
+                            <Button buttonType={ButtonTypes.LOGIN} handleClick={handleOpenModal}  />
+                            <Button buttonType={ButtonTypes.GUEST} />
+                        </div>
+                    </section>
+                </div>
             </div>
-
-        </div>
+        </>
     );
 };
 

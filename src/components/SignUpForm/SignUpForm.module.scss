@@ -1,0 +1,90 @@
+@import '../../styles/variables.scss';
+
+.signUpInstructions {
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+        margin: 0;
+    }
+}
+
+.signUpContainer {
+    margin: 0 10rem;
+
+    @media #{ $mq-smallScreen } {
+        margin: 0;
+    }
+
+    form {
+        border: 5px solid $brandColorSecondary;
+        border-radius: 10px;
+        margin: 2.5rem auto;
+        padding: 1.5rem 2.5rem;
+
+        @media #{ $mq-smallScreen } {
+            margin: 0;
+            padding: 1.5rem .25rem 0 0;
+        }
+
+        p {
+            margin-top: 0;
+
+            @media #{ $mq-smallScreen } {
+                padding: 0 1.25rem;
+            }
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        input {
+            display: block;
+            border-radius: 7px;
+            padding: .5rem .25rem;
+            font-size: 1.43rem;
+        }
+    }
+}
+
+.signUpFormContainer {
+
+    .relatedFormGroup {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .formGroup {
+        margin: .75rem; // or adjust based on your design preference
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        span {
+            font-weight: bold;
+            color: $red-400; // or any other styling for error messages
+            display: block; // ensures error is displayed on a new line
+            margin-top: 0.25rem; // space between input and error message
+        }
+    }
+}
+
+.actionButtonsContainer {
+    margin-top: 2.5rem;
+    display: flex;
+    justify-content: center;
+
+    @media #{ $mq-smallScreen } {
+        margin: 1rem 0;
+    }
+
+    button {
+        @media #{ $mq-smallScreen } {
+            padding: 0.35rem;
+        }
+    }
+}
