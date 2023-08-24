@@ -61,12 +61,12 @@ const SignUpForm = ({ }) => {
                     <div className={formGroup}>
                         <label>*First Name</label>
                         <input placeholder="First Name"{...register("firstName", { required: true })} />
-                        {errors.firstName && <span>This field cannot be blank</span>}
+                        {errors.firstName && <span>First name is required.</span>}
                     </div>
                     <div className={formGroup}>
                         <label>*Last Name</label>
                         <input placeholder="Last Name"{...register("lastName", { required: true })} />
-                        {errors.lastName && <span>This field is required</span>}
+                        {errors.lastName && <span>Last name is required.</span>}
                     </div>
                     <div className={formGroup}>
                         <label>*Gender</label>
@@ -103,22 +103,31 @@ const SignUpForm = ({ }) => {
                         </div>
                         <div className={formGroup}>
                             <label>*Email Address</label>
-                            <input placeholder="email address"{...register("email", { required: true })} />
-                            {errors.lastName && <span>Email cannot be empty.</span>}
+                            <input
+                                placeholder="email address"
+                                {...register("email", {
+                                    required: "Email is required",
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                        message: "invalid email address"
+                                    }
+                                })}
+                            />
+                            {errors.email && <span>Email must be valid.</span>}
                         </div>
                     </section>
                     <section className={relatedFormGroup}>
                         <div className={formGroup}>
                             <label>*Username </label>
                             <input {...register("username", { required: true })} />
-                            {errors.lastName && <span>Email cannot be empty.</span>}
+                            {errors.username && <span>Username cannot be empty.</span>}
                         </div>
                         <p>
                             Please ensure it is unique, appropriate and abides by our community guidelines.
                         </p>
                         <div className={formGroup}>
                             <label>*Create password</label>
-                            <input {...register("password", { required: true })} />
+                            <input type="password" {...register("password", { required: true })} />
                             {errors.password && <span>Password needed.</span>}
                         </div>
                     </section>

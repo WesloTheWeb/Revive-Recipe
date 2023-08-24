@@ -29,7 +29,7 @@ const Modal = ({ closeModal }: ModalProps) => {
                 <input placeholder="username"{...register("username", { required: true })} />
                 {errors.username && <span>Username not entered</span>}
                 <label>password</label>
-                <input placeholder="password"{...register("password", { required: true })} />
+                <input type="password" placeholder="password"{...register("password", { required: true })} />
                 {errors.password && <span>Blank or invalid password</span>}
                 <div className={controls}>
                     <Button buttonType={ButtonTypes.CANCEL} handleClick={closeModal} />
