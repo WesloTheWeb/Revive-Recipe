@@ -69,7 +69,7 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
         };
     };
 
-    // Specific button action:
+    // Specific button action via the prop passed in for handleClick:
     const handleButtonClick = () => {
         if (handleClick) {
             handleClick();
