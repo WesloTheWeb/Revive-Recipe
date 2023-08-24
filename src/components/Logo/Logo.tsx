@@ -5,8 +5,9 @@ const { container } = classes;
 
 const Logo = () => {
     return (
-        <Link href="/">
-            <figure className={container}>
+        <figure className={container}>
+            <Link href="/">
+
                 <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                     width="148.000000pt" height="148.000000pt" viewBox="0 0 148.000000 148.000000"
                     preserveAspectRatio="xMidYMid meet"
@@ -23,9 +24,9 @@ const Logo = () => {
                         <path fill="#DF2468" d="M690 690 l0 -240 60 0 60 0 0 240 0 240 -60 0 -60 0 0 -240z" />
                     </g>
                 </svg>
-                <h1>Revive Recipe</h1>
-            </figure>
-        </Link>
+            </Link>
+            <h1>Revive Recipe</h1>
+        </figure>
     );
 };
 

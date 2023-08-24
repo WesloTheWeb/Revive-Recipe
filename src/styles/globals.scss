@@ -148,4 +148,11 @@ footer {
     to {
         transform: rotate(359deg);
     }
+} 
+
+// newsfedd of recipe search
+.recipeSeachPageGridContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;  // adjust this value for the desired spacing between columns
 }
