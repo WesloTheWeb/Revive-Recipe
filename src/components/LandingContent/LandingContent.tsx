@@ -59,7 +59,7 @@ const LandingContent = ({ }) => {
                 modal ? (
                     <>
                         <Overlay closeOverlay={handleClose} />
-                        <Modal closeModal={handleClose}/>
+                        <Modal closeModal={handleClose} />
                     </>
                 ) : null
             }
@@ -93,8 +93,10 @@ const LandingContent = ({ }) => {
                             <Link href="/signup">
                                 <Button buttonType={ButtonTypes.SIGNUP} />
                             </Link>
-                            <Button buttonType={ButtonTypes.LOGIN} handleClick={handleOpenModal}  />
-                            <Button buttonType={ButtonTypes.GUEST} />
+                            <Button buttonType={ButtonTypes.LOGIN} handleClick={handleOpenModal} />
+                            <Link href="/home">
+                                <Button buttonType={ButtonTypes.GUEST} />
+                            </Link>
                         </div>
                     </section>
                 </div>
