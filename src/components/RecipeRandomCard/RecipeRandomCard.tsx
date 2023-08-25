@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import classes from './RecipeRandomCard.module.scss';
 
-const { recipe, recipeDetails } = classes;
+const { recipe, recipeDetails, macroGrid } = classes;
 
 interface Nutrient {
     quantity: number;
@@ -32,9 +32,27 @@ const RecipeRandomCard = ({ image, recipeName, description, macros }: RecipeRand
                 <h3>{recipeName}</h3>
             </section>
             <section className={recipeDetails}>
-                <div><b>Protein</b>: {convertNumber(macros.protein.quantity)}{macros.protein.unit}</div>
-                <div><b>Fat</b>: {convertNumber(macros.fats.quantity)}{macros.fats.unit}</div>
-                <div><b>Carb</b>: {convertNumber(macros.carbs.quantity)}{macros.carbs.unit}</div>
+                <h5>Macros</h5>
+                <div className={macroGrid}>
+                    <div>
+                        <b>Protein:</b>
+                    </div>
+                    <div>
+                        {convertNumber(macros.protein.quantity)}{macros.protein.unit}
+                    </div>
+                    <div>
+                        <b>Fat</b>:
+                    </div>
+                    <div>
+                        {convertNumber(macros.fats.quantity)}{macros.fats.unit}
+                    </div>
+                    <div>
+                        <b>Carb</b>:
+                    </div>
+                    <div>
+                        {convertNumber(macros.carbs.quantity)}{macros.carbs.unit}
+                    </div>
+                </div>
             </section>
         </div>
     );

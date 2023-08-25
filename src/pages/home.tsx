@@ -71,7 +71,7 @@ export default function Home() {
           <div className="left-placeholder"></div>
           <div className="recipe-content">
             <RecipeSearchBar />
-            <h2>Recipe you may like...</h2>
+            <h2>Recipes you may like...</h2>
             <section className='randomized-recipe-container'>
               {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
                 // extract protein
