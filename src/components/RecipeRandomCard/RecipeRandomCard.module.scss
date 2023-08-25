@@ -3,7 +3,7 @@
 .recipe {
 
     img {
-        display: block; 
+        display: block;
         margin: 0;
         padding: 0;
     }
@@ -12,8 +12,8 @@
         min-height: 7rem;
         display: flex;
         text-align: center;
-        align-items: center;  
-        justify-content: center; 
+        align-items: center;
+        justify-content: center;
         box-sizing: border-box;
         width: 250px; // The same width as the Image
         color: $brandColorTertiary;
@@ -30,4 +30,10 @@
     background-color: $brandColorTertiary;
     margin: 0;
     padding: 1rem 0.5rem;
+    font-size: 1.143rem;
+
+    span {
+        display: block;
+        font-weight: bold;
+    }
 }

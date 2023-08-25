@@ -3,7 +3,7 @@ import PageLayout from '@/components/PageLayout/PageLayout';
 import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
 import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
 
-interface NutrientInfo {
+interface Nutrient {
   quantity: number;
   unit: string;
 };
@@ -16,7 +16,9 @@ interface RecipeType {
     source: string;
     totalTime: number;
     totalNutrients: {
-      PROCNT: NutrientInfo;  // TODO: add FATS, CARBS etc. in similar fashion
+      PROCNT: Nutrient;  // TODO: add FATS, CARBS etc. in similar fashion
+      FAT: Nutrient;
+      CHOCDF: Nutrient;
       // ... other nutrient types
     };
   };
@@ -74,17 +76,31 @@ export default function Home() {
               {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
                 // extract protein
                 const proteinInfo = hit.recipe.totalNutrients.PROCNT;
+                const fatInfo = hit.recipe.totalNutrients.FAT;
+                const carbInfo = hit.recipe.totalNutrients.CHOCDF;
 
                 return (
                   <RecipeRandomCard
                     key={index}
                     image={hit.recipe.image}
                     recipeName={hit.recipe.label}
-                    description="Some Description" // Modify as required.
-                    proteinQuantity={proteinInfo.quantity}
-                    proteinUnit={proteinInfo.unit}
+                    description={hit.recipe.label} // Modify as needed.
+                    macros={{
+                      protein: {
+                        quantity: proteinInfo.quantity,
+                        unit: proteinInfo.unit
+                      },
+                      fats: {
+                        quantity: fatInfo.quantity,
+                        unit: fatInfo.unit
+                      },
+                      carbs: {
+                        quantity: carbInfo.quantity,
+                        unit: carbInfo.unit
+                      }
+                    }}
                   />
-                )
+                );
               })
               }
             </section>

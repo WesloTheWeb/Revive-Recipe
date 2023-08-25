@@ -3,15 +3,25 @@ import classes from './RecipeRandomCard.module.scss';
 
 const { recipe, recipeDetails } = classes;
 
+interface Nutrient {
+    quantity: number;
+    unit: string;
+};
+
+interface Macros {
+    protein: Nutrient;
+    fats: Nutrient;
+    carbs: Nutrient;
+};
+
 interface RecipeRandomCardProps {
     image: string;
     recipeName: string;
     description: string;
-    proteinQuantity: number;
-    proteinUnit: string;
+    macros: Macros;
 };
 
-const RecipeRandomCard = ({ image, recipeName, description, proteinQuantity, proteinUnit }: RecipeRandomCardProps) => {
+const RecipeRandomCard = ({ image, recipeName, description, macros }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
 
@@ -22,7 +32,9 @@ const RecipeRandomCard = ({ image, recipeName, description, proteinQuantity, pro
                 <h3>{recipeName}</h3>
             </section>
             <section className={recipeDetails}>
-                <p><b>Protein</b>: {convertNumber(proteinQuantity)}{proteinUnit}</p>
+                <div><b>Protein</b>: {convertNumber(macros.protein.quantity)}{macros.protein.unit}</div>
+                <div><b>Fat</b>: {convertNumber(macros.fats.quantity)}{macros.fats.unit}</div>
+                <div><b>Carb</b>: {convertNumber(macros.carbs.quantity)}{macros.carbs.unit}</div>
             </section>
         </div>
     );
