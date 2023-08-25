@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
 import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
+import Button, { ButtonTypes } from '@/containers/Button/Button';
+import Link from 'next/link';
 
 interface Nutrient {
   quantity: number;
@@ -69,7 +71,11 @@ export default function Home() {
     <>
       <PageLayout>
         <section className='recipeSeachPageGridContainer'>
-          <div className="left-placeholder"></div>
+          <div className="left-placeholder">
+            <Link href="/">
+              <Button buttonType={ButtonTypes.RETURN} />
+            </Link>
+          </div>
           <div className="recipe-content">
             <RecipeSearchBar />
             <h2>Recipes you may like...</h2>
