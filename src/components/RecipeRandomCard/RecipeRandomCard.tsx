@@ -13,11 +13,11 @@ const RecipeRandomCard = ({ image, recipeName, description }: RecipeRandomCardPr
     return (
         <div>
             <section className={recipe}>
-                <Image src={image} alt={description} />
+                <Image src={image} alt={description} width={250} height={300} />
                 <h3>{recipeName}</h3>
             </section>
             <section>
-                
+
             </section>
         </div>
     );

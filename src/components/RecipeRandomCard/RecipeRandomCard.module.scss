@@ -2,12 +2,26 @@
 
 .recipe {
 
+    img {
+        display: block; 
+        margin: 0;
+        padding: 0;
+    }
 
     h3 {
+        min-height: 7rem;
+        display: flex;
+        text-align: center;
+        align-items: center;  
+        justify-content: center; 
+        box-sizing: border-box;
+        width: 250px; // The same width as the Image
         color: $brandColorTertiary;
         background-color: $brandColorSecondary;
-        font-size: 2.73rem;
+        font-size: 1.85rem;
         font-weight: bold;
-        line-height: 1.43;
+        line-height: 1.1;
+        margin: 0;
+        padding: .25rem;
     }
 }
