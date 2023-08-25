@@ -16,11 +16,11 @@ interface Macros {
 
 interface MineralsElectrolytes {
     cholesterol: Nutrient;
-    sodium: Nutrient;
-    calcium: Nutrient;
-    magnesium: Nutrient;
-    potassium: Nutrient;
-    iron: Nutrient;
+    // sodium: Nutrient;
+    // calcium: Nutrient;
+    // magnesium: Nutrient;
+    // potassium: Nutrient;
+    // iron: Nutrient;
 };
 
 interface RecipeRandomCardProps {
@@ -69,7 +69,14 @@ const RecipeRandomCard = ({ image, recipeName, description, calories, macros, mi
                     </div>
                 </div>
                 <h5>Minerals &amp; Electrolytes</h5>
-
+                <div className={macroGrid}>
+                    <div>
+                        Cholesterol:
+                    </div>
+                    <div>
+                        {convertNumber(minerals.cholesterol.quantity)}{minerals.cholesterol.unit}
+                    </div>
+                </div>
             </section>
         </div>
     );

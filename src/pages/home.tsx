@@ -19,6 +19,7 @@ interface RecipeType {
       PROCNT: Nutrient;
       FAT: Nutrient;
       CHOCDF: Nutrient;
+      CHOLE: Nutrient;
       // ... other nutrient types
     };
   };
@@ -82,6 +83,8 @@ export default function Home() {
 
                 const convertedCalorie = (num: number) => Math.ceil(num);
 
+                const cholesterolInfo = hit.recipe.totalNutrients.CHOLE;
+
                 return (
                   <RecipeRandomCard
                     key={index}
@@ -101,6 +104,12 @@ export default function Home() {
                       carbs: {
                         quantity: carbInfo.quantity,
                         unit: carbInfo.unit
+                      }
+                    }}
+                    minerals={{
+                      cholesterol: {
+                        quantity: cholesterolInfo.quantity,
+                        unit: cholesterolInfo.unit
                       }
                     }}
                   />
