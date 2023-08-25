@@ -14,14 +14,25 @@ interface Macros {
     carbs: Nutrient;
 };
 
+interface MineralsElectrolytes {
+    cholesterol: Nutrient;
+    sodium: Nutrient;
+    calcium: Nutrient;
+    magnesium: Nutrient;
+    potassium: Nutrient;
+    iron: Nutrient;
+};
+
 interface RecipeRandomCardProps {
     image: string;
     recipeName: string;
     description: string;
+    calories: number;
     macros: Macros;
+    minerals: MineralsElectrolytes;
 };
 
-const RecipeRandomCard = ({ image, recipeName, description, macros }: RecipeRandomCardProps) => {
+const RecipeRandomCard = ({ image, recipeName, description, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
 
@@ -32,6 +43,10 @@ const RecipeRandomCard = ({ image, recipeName, description, macros }: RecipeRand
                 <h3>{recipeName}</h3>
             </section>
             <section className={recipeDetails}>
+                <div className={macroGrid}>
+                    <div>Calories</div>
+                    <div>{calories}</div>
+                </div>
                 <h5>Macros</h5>
                 <div className={macroGrid}>
                     <div>
@@ -53,6 +68,8 @@ const RecipeRandomCard = ({ image, recipeName, description, macros }: RecipeRand
                         {convertNumber(macros.carbs.quantity)}{macros.carbs.unit}
                     </div>
                 </div>
+                <h5>Minerals &amp; Electrolytes</h5>
+
             </section>
         </div>
     );

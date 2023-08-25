@@ -14,9 +14,9 @@ interface RecipeType {
     image: string;
     ingredientLines: string[];
     source: string;
-    totalTime: number;
+    calories: number;
     totalNutrients: {
-      PROCNT: Nutrient;  // TODO: add FATS, CARBS etc. in similar fashion
+      PROCNT: Nutrient;
       FAT: Nutrient;
       CHOCDF: Nutrient;
       // ... other nutrient types
@@ -75,9 +75,12 @@ export default function Home() {
             <section className='randomized-recipe-container'>
               {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
                 // extract protein
+                const calorieCount = hit.recipe.calories;
                 const proteinInfo = hit.recipe.totalNutrients.PROCNT;
                 const fatInfo = hit.recipe.totalNutrients.FAT;
                 const carbInfo = hit.recipe.totalNutrients.CHOCDF;
+
+                const convertedCalorie = (num: number) => Math.ceil(num);
 
                 return (
                   <RecipeRandomCard
@@ -85,6 +88,7 @@ export default function Home() {
                     image={hit.recipe.image}
                     recipeName={hit.recipe.label}
                     description={hit.recipe.label} // Modify as needed.
+                    calories={convertedCalorie(calorieCount)}
                     macros={{
                       protein: {
                         quantity: proteinInfo.quantity,
