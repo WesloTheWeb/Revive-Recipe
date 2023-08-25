@@ -22,7 +22,11 @@ interface RecipeType {
       FAT: Nutrient;
       CHOCDF: Nutrient;
       CHOLE: Nutrient;
-      // ... other nutrient types
+      NA: Nutrient;
+      CA: Nutrient;
+      MG: Nutrient;
+      K: Nutrient;
+      FE: Nutrient;
     };
   };
 };
@@ -85,7 +89,13 @@ export default function Home() {
                 const calorieCount = hit.recipe.calories;
                 const proteinInfo = hit.recipe.totalNutrients.PROCNT;
                 const fatInfo = hit.recipe.totalNutrients.FAT;
+                // others
                 const carbInfo = hit.recipe.totalNutrients.CHOCDF;
+                const sodiumInfo = hit.recipe.totalNutrients.NA;
+                const calciumInfo = hit.recipe.totalNutrients.CA;
+                const magnesiumInfo = hit.recipe.totalNutrients.MG;
+                const potassiumInfo = hit.recipe.totalNutrients.K;
+                const ironInfo = hit.recipe.totalNutrients.FE;
 
                 const convertedCalorie = (num: number) => Math.ceil(num);
 
@@ -116,6 +126,26 @@ export default function Home() {
                       cholesterol: {
                         quantity: cholesterolInfo.quantity,
                         unit: cholesterolInfo.unit
+                      },
+                      sodium: {
+                        quantity: sodiumInfo.quantity,
+                        unit: sodiumInfo.unit
+                      },
+                      calcium: {
+                        quantity: calciumInfo.quantity,
+                        unit: calciumInfo.unit
+                      },
+                      magnesium: {
+                        quantity: magnesiumInfo.quantity,
+                        unit: magnesiumInfo.unit
+                      },
+                      potassium: {
+                        quantity: potassiumInfo.quantity,
+                        unit: potassiumInfo.unit
+                      },
+                      iron: {
+                        quantity: ironInfo.quantity,
+                        unit: ironInfo.unit
                       }
                     }}
                   />
