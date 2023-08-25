@@ -5,7 +5,8 @@ import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
 
 export default function Home() {
 
-  const URL = `https://api.edamam.com/api/recipes/v2`
+  const QUERY = 'chicken';
+  const URL = `/api/searchRecipe?query=${QUERY}`;
 
   useEffect(() => {
     fetch(URL)
