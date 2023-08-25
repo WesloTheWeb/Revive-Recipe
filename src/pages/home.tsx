@@ -3,6 +3,11 @@ import PageLayout from '@/components/PageLayout/PageLayout';
 import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
 import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
 
+interface NutrientInfo {
+  quantity: number;
+  unit: string;
+};
+
 interface RecipeType {
   recipe: {
     label: string;
@@ -10,6 +15,10 @@ interface RecipeType {
     ingredientLines: string[];
     source: string;
     totalTime: number;
+    totalNutrients: {
+      PROCNT: NutrientInfo;  // TODO: add FATS, CARBS etc. in similar fashion
+      // ... other nutrient types
+    };
   };
 };
 
@@ -63,12 +72,17 @@ export default function Home() {
             <h2>Recipe you may like...</h2>
             <section className='randomized-recipe-container'>
               {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
+                // extract protein
+                const proteinInfo = hit.recipe.totalNutrients.PROCNT;
+
                 return (
                   <RecipeRandomCard
                     key={index}
                     image={hit.recipe.image}
                     recipeName={hit.recipe.label}
                     description="Some Description" // Modify as required.
+                    proteinQuantity={proteinInfo.quantity}
+                    proteinUnit={proteinInfo.unit}
                   />
                 )
               })
