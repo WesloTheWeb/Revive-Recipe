@@ -4,6 +4,7 @@ import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
 import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import Link from 'next/link';
+import Overlay from '@/components/Overlay/Overlay';
 
 interface Nutrient {
   quantity: number;
@@ -37,6 +38,12 @@ interface RandomRecipesType {
 };
 
 export default function Home() {
+
+  const [modal, toggleModal] = useState(true);
+
+  const handleClose = () => {
+    return toggleModal(!true);
+  };
 
   const suggestedRecipeQueries = () => {
 
@@ -109,6 +116,13 @@ export default function Home() {
 
   return (
     <>
+      {modal ?
+                        <Overlay closeOverlay={handleClose} />
+                        :
+        
+        null
+        
+        }
       <PageLayout>
         <section className='recipeSeachPageGridContainer'>
           <div className="left-placeholder">
