@@ -12,6 +12,7 @@
 .signUpButton {
     color: $neutral-100;
     background-color: $green-600;
+
     &:hover {
         background-color: $green-700;
     }
@@ -28,7 +29,8 @@
     }
 }
 
-.guestButton, .createAccountButton {
+.guestButton,
+.createAccountButton {
     margin-top: 1.2rem;
     background-color: $neutral-900;
     color: $neutral-100;
@@ -38,4 +40,14 @@
 .cancelButton {
     background-color: $red-500-primary;
     color: $neutral-100;
+}
+
+.viewIngredientsButton {
+    font-size: 1rem;
+    background-color: $blue-300;
+    color: $neutral-100;
+
+    &:hover {
+        background-color: $blue-600;
+    }
 }

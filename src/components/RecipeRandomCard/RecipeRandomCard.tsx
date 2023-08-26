@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import classes from './RecipeRandomCard.module.scss';
+import Button, { ButtonTypes } from '@/containers/Button/Button';
 
 const { recipe, recipeDetails, macroGrid } = classes;
 
@@ -89,6 +90,7 @@ const RecipeRandomCard = ({ image, recipeName, description, servingSize, calorie
                 {renderMacros()}
                 <h5>Minerals &amp; Electrolytes</h5>
                 {renderMinerals()}
+                <Button buttonType={ButtonTypes.VIEWINGREDIENTS} />
             </section>
         </div>
     );

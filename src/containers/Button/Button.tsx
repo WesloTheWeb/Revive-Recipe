@@ -1,6 +1,6 @@
 import classes from './Button.module.scss';
 
-const { loginButton, signUpButton, guestButton, returnButton, cancelButton } = classes;
+const { loginButton, signUpButton, guestButton, returnButton, cancelButton, viewIngredientsButton } = classes;
 
 interface ButtonProps {
     buttonType: ButtonTypes;
@@ -14,7 +14,8 @@ export enum ButtonTypes {
     GUEST = 'guest',
     SIGNUPACCOUNT = 'createAccount',
     RETURN = 'returnButton',
-    CANCEL = 'cancelButton'
+    CANCEL = 'cancelButton',
+    VIEWINGREDIENTS = 'viewIngredientsButton'
 };
 
 // binds CSS classes to whatever prop is passed:
@@ -24,7 +25,8 @@ const buttonPaths = {
     [ButtonTypes.GUEST]: guestButton,
     [ButtonTypes.SIGNUPACCOUNT]: signUpButton,
     [ButtonTypes.RETURN]: returnButton,
-    [ButtonTypes.CANCEL]: cancelButton
+    [ButtonTypes.CANCEL]: cancelButton,
+    [ButtonTypes.VIEWINGREDIENTS]: viewIngredientsButton
 
 };
 
@@ -44,6 +46,8 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
                 return buttonPaths[ButtonTypes.RETURN];
             case ButtonTypes.CANCEL:
                 return buttonPaths[ButtonTypes.CANCEL];
+            case ButtonTypes.VIEWINGREDIENTS:
+                return buttonPaths[ButtonTypes.VIEWINGREDIENTS];
             default:
                 return undefined;
         };
@@ -64,6 +68,8 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
                 return 'Return'
             case ButtonTypes.CANCEL:
                 return 'Cancel'
+            case ButtonTypes.VIEWINGREDIENTS:
+                return 'View Ingredients'
             default:
                 return 'Click Me';
         };
