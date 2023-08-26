@@ -10,17 +10,13 @@ interface Nutrient {
   unit: string;
 };
 
-interface Servings {
-  yield: number;
-};
-
 interface RecipeType {
   recipe: {
     label: string;
     image: string;
     ingredientLines: string[];
     source: string;
-    yield: Servings;
+    yield: number;
     calories: number;
     totalNutrients: {
       PROCNT: Nutrient;
