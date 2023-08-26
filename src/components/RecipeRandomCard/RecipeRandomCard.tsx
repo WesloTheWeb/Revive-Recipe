@@ -27,14 +27,21 @@ interface RecipeRandomCardProps {
     image: string;
     recipeName: string;
     description: string;
+    servingSize: number;
     calories: number;
     macros: Macros;
     minerals: MineralsElectrolytes;
 };
 
-const RecipeRandomCard = ({ image, recipeName, description, calories, macros, minerals }: RecipeRandomCardProps) => {
+const RecipeRandomCard = ({ image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
+
+    const calculateServingSize = (calories: number, servings: number) => {
+        const calculatedServings = Math.floor((calories) / (servings));
+
+        return calculatedServings;
+    };
 
     return (
         <div>
@@ -46,6 +53,8 @@ const RecipeRandomCard = ({ image, recipeName, description, calories, macros, mi
                 <div className={macroGrid}>
                     <div>Calories</div>
                     <div>{calories}</div>
+                    <div>per-serving: </div>
+                    <div>{calculateServingSize(calories, servingSize)}</div>
                 </div>
                 <h5>Macros</h5>
                 <div className={macroGrid}>

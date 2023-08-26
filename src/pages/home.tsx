@@ -10,12 +10,17 @@ interface Nutrient {
   unit: string;
 };
 
+interface Servings {
+  yield: number;
+};
+
 interface RecipeType {
   recipe: {
     label: string;
     image: string;
     ingredientLines: string[];
     source: string;
+    yield: Servings;
     calories: number;
     totalNutrients: {
       PROCNT: Nutrient;
@@ -85,6 +90,7 @@ export default function Home() {
             <h2>Recipes you may like...</h2>
             <section className='randomized-recipe-container'>
               {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
+                const servingSize = hit.recipe.yield;
                 // extract protein
                 const calorieCount = hit.recipe.calories;
                 const proteinInfo = hit.recipe.totalNutrients.PROCNT;
@@ -108,6 +114,7 @@ export default function Home() {
                     recipeName={hit.recipe.label}
                     description={hit.recipe.label} // Modify as needed.
                     calories={convertedCalorie(calorieCount)}
+                    servingSize={servingSize}
                     macros={{
                       protein: {
                         quantity: proteinInfo.quantity,
