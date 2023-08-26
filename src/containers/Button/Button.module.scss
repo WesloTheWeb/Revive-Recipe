@@ -29,12 +29,15 @@
     }
 }
 
-.guestButton,
-.createAccountButton {
+.guestButton {
     margin-top: 1.2rem;
     background-color: $neutral-900;
     color: $neutral-100;
-    border: 2px solid $neutral-900
+    border: 2px solid $neutral-900;
+
+    &:hover {
+        background-color: $neutral-800;
+    }
 }
 
 .cancelButton {

@@ -1,38 +1,9 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
+import { RecipeCarouselProps } from "@/interfaces/recipeTypes";
 
-// ! If I change RecipeRandomCard interface, will need to change the same here.
-interface RecipeTotalNutrients {
-    PROCNT: { quantity: number, unit: string };
-    FAT: { quantity: number, unit: string };
-    CHOCDF: { quantity: number, unit: string };
-    CHOLE: { quantity: number, unit: string };
-    NA: { quantity: number, unit: string };
-    CA: { quantity: number, unit: string };
-    MG: { quantity: number, unit: string };
-    K: { quantity: number, unit: string };
-    FE: { quantity: number, unit: string };
-}
-
-interface Recipe {
-    recipe: {
-        image: string;
-        label: string;
-        yield: number;
-        calories: number;
-        totalNutrients: RecipeTotalNutrients;
-        ingredientLines: string[];
-    };
-}
-
-interface RecipeProps {
-    recipes: Recipe[];
-    showModal: Function; 
-    setSelectedRecipeIngredients: Function;
-}
-
-const RecipeCarousel = ({ recipes, showModal, setSelectedRecipeIngredients }: RecipeProps) => {
+const RecipeCarousel = ({ recipes, showModal, setSelectedRecipeIngredients }: RecipeCarouselProps) => {
     const responsive = {
         superLargeDesktop: {
             breakpoint: { max: 4000, min: 3000 },

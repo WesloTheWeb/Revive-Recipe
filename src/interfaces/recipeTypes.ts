@@ -1,3 +1,5 @@
+// * Used for consistent interfaces all in one places should I need to update.
+
 export interface Nutrient {
     quantity: number;
     unit: string;
@@ -30,4 +32,34 @@ export interface RecipeRandomCardProps {
     minerals: MineralsElectrolytes;
 };
 
-// * Used for consistent interfaces all in one places should I need to update.
+// ? Mobile Carousel Interfaces:
+export interface RecipeTotalNutrients {
+    PROCNT: Nutrient;
+    FAT: Nutrient;
+    CHOCDF: Nutrient;
+    CHOLE: Nutrient;
+    NA: Nutrient;
+    CA: Nutrient;
+    MG: Nutrient;
+    K: Nutrient;
+    FE: Nutrient;
+};
+
+export interface RecipeData {
+    image: string;
+    label: string;
+    yield: number;
+    calories: number;
+    totalNutrients: RecipeTotalNutrients;
+    ingredientLines: string[];
+};
+
+export interface CarouselRecipe {
+    recipe: RecipeData;
+};
+
+export interface RecipeCarouselProps {
+    recipes: CarouselRecipe[];
+    showModal: () => void;
+    setSelectedRecipeIngredients: (ingredientLines: string[]) => void;
+};

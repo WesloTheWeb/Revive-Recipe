@@ -145,7 +145,6 @@ export default function Home() {
               />
             </section>
             <section className='random-recipe-list'>
-
               <section className='randomized-recipe-container'>
                 {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
                   const servingSize = hit.recipe.yield;
