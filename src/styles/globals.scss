@@ -186,3 +186,19 @@ footer {
     }
 
 }
+
+.recipe-carousel-mobile {
+    display: none;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+}
+
+.random-recipe-list {
+    display: block;
+    
+    @media #{ $mq-smallScreen } {
+        display: none;
+    }
+}

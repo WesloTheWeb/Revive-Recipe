@@ -2,40 +2,42 @@ import React from 'react';
 import Image from 'next/image';
 import classes from './RecipeRandomCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
+import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
+// import { Nutrient, Macros, MineralsElectrolytes, RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
 const { recipe, recipeDetails, macroGrid } = classes;
 
-interface Nutrient {
-    quantity: number;
-    unit: string;
-};
+// interface Nutrient {
+//     quantity: number;
+//     unit: string;
+// };
 
-interface Macros {
-    protein: Nutrient;
-    fats: Nutrient;
-    carbs: Nutrient;
-};
+// interface Macros {
+//     protein: Nutrient;
+//     fats: Nutrient;
+//     carbs: Nutrient;
+// };
 
-interface MineralsElectrolytes {
-    cholesterol: Nutrient;
-    sodium: Nutrient;
-    calcium: Nutrient;
-    magnesium: Nutrient;
-    potassium: Nutrient;
-    iron: Nutrient;
-};
+// interface MineralsElectrolytes {
+//     cholesterol: Nutrient;
+//     sodium: Nutrient;
+//     calcium: Nutrient;
+//     magnesium: Nutrient;
+//     potassium: Nutrient;
+//     iron: Nutrient;
+// };
 
-interface RecipeRandomCardProps {
-    showModal: () => void;  // removed (ingredients: string[]) 
-    ingredients?: string[];
-    image: string;
-    recipeName: string;
-    description: string;
-    servingSize: number;
-    calories: number;
-    macros: Macros;
-    minerals: MineralsElectrolytes;
-};
+// interface RecipeRandomCardProps {
+//     showModal: () => void;  // removed (ingredients: string[]) 
+//     ingredients?: string[];
+//     image: string;
+//     recipeName: string;
+//     description: string;
+//     servingSize: number;
+//     calories: number;
+//     macros: Macros;
+//     minerals: MineralsElectrolytes;
+// };
 
 const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
