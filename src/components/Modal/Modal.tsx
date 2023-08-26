@@ -6,10 +6,10 @@ const { container, instructions, ingredientContainer, controls } = classes;
 
 interface ModalProps {
     title: string;
-    description: string | string[];
+    description?: string | string[] | null;
     ingredients?: boolean;
     closeModal: () => void;
-    content: React.ReactNode; // Use ReactNode to represent any kind of content
+    content?: React.ReactNode; // Use ReactNode to represent any kind of content
 };
 
 const Modal = ({ title, ingredients, description, closeModal, content }: ModalProps) => {

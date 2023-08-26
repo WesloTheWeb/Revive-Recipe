@@ -42,6 +42,7 @@ interface RandomRecipesType {
 export default function Home() {
 
   const { isVisible, showModal, hideModal } = useModal();
+  const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[] | null>(null);
 
   const suggestedRecipeQueries = () => {
 
@@ -81,6 +82,7 @@ export default function Home() {
   const URL = `/api/searchRecipe?query=${QUERY}`;
   const [randomRecipes, setRandomRecipes] = useState<RandomRecipesType | null>(null);
 
+  // Shuffle Algorithm - O(n) time
   const shuffleAndTakeThree = (arr: []) => {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -118,6 +120,8 @@ export default function Home() {
         <>
           <Overlay closeOverlay={hideModal} />
           <Modal
+            ingredients
+            description={selectedRecipeIngredients}
             title="Ingredients"
             closeModal={hideModal} />
         </>
@@ -157,7 +161,10 @@ export default function Home() {
                     key={index}
                     image={hit.recipe.image}
                     recipeName={hit.recipe.label}
-                    showModal={showModal}
+                    showModal={() => {
+                      setSelectedRecipeIngredients(hit.recipe.ingredientLines); // here is where we query specific ingredients
+                      showModal();
+                    }}
                     description={hit.recipe.label} // Modify as needed.
                     calories={convertedCalorie(calorieCount)}
                     servingSize={servingSize}

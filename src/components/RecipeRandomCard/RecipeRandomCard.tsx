@@ -26,7 +26,8 @@ interface MineralsElectrolytes {
 };
 
 interface RecipeRandomCardProps {
-    showModal: () => void;
+    showModal: () => void;  // removed (ingredients: string[]) 
+    ingredients?: string[];
     image: string;
     recipeName: string;
     description: string;
