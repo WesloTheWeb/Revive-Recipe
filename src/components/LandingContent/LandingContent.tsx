@@ -54,7 +54,7 @@ const LandingContent = ({ }) => {
                         <Overlay closeOverlay={hideModal} />
                         <Modal
                             title="Log in"
-                            description="Please login to your account below..."
+                            description="Please login to your account below."
                             closeModal={hideModal}
                             content={<LoginForm />}
                         />

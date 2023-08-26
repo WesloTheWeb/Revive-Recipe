@@ -117,7 +117,9 @@ export default function Home() {
       {isVisible &&
         <>
           <Overlay closeOverlay={hideModal} />
-          <Modal closeModal={hideModal} />
+          <Modal
+            title="Ingredients"
+            closeModal={hideModal} />
         </>
       }
 
