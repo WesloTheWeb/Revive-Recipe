@@ -38,7 +38,41 @@ interface RandomRecipesType {
 
 export default function Home() {
 
-  const QUERY = 'chicken';
+  const suggestedRecipeQueries = () => {
+
+    const foodKeywords = [
+      // Common proteins
+      "chicken", "beef", "salmon", "tofu", "turkey", "shrimp", "tempeh", "pork", "tuna", "lamb",
+
+      // Vegetables
+      "broccoli", "eggplant", "kale", "spinach", "peppers", "carrots", "zucchini", "cauliflower", "asparagus", "brussels sprouts",
+
+      // Legumes and grains
+      "lentils", "quinoa", "chickpeas", "mushroom", "rice", "barley", "oats", "beans", "peas", "corn",
+
+      // Fruits
+      "apple", "banana", "cherry", "date", "grape", "kiwi", "lemon", "mango", "orange", "pineapple",
+
+      // Popular dishes and cuisines
+      "pizza", "burger", "sushi", "taco", "curry", "pasta", "ramen", "sandwich", "stew", "omelette",
+
+      // Dairy and alternatives
+      "cheese", "yogurt", "milk", "butter", "cream", "almond milk", "soy milk", "ghee", "ice cream", "custard",
+
+      // Sweets and desserts
+      "chocolate", "cake", "cookie", "brownie", "pie", "tart", "pudding", "muffin", "pancake", "waffle",
+
+      // Drinks
+      "tea", "coffee", "smoothie", "cocktail", "juice", "shake", "latte", "cappuccino", "soda", "lemonade",
+
+      // Misc.
+      "bread", "egg", "salsa", "sauce", "dressing", "dip", "seasoning", "marinade", "snack", "breakfast"
+    ];
+
+
+    return foodKeywords[Math.floor(Math.random() * foodKeywords.length)];
+  };
+  let QUERY = suggestedRecipeQueries();
   const URL = `/api/searchRecipe?query=${QUERY}`;
   const [randomRecipes, setRandomRecipes] = useState<RandomRecipesType | null>(null);
 
@@ -71,6 +105,7 @@ export default function Home() {
   if (!randomRecipes) return null; // TODO Loading spinner or error.
 
   console.log(randomRecipes);
+  console.log('the query was', QUERY);
 
   return (
     <>
