@@ -51,6 +51,15 @@
     }
 }
 
+.ingredientContainer {
+    display: flex;
+    flex-wrap: wrap;
+
+    li {
+        margin: .5rem .75rem;
+    }
+}
+
 .controls {
     display: flex;
     justify-content: right;

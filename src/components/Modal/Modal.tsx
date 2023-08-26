@@ -1,28 +1,38 @@
 import React from 'react';
-import { useForm, SubmitHandler } from "react-hook-form";
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import classes from './Modal.module.scss';
 
-const { container, instructions, controls } = classes;
-
-interface Inputs {
-    username: string;
-    password: string;
-};
+const { container, instructions, ingredientContainer, controls } = classes;
 
 interface ModalProps {
     title: string;
-    description: string;
+    description: string | string[];
+    ingredients?: boolean;
     closeModal: () => void;
     content: React.ReactNode; // Use ReactNode to represent any kind of content
 };
 
-const Modal = ({ title, description, closeModal, content }: ModalProps) => {
+const Modal = ({ title, ingredients, description, closeModal, content }: ModalProps) => {
+
+    const renderDescription = (desc: string) => <p>{desc}</p>;
+
+    const renderIngredientList = (ingredientList: string[]) => {
+        return (
+            <section className={ingredientContainer}>
+                {ingredientList.map((ingredient, key) => (
+                    <li key={key}>{ingredient}</li>
+                ))}
+            </section>
+        );
+    };
+
     return (
         <section className={container}>
             <div className={instructions}>
                 <h3>{title}</h3>
-                <p>{description}</p>
+                {ingredients && Array.isArray(description)
+                    ? renderIngredientList(description)  // Use the function for the ingredient list 
+                    : renderDescription(description as string)}
             </div>
             {content}
             <div className={controls}>
@@ -33,32 +43,3 @@ const Modal = ({ title, description, closeModal, content }: ModalProps) => {
 };
 
 export default Modal;
-
-/* 
-! backup:
-
-
-
-<section className={container}>
-    <div className={instructions}>
-        <h3>Log in</h3>
-        <p>Please login to your account below. If you wish to create a new account or view as a guest you may do so.</p>
-    </div>
-    <form onSubmit={handleSubmit(onSubmit)}>
-        <label>username</label>
-        <input placeholder="username"{...register("username", { required: true })} />
-        {errors.username && <span>Username not entered</span>}
-        <label>password</label>
-        <input type="password" placeholder="password"{...register("password", { required: true })} />
-        {errors.password && <span>Blank or invalid password</span>}
-        <div className={controls}>
-            <Button buttonType={ButtonTypes.CANCEL} handleClick={closeModal} />
-            <Button buttonType={ButtonTypes.LOGIN} />
-        </div>
-    </form>
-</section>
-
-
-
-
-*/
