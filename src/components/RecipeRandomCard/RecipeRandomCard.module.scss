@@ -1,0 +1,67 @@
+@import '../../styles/variables.scss';
+
+.recipe {
+
+    img {
+        display: block;
+        margin: 0;
+        padding: 0;
+        border-radius: 8px 8px 0 0;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 1.05);
+
+        @media #{ $mq-smallScreen } {
+            width:100%;
+        }
+    }
+
+    h3 {
+        min-height: 7rem;
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: 250px; // The same width as the Image
+        color: $brandColorTertiary;
+        background-color: $brandColorSecondary;
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 1.1;
+        margin: 0;
+        padding: .25rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 1.05);
+
+        @media #{ $mq-smallScreen } {
+            width:100%;
+        }
+    
+    }
+}
+
+.recipeDetails {
+    background-color: $brandColorTertiary;
+    margin: 0;
+    padding: 1rem 0.5rem;
+    font-size: 1.143rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 8px 8px;
+
+    span {
+        display: block;
+        font-weight: bold;
+    }
+
+    h5 {
+        margin: 0 auto;
+        text-align: center;
+    }
+}
+
+.macroGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    div:nth-child(even) {
+        text-align: right;
+    }
+}

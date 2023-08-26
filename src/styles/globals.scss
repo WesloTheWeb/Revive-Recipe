@@ -105,7 +105,19 @@ button {
     font-weight: bold;
 }
 
+// sticky footer
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; // this ensures the page takes up the full viewport height at least
+}
+
+.content-wrap {
+    flex: 1 0 auto; // this makes sure the content takes up all available space, pushing the footer down
+}
+
 footer {
+    flex-shrink: 0; // this ensures the footer doesn't shrink if there's a lot of content in the main section
     font-size: .8rem;
     color: $neutral-100;
     background-color: $neutral-900;
@@ -148,4 +160,29 @@ footer {
     to {
         transform: rotate(359deg);
     }
+}
+
+// newsfeed of recipe search
+.recipeSeachPageGridContainer {
+    display: grid;
+    // grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px; // adjust this value for the desired spacing between columns
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+
+}
+
+.randomized-recipe-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-bottom: 3rem;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+
 }

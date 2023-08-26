@@ -9,7 +9,7 @@ interface PageLayoutProps {
 
 const PageLayout = ({ children }: PageLayoutProps) => {
     return (
-        <>
+        <div className="page-container">
             <Logo />
             <Head>
                 <title>Revive Recipe</title>
@@ -17,11 +17,12 @@ const PageLayout = ({ children }: PageLayoutProps) => {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>
+            <main className="content-wrap">
                 {children}
-                <Footer />
             </main>
-        </>
+            <Footer />
+
+        </div>
     );
 };
 

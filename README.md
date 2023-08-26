@@ -28,6 +28,14 @@ yarn dev
 pnpm dev
 ```
 
+### Dependencies for running Locally
+I have now fully integrated [`Edamam's Recipe Search API`](https://www.edamam.com/). In order to run this locally and see the bulk of it such as the random recipes and make queries, you would need to sign up for the free API from Edamam. Once you have your API key and account made of the Recipe search, go to `pages/searchRecipe.ts` and edit the following:
+
+    const APP_ID = process.env.REACT_APP_EDAMAM_APP_ID as string;
+    const APP_KEY = process.env.REACT_APP_EDAMAM_APP_KEY as string;
+    const USER_ID = process.env.REACT_APP_EDAMAM_USER_ID as string;
+Note: It is wise to create a .env.local file, and edit this information if you do not want to hard set these variables especially if you are forking this to your own repository and just good security practice in general. The query is hard set to 'Chicken' at the moment but feel free to change it when you fork this repo.
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
