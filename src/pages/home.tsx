@@ -6,7 +6,7 @@ import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
 import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import Overlay from '@/components/Overlay/Overlay';
-
+import Modal from '@/components/Modal/Modal';
 
 interface Nutrient {
   quantity: number;
@@ -155,6 +155,7 @@ export default function Home() {
                     key={index}
                     image={hit.recipe.image}
                     recipeName={hit.recipe.label}
+                    showModal={showModal}
                     description={hit.recipe.label} // Modify as needed.
                     calories={convertedCalorie(calorieCount)}
                     servingSize={servingSize}

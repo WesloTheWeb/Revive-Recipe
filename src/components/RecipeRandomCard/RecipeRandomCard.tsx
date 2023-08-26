@@ -26,6 +26,7 @@ interface MineralsElectrolytes {
 };
 
 interface RecipeRandomCardProps {
+    showModal: () => void;
     image: string;
     recipeName: string;
     description: string;
@@ -35,7 +36,7 @@ interface RecipeRandomCardProps {
     minerals: MineralsElectrolytes;
 };
 
-const RecipeRandomCard = ({ image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
+const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
 
@@ -90,7 +91,10 @@ const RecipeRandomCard = ({ image, recipeName, description, servingSize, calorie
                 {renderMacros()}
                 <h5>Minerals &amp; Electrolytes</h5>
                 {renderMinerals()}
-                <Button buttonType={ButtonTypes.VIEWINGREDIENTS} />
+                <Button
+                    buttonType={ButtonTypes.VIEWINGREDIENTS}
+                    handleClick={showModal}
+                />
             </section>
         </div>
     );

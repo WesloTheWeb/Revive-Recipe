@@ -1,9 +1,10 @@
-import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import classes from './LandingContent.module.scss';
 import LandingMobileGallery from '../LandingMobileGallery/LandingMobileGallery';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
+import LoginForm from '../LoginForm/LoginForm';
+import useModal from '@/hooks/useModal';
 import Modal from '../Modal/Modal';
 import Overlay from '../Overlay/Overlay';
 
@@ -19,15 +20,7 @@ interface Photo {
 
 const LandingContent = ({ }) => {
 
-    const [modal, toggleModal] = useState(false);
-
-    const handleClose = () => {
-        return toggleModal(!true);
-    };
-
-    const handleOpenModal = () => {
-        return toggleModal(true);
-    };
+    const { isVisible, showModal, hideModal } = useModal();
 
     const gallery: Photo[] = [
         {
@@ -56,10 +49,15 @@ const LandingContent = ({ }) => {
     return (
         <>
             {
-                modal ? (
+                isVisible ? (
                     <>
-                        <Overlay closeOverlay={handleClose} />
-                        <Modal closeModal={handleClose} />
+                        <Overlay closeOverlay={hideModal} />
+                        <Modal
+                            title="Log in"
+                            description="Please login to your account below..."
+                            closeModal={hideModal}
+                            content={<LoginForm />}
+                        />
                     </>
                 ) : null
             }
@@ -93,7 +91,7 @@ const LandingContent = ({ }) => {
                             <Link href="/signup">
                                 <Button buttonType={ButtonTypes.SIGNUP} />
                             </Link>
-                            <Button buttonType={ButtonTypes.LOGIN} handleClick={handleOpenModal} />
+                            <Button buttonType={ButtonTypes.LOGIN} handleClick={showModal} />
                             <Link href="/home">
                                 <Button buttonType={ButtonTypes.GUEST} />
                             </Link>
