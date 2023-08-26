@@ -8,6 +8,7 @@ import Button, { ButtonTypes } from '@/containers/Button/Button';
 import Overlay from '@/components/Overlay/Overlay';
 import Modal from '@/components/Modal/Modal';
 import RecipeCarousel from '@/components/RecipeCarousel/RecipeCarousel';
+import QueryResults from '@/containers/QueryResults/QueryResults';
 
 interface Nutrient {
   quantity: number;
@@ -136,6 +137,7 @@ export default function Home() {
           </div>
           <div className="recipe-content">
             <RecipeSearchBar />
+            <QueryResults />
             <h2>Recipes you may like...</h2>
             <section className='recipe-carousel-mobile'>
               <RecipeCarousel
