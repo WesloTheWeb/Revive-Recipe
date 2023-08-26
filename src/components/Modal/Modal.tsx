@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import classes from './Modal.module.scss';
@@ -10,7 +11,10 @@ interface Inputs {
 };
 
 interface ModalProps {
+    title: string;
+    description: string;
     closeModal: () => void;
+    content: React.ReactNode; // Use ReactNode to represent any kind of content
 };
 
 const Modal = ({ closeModal }: ModalProps) => {
