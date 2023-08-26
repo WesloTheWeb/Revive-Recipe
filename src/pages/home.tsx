@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import useModal from '@/hooks/useModal';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
 import RecipeSearchBar from '@/containers/RecipeSearchBar/RecipeSearchBar';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
-import Link from 'next/link';
+import Overlay from '@/components/Overlay/Overlay';
+import Modal from '@/components/Modal/Modal';
+import RecipeCarousel from '@/components/RecipeCarousel/RecipeCarousel';
 
 interface Nutrient {
   quantity: number;
   unit: string;
-};
-
-interface Servings {
-  yield: number;
 };
 
 interface RecipeType {
@@ -20,7 +20,7 @@ interface RecipeType {
     image: string;
     ingredientLines: string[];
     source: string;
-    yield: Servings;
+    yield: number;
     calories: number;
     totalNutrients: {
       PROCNT: Nutrient;
@@ -42,10 +42,47 @@ interface RandomRecipesType {
 
 export default function Home() {
 
-  const QUERY = 'chicken';
+  const { isVisible, showModal, hideModal } = useModal();
+  const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[] | null>(null);
+
+  const suggestedRecipeQueries = () => {
+
+    const foodKeywords = [
+      // Common proteins
+      "chicken", "beef", "salmon", "tofu", "turkey", "shrimp", "tempeh", "pork", "tuna", "lamb",
+
+      // Vegetables
+      "broccoli", "eggplant", "kale", "spinach", "peppers", "carrots", "zucchini", "cauliflower", "asparagus", "brussels sprouts",
+
+      // Legumes and grains
+      "lentils", "quinoa", "chickpeas", "mushroom", "rice", "barley", "oats", "beans", "peas", "corn",
+
+      // Fruits
+      "apple", "banana", "cherry", "date", "grape", "kiwi", "lemon", "mango", "orange", "pineapple",
+
+      // Popular dishes and cuisines
+      "pizza", "burger", "sushi", "taco", "curry", "pasta", "ramen", "sandwich", "stew", "omelette",
+
+      // Dairy and alternatives
+      "cheese", "yogurt", "milk", "butter", "cream", "almond milk", "soy milk", "ghee", "ice cream", "custard",
+
+      // Sweets and desserts
+      "chocolate", "cake", "cookie", "brownie", "pie", "tart", "pudding", "muffin", "pancake", "waffle",
+
+      // Drinks
+      "tea", "coffee", "smoothie", "cocktail", "juice", "shake", "latte", "cappuccino", "soda", "lemonade",
+
+      // Misc.
+      "bread", "egg", "salsa", "sauce", "dressing", "dip", "seasoning", "marinade", "snack", "breakfast"
+    ];
+
+    return foodKeywords[Math.floor(Math.random() * foodKeywords.length)];
+  };
+  let QUERY = suggestedRecipeQueries();
   const URL = `/api/searchRecipe?query=${QUERY}`;
   const [randomRecipes, setRandomRecipes] = useState<RandomRecipesType | null>(null);
 
+  // Shuffle Algorithm - O(n) time
   const shuffleAndTakeThree = (arr: []) => {
     for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -75,9 +112,21 @@ export default function Home() {
   if (!randomRecipes) return null; // TODO Loading spinner or error.
 
   console.log(randomRecipes);
+  console.log('the query was', QUERY);
 
   return (
     <>
+      {isVisible &&
+        <>
+          <Overlay closeOverlay={hideModal} />
+          <Modal
+            ingredients
+            description={selectedRecipeIngredients}
+            title="Ingredients"
+            closeModal={hideModal} />
+        </>
+      }
+
       <PageLayout>
         <section className='recipeSeachPageGridContainer'>
           <div className="left-placeholder">
@@ -88,77 +137,90 @@ export default function Home() {
           <div className="recipe-content">
             <RecipeSearchBar />
             <h2>Recipes you may like...</h2>
-            <section className='randomized-recipe-container'>
-              {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
-                const servingSize = hit.recipe.yield;
-                // extract protein
-                const calorieCount = hit.recipe.calories;
-                const proteinInfo = hit.recipe.totalNutrients.PROCNT;
-                const fatInfo = hit.recipe.totalNutrients.FAT;
-                // others
-                const carbInfo = hit.recipe.totalNutrients.CHOCDF;
-                const sodiumInfo = hit.recipe.totalNutrients.NA;
-                const calciumInfo = hit.recipe.totalNutrients.CA;
-                const magnesiumInfo = hit.recipe.totalNutrients.MG;
-                const potassiumInfo = hit.recipe.totalNutrients.K;
-                const ironInfo = hit.recipe.totalNutrients.FE;
+            <section className='recipe-carousel-mobile'>
+              <RecipeCarousel
+                recipes={randomRecipes.hits}
+                showModal={showModal}
+                setSelectedRecipeIngredients={setSelectedRecipeIngredients}
+              />
+            </section>
+            <section className='random-recipe-list'>
+              <section className='randomized-recipe-container'>
+                {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
+                  const servingSize = hit.recipe.yield;
+                  // extract protein
+                  const calorieCount = hit.recipe.calories;
+                  const proteinInfo = hit.recipe.totalNutrients.PROCNT;
+                  const fatInfo = hit.recipe.totalNutrients.FAT;
+                  // others
+                  const carbInfo = hit.recipe.totalNutrients.CHOCDF;
+                  const sodiumInfo = hit.recipe.totalNutrients.NA;
+                  const calciumInfo = hit.recipe.totalNutrients.CA;
+                  const magnesiumInfo = hit.recipe.totalNutrients.MG;
+                  const potassiumInfo = hit.recipe.totalNutrients.K;
+                  const ironInfo = hit.recipe.totalNutrients.FE;
 
-                const convertedCalorie = (num: number) => Math.ceil(num);
+                  const convertedCalorie = (num: number) => Math.ceil(num);
 
-                const cholesterolInfo = hit.recipe.totalNutrients.CHOLE;
+                  const cholesterolInfo = hit.recipe.totalNutrients.CHOLE;
 
-                return (
-                  <RecipeRandomCard
-                    key={index}
-                    image={hit.recipe.image}
-                    recipeName={hit.recipe.label}
-                    description={hit.recipe.label} // Modify as needed.
-                    calories={convertedCalorie(calorieCount)}
-                    servingSize={servingSize}
-                    macros={{
-                      protein: {
-                        quantity: proteinInfo.quantity,
-                        unit: proteinInfo.unit
-                      },
-                      fats: {
-                        quantity: fatInfo.quantity,
-                        unit: fatInfo.unit
-                      },
-                      carbs: {
-                        quantity: carbInfo.quantity,
-                        unit: carbInfo.unit
-                      }
-                    }}
-                    minerals={{
-                      cholesterol: {
-                        quantity: cholesterolInfo.quantity,
-                        unit: cholesterolInfo.unit
-                      },
-                      sodium: {
-                        quantity: sodiumInfo.quantity,
-                        unit: sodiumInfo.unit
-                      },
-                      calcium: {
-                        quantity: calciumInfo.quantity,
-                        unit: calciumInfo.unit
-                      },
-                      magnesium: {
-                        quantity: magnesiumInfo.quantity,
-                        unit: magnesiumInfo.unit
-                      },
-                      potassium: {
-                        quantity: potassiumInfo.quantity,
-                        unit: potassiumInfo.unit
-                      },
-                      iron: {
-                        quantity: ironInfo.quantity,
-                        unit: ironInfo.unit
-                      }
-                    }}
-                  />
-                );
-              })
-              }
+                  return (
+                    <RecipeRandomCard
+                      key={index}
+                      image={hit.recipe.image}
+                      recipeName={hit.recipe.label}
+                      showModal={() => {
+                        setSelectedRecipeIngredients(hit.recipe.ingredientLines); // here is where we query specific ingredients
+                        showModal();
+                      }}
+                      description={hit.recipe.label} // Modify as needed.
+                      calories={convertedCalorie(calorieCount)}
+                      servingSize={servingSize}
+                      macros={{
+                        protein: {
+                          quantity: proteinInfo.quantity,
+                          unit: proteinInfo.unit
+                        },
+                        fats: {
+                          quantity: fatInfo.quantity,
+                          unit: fatInfo.unit
+                        },
+                        carbs: {
+                          quantity: carbInfo.quantity,
+                          unit: carbInfo.unit
+                        }
+                      }}
+                      minerals={{
+                        cholesterol: {
+                          quantity: cholesterolInfo.quantity,
+                          unit: cholesterolInfo.unit
+                        },
+                        sodium: {
+                          quantity: sodiumInfo.quantity,
+                          unit: sodiumInfo.unit
+                        },
+                        calcium: {
+                          quantity: calciumInfo.quantity,
+                          unit: calciumInfo.unit
+                        },
+                        magnesium: {
+                          quantity: magnesiumInfo.quantity,
+                          unit: magnesiumInfo.unit
+                        },
+                        potassium: {
+                          quantity: potassiumInfo.quantity,
+                          unit: potassiumInfo.unit
+                        },
+                        iron: {
+                          quantity: ironInfo.quantity,
+                          unit: ironInfo.unit
+                        }
+                      }}
+                    />
+                  );
+                })
+                }
+              </section>
             </section>
           </div>
           <div className="right-placeholder"></div>
