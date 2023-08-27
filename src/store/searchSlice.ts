@@ -18,7 +18,7 @@ export const searchRecipes = createAsyncThunk(
             return response;
         } catch (error) {
             return thunkAPI.rejectWithValue(error.message);
-        }
+        };
     }
 );
 
@@ -55,11 +55,11 @@ const searchSlice = createSlice({
             })
             .addCase(searchRecipes.fulfilled, (state, action) => {
                 state.loading = false;
-                state.results = action.payload.hits; // If 'hits' is the array containing the recipes, adjust as needed
-            })
+                state.results = action.payload.hits.map(hit => hit.recipe); // extracting the recipes from the hits
+            })            
             .addCase(searchRecipes.rejected, (state, action) => {
                 state.loading = false;
-                state.error = action.error.message;
+                state.error = action.error.message || 'An unknown error occurred.';
             });
     }
 });

@@ -17,7 +17,7 @@ const QueryResults = ({ }) => {
     return (
         <>
             <section className={queryHeader}>
-                <label>Results {searchResults.length}</label>
+                <label>Results for {query} {searchResults.length}</label>
             </section>
             <section>
                 {loading && <div>Loading...</div>}
