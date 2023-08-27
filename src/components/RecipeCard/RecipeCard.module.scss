@@ -2,7 +2,9 @@
 
 .recipeCardContainer {
     width: 100%;
-    margin: 1rem 0;
+    margin: 1.43rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1.05);
+    border-radius: 8px;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-areas:
@@ -10,6 +12,7 @@
         "food desc";
 
     img {
+        border-radius: 8px 0 0 8px;
         grid-area: food;
     }
 
@@ -18,6 +21,7 @@
         background-color: $brandColorSecondary;
         padding: 2rem;
         margin: 0;
+        border-radius: 0 8px 0 0;
         font-size: 1.85rem;
         color: $brandColorTertiary;
     }

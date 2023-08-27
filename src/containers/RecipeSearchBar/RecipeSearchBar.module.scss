@@ -2,7 +2,6 @@
 
 .recipeSearch {
 
-    // globals.scss
     input  {
         display: inline-block;
         width: 100%;
@@ -23,7 +22,10 @@
         @media #{ $mq-smallScreen } {
             max-width: 75%;
         }
-    
     }
+}
 
+.searchBarFlex {
+    display: flex;
+    align-items: baseline;
 }

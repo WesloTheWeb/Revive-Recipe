@@ -3,7 +3,7 @@ import { setQuery, searchRecipes } from '@/store/searchSlice';
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import classes from './RecipeSearchBar.module.scss';
 
-const { recipeSearch } = classes;
+const { recipeSearch, searchBarFlex } = classes;
 
 interface searchInputs {
     recipe: string;
@@ -19,7 +19,7 @@ const RecipeSearchBar = () => {
         dispatch(setQuery(data.recipe));
         dispatch(searchRecipes(data.recipe));  // This will fetch the data based on the query and update the `results` in state.
     };
-    
+
     return (
         <>
             <section>
@@ -30,8 +30,10 @@ const RecipeSearchBar = () => {
                 className={recipeSearch}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input placeholder="Recipe name"{...register("recipe", { required: true })} />
-                <button type="submit">Search</button>
+                <div className={searchBarFlex}>
+                    <input placeholder="Recipe name"{...register("recipe", { required: true })} />
+                    <button type="submit">Search</button>
+                </div>
             </form>
         </>
     );
