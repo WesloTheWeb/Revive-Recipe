@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { RecipeData } from '@/interfaces/recipeTypes';
@@ -7,7 +8,12 @@ import classes from './QueryResults.module.scss';
 
 const { queryHeader } = classes;
 
-const QueryResults = ({ }) => {
+interface QueryResultsProps {
+    showModal: () => void;
+}
+
+const QueryResults = ({showModal}: QueryResultsProps) => {
+    const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[] | null>(null);
 
     const query = useSelector((state: RootState) => state.search.query);
     const searchResults = useSelector((state: RootState): RecipeData[] => state.search.results);

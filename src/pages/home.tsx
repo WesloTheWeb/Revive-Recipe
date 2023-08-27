@@ -45,6 +45,7 @@ export default function Home() {
 
   const { isVisible, showModal, hideModal } = useModal();
   const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[] | null>(null);
+  const [randomRecipes, setRandomRecipes] = useState<RandomRecipesType | null>(null);
 
   const suggestedRecipeQueries = () => {
 
@@ -81,7 +82,6 @@ export default function Home() {
   };
   let QUERY = suggestedRecipeQueries();
   const URL = `/api/searchRecipe?query=${QUERY}`;
-  const [randomRecipes, setRandomRecipes] = useState<RandomRecipesType | null>(null);
 
   // Shuffle Algorithm - O(n) time
   const shuffleAndTakeThree = (arr: []) => {
@@ -137,7 +137,13 @@ export default function Home() {
           </div>
           <div className="recipe-content">
             <RecipeSearchBar />
-            <QueryResults />
+            {/* // TODO: !This needs view recipes to work */}
+            <QueryResults 
+                 showModal={() => {
+                  setSelectedRecipeIngredients(randomRecipes.hits.recipe.ingredientLines); // here is where we query specific ingredients
+                  showModal();
+                }}
+            />
             <h2>Recipes you may like...</h2>
             <section className='recipe-carousel-mobile'>
               <RecipeCarousel
