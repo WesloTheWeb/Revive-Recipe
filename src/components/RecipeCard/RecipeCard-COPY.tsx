@@ -1,12 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import classes from './RecipeRandomCard.module.scss';
+import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
-const { recipe, recipeDetails, macroGrid } = classes;
+const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, macroGrid } = classes;
 
-const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
+const RecipeCard = ({ showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
 
@@ -42,32 +42,37 @@ const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSi
 
     return (
         <div>
-            <section className={recipe}>
+            <section className={recipeCardContainer}>
                 <Image src={image} alt={description} width={250} height={300} />
                 <h3>{recipeName}</h3>
-            </section>
-            <section className={recipeDetails}>
-                <div className={macroGrid}>
-                    <div>Calories</div>
-                    <div>{calories}</div>
-                    <div>
-                        Serves:
-                    </div>
-                    <div>{servingSize}</div>
-                    <div>per-serving: </div>
-                    <div>{getServingAmount(calories, servingSize)}</div>
+                <div className={recipeCardActionsContainer}>
+                    <Button
+                        buttonType={ButtonTypes.VIEWINGREDIENTS}
+                        handleClick={showModal}
+                    />
                 </div>
-                <h5>Macros</h5>
-                {renderMacros()}
-                <h5>Minerals &amp; Electrolytes</h5>
-                {renderMinerals()}
-                <Button
-                    buttonType={ButtonTypes.VIEWINGREDIENTS}
-                    handleClick={showModal}
-                />
+                <section className={recipeNutritionContainer}>
+                    {/* <div className={macroGrid}> */}
+                    <div className={recipeNutritionDetails}>
+                        <div>Calories</div>
+                        <div>{calories}</div>
+                        <div>
+                            Serves:
+                        </div>
+                        <div>{servingSize}</div>
+                        <div>per-serving: </div>
+                        <div>{getServingAmount(calories, servingSize)}</div>
+                    </div>
+                    <h5>Macros</h5>
+                    {renderMacros()}
+                    <h5>Minerals &amp; Electrolytes</h5>
+                    {renderMinerals()}
+
+                </section>
             </section>
+
         </div>
     );
 };
 
-export default RecipeRandomCard;
+export default RecipeCard;

@@ -1,0 +1,56 @@
+@import '../../styles/variables.scss';
+
+.recipeCardContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+        "food header header"
+        "food btn desc";
+    grid-template-rows: auto 1fr;
+
+    img {
+        grid-area: food;
+    }
+
+    h3 {
+        grid-area: header;
+        background-color: $brandColorSecondary;
+        align-self: start;
+        /* This line makes the header only take up the space it needs */
+        padding: 2rem;
+        margin-top: 0;
+        font-size: 1.85rem;
+        color: $brandColorTertiary;
+    }
+
+    .recipeCardActionsContainer {
+        grid-area: btn;
+        margin: 1rem;
+    }
+
+    .recipeNutritionContainer {
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        border: solid red 1px;
+        grid-area: desc;
+        align-self: start;
+        /* Add this line to make the description start right below the header */
+    }
+
+    .recipeNutritionDetails {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+// * END NEW SCSS
+
+.macroGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    div:nth-child(even) {
+        text-align: right;
+    }
+}
