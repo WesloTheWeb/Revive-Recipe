@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RecipeData } from '@/interfaces/recipeTypes';
+import { fetchRecipeFromAPI } from '@/helpers/apiHelpers';
 
 interface SearchState {
     query: string;
@@ -12,11 +13,15 @@ interface SearchState {
 export const searchRecipes = createAsyncThunk(
     'search/fetchRecipes',
     async (query: string, thunkAPI) => {
-        // Call an API or a function to get the recipes based on the query
-        const response = await fetchRecipesFromAPI(query);
-        return response;
+        try {
+            const response = await fetchRecipeFromAPI(query);
+            return response;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.message);
+        }
     }
 );
+
 
 const initialState: SearchState = {
     query: '',
@@ -42,6 +47,21 @@ const searchSlice = createSlice({
             state.error = action.payload;
         },
     },
+    extraReducers: builder => {
+        builder
+            .addCase(searchRecipes.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(searchRecipes.fulfilled, (state, action) => {
+                state.loading = false;
+                state.results = action.payload.hits; // If 'hits' is the array containing the recipes, adjust as needed
+            })
+            .addCase(searchRecipes.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            });
+    }
 });
 
 export const { setQuery, setSearchResults, setLoading, setError } = searchSlice.actions;
