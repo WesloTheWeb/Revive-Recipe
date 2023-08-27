@@ -1,3 +1,4 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RecipeData } from '@/interfaces/recipeTypes';
 
@@ -7,6 +8,15 @@ interface SearchState {
     loading: boolean;
     error: string | null;
 }
+
+export const searchRecipes = createAsyncThunk(
+    'search/fetchRecipes',
+    async (query: string, thunkAPI) => {
+        // Call an API or a function to get the recipes based on the query
+        const response = await fetchRecipesFromAPI(query);
+        return response;
+    }
+);
 
 const initialState: SearchState = {
     query: '',

@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setQuery } from '@/store/searchSlice';
+import { setQuery, searchRecipes } from '@/store/searchSlice';
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import classes from './RecipeSearchBar.module.scss';
 
@@ -16,9 +16,10 @@ const RecipeSearchBar = () => {
 
     const onSubmit: SubmitHandler<searchInputs> = data => {
         console.log(data);
-        dispatch(setQuery(data.recipe));  // Dispatch the recipe name to the store
-        // Here, you can also trigger any other side effects, like fetching new results based on the search query.
+        dispatch(setQuery(data.recipe));
+        dispatch(searchRecipes(data.recipe));  // This will fetch the data based on the query and update the `results` in state.
     };
+    
     return (
         <>
             <section>
@@ -30,6 +31,7 @@ const RecipeSearchBar = () => {
                 onSubmit={handleSubmit(onSubmit)}
             >
                 <input placeholder="Recipe name"{...register("recipe", { required: true })} />
+                <button type="submit">Search</button>
             </form>
         </>
     );

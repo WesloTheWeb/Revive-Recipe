@@ -9,6 +9,7 @@ const { queryHeader } = classes;
 
 const QueryResults = ({ }) => {
 
+    const query = useSelector((state: RootState) => state.search.query);
     const searchResults = useSelector((state: RootState): RecipeData[] => state.search.results);
     const loading = useSelector((state: RootState) => state.search.loading);
     const error = useSelector((state: RootState) => state.search.error);
