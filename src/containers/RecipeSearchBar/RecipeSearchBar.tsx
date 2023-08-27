@@ -1,7 +1,9 @@
 import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store/store';
 import { setQuery, searchRecipes } from '@/store/searchSlice';
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useForm, SubmitHandler } from "react-hook-form";
 import classes from './RecipeSearchBar.module.scss';
+import Button, { ButtonTypes } from '../Button/Button';
 
 const { recipeSearch, searchBarFlex } = classes;
 
@@ -11,7 +13,7 @@ interface searchInputs {
 
 const RecipeSearchBar = () => {
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const { register, handleSubmit } = useForm<searchInputs>();
 
     const onSubmit: SubmitHandler<searchInputs> = data => {
@@ -32,7 +34,8 @@ const RecipeSearchBar = () => {
             >
                 <div className={searchBarFlex}>
                     <input placeholder="Recipe name"{...register("recipe", { required: true })} />
-                    <button type="submit">Search</button>
+                    {/* <button type="submit">Search</button> */}
+                    <Button buttonType={ButtonTypes.RECIPESEARCH} />
                 </div>
             </form>
         </>

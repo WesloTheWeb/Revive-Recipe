@@ -11,11 +11,9 @@ const { queryHeader } = classes;
 interface QueryResultsProps {
     setSelectedRecipeIngredients: (ingredients: string[] | null) => void;
     showModal: () => void;
-}
-
+};
 
 const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsProps) => {
-
     // Redux States
     const query = useSelector((state: RootState) => state.search.query);
     const searchResults = useSelector((state: RootState): RecipeData[] => state.search.results);
@@ -36,10 +34,10 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                 Results for {query} showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, searchResults.length)}
             </section>
             <section>
+                {/* // TODO: Better loading clear old queries */}
                 {loading && <div>Loading...</div>}
                 {error && <div>Error: {error}</div>}
-
-                {searchResults.slice(0, 5).map((recipe, index) => (
+                {currentItems.map((recipe, index) => (
                     <RecipeCard
                         key={index}
                         image={recipe.image}
@@ -66,12 +64,25 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                     />
                 ))}
             </section>
-            <div>
-                <button onClick={() => setCurrentPage(1)}>First</button>
-                <button onClick={() => setCurrentPage(prevPage => Math.max(prevPage - 1, 1))}>Prev</button>
-                <button onClick={() => setCurrentPage(nextPage => Math.min(nextPage + 1, Math.ceil(searchResults.length / itemsPerPage)))}>Next</button>
-                <button onClick={() => setCurrentPage(Math.ceil(searchResults.length / itemsPerPage))}>Last</button>
-            </div>
+            <button onClick={() => {
+                setCurrentPage(1);
+                window.scrollTo(0, 0);
+            }}>First</button>
+
+            <button onClick={() => {
+                setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+                window.scrollTo(0, 0);
+            }}>Prev</button>
+
+            <button onClick={() => {
+                setCurrentPage(nextPage => Math.min(nextPage + 1, Math.ceil(searchResults.length / itemsPerPage)));
+                window.scrollTo(0, 0);
+            }}>Next</button>
+
+            <button onClick={() => {
+                setCurrentPage(Math.ceil(searchResults.length / itemsPerPage));
+                window.scrollTo(0, 0);
+            }}>Last</button>
         </>
     );
 };

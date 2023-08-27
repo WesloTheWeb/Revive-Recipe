@@ -4,7 +4,7 @@ import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
-const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, macroGrid } = classes;
+const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, macroGrid, macroHighlight } = classes;
 
 const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
@@ -16,7 +16,7 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
 
     // Render out macros:
     const renderMacros = () => (
-        <div className={macroGrid}>
+        <div className={`${macroGrid}, ${macroHighlight}`}>
             {Object.entries(macros).map(([key, nutrient]) => (
                 <React.Fragment key={key}>
                     <div><b>{key.charAt(0).toUpperCase() + key.slice(1)}:</b></div>
