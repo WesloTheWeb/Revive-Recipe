@@ -43,7 +43,7 @@ const RecipeCard = ({ showModal, image, recipeName, description, servingSize, ca
     return (
         <div>
             <section className={recipeCardContainer}>
-                <Image src={image} alt={description} width={250} height={350} />
+                <Image src={image} alt={description} width={250} height={360} />
                 <h3>{recipeName}</h3>
                 <section className={recipeNutritionContainer}>
                     <div className={recipeNutritionDetails}>
@@ -51,15 +51,7 @@ const RecipeCard = ({ showModal, image, recipeName, description, servingSize, ca
                             <Button
                                 buttonType={ButtonTypes.VIEWINGREDIENTS}
                                 handleClick={showModal}
-                            />
-                                      <Button
-                                buttonType={ButtonTypes.VIEWINGREDIENTS}
-                                handleClick={showModal}
-                            />
-                                      <Button
-                                buttonType={ButtonTypes.VIEWINGREDIENTS}
-                                handleClick={showModal}
-                            />
+                            />              
                         </section>
                     </div>
                     <section>

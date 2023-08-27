@@ -7,11 +7,9 @@
     grid-template-areas:
         "food header"
         "food desc";
-    grid-template-rows: auto 1fr;
 
     img {
         grid-area: food;
-        grid-row: 1 / span 3; // This will make the image stretch according to content.
     }
 
     h3 {
@@ -36,7 +34,6 @@
         background-color: $brandColorTertiary;
         display: flex;
         grid-template-columns: repeat(2, 1fr);
-        border: solid red 1px;
         grid-area: desc;
 
         section {
