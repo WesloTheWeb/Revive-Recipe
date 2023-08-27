@@ -1,10 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
+import searchReducer from './searchSlice'; // Correct the import path
 
 export const store = configureStore({
   reducer: {
-    posts: postsReducer,
-    comments: commentsReducer,
-    users: usersReducer,
+    search: searchReducer
+    // comments: commentsReducer,
+    // users: usersReducer,
   },
 })
 
