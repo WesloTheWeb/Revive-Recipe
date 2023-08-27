@@ -42,6 +42,31 @@ const RecipeCard = ({ showModal, image, recipeName, description, servingSize, ca
 
     return (
         <div>
+            <section className='test-grid'>
+                <div style={{ gridArea: 'img' }}>
+                    <img src="https://placehold.co/453x365" alt="test" width={453} height={365} />
+                </div>
+                <h3 className='test-header' style={{ gridArea: 'header' }}>Header food item label here</h3>
+                <div style={{ gridArea: 'btn' }}>
+                    <Button />
+                </div>
+                <div style={{ gridArea: 'desc' }}>
+                    <div className='test-flex'>
+                        <div>Cholesterol:</div>
+                        <div>36mg</div>
+                        <div>Sodium:</div>
+                        <div>36mg</div>
+                        <div>Calcium:</div>
+                        <div>36mg</div>
+                        <div>Magnesium:</div>
+                        <div>36mg</div>
+                        <div>Potassium:</div>
+                        <div>36mg</div>
+                        <div>Iron:</div>
+                        <div>36mg</div>
+                    </div>
+                </div>
+            </section>
             <section className={recipe}>
                 <Image src={image} alt={description} width={250} height={300} />
                 <h3>{recipeName}</h3>

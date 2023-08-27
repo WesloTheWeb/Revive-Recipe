@@ -1,5 +1,52 @@
 @import './variables.scss';
 
+// ! TEST
+.test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+        "img header header"
+        "img btn desc";
+    grid-template-rows: auto 1fr;
+    border: red dashed 2px;
+}
+
+.test-image {
+  grid-area: img;
+}
+
+.test-header {
+  grid-area: header;
+  background-color: #DF2468;
+  align-self: start; /* This line makes the header only take up the space it needs */
+  padding: 2rem;
+  margin-top: 0;
+  font-size: 1.85rem;
+  color: white;
+}
+
+.test-actions {
+  grid-area: btn;
+  margin: 1rem;
+}
+
+.test-description {
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  border: solid red 1px;
+  grid-area: desc;
+  align-self: start; /* Add this line to make the description start right below the header */
+}
+
+.test-flex {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+
+
+// ! END TEST
+
 // custom fonts
 @font-face {
     font-family: 'Lexend Exa Regular';
