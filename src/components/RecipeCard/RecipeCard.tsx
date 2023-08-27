@@ -6,7 +6,7 @@ import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
 const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, macroGrid } = classes;
 
-const RecipeCard = ({ showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
+const RecipeCard = ({ setSelectedRecipeIngredients, showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
 
@@ -51,6 +51,7 @@ const RecipeCard = ({ showModal, image, recipeName, description, servingSize, ca
                             <Button
                                 buttonType={ButtonTypes.VIEWINGREDIENTS}
                                 handleClick={showModal}
+
                             />              
                         </section>
                     </div>

@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { RecipeData } from '@/interfaces/recipeTypes';
@@ -9,11 +8,12 @@ import classes from './QueryResults.module.scss';
 const { queryHeader } = classes;
 
 interface QueryResultsProps {
+    setSelectedRecipeIngredients: (ingredients: string[] | null) => void;
     showModal: () => void;
 }
 
-const QueryResults = ({showModal}: QueryResultsProps) => {
-    const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[] | null>(null);
+
+const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsProps) => {
 
     const query = useSelector((state: RootState) => state.search.query);
     const searchResults = useSelector((state: RootState): RecipeData[] => state.search.results);
@@ -35,10 +35,8 @@ const QueryResults = ({showModal}: QueryResultsProps) => {
                         image={recipe.image}
                         recipeName={recipe.label}
                         description=""
-                        showModal={() => {
-                            setSelectedRecipeIngredients(recipe.ingredientLines); // Adjusted to 'ingredientLines'
-                            showModal();
-                        }}
+                        setSelectedRecipeIngredients={setSelectedRecipeIngredients}
+                        showModal={showModal}
                         calories={recipe.calories}
                         servingSize={recipe.yield}
                         macros={{

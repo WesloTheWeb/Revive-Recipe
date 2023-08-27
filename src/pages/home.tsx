@@ -138,11 +138,9 @@ export default function Home() {
           <div className="recipe-content">
             <RecipeSearchBar />
             {/* // TODO: !This needs view recipes to work */}
-            <QueryResults 
-                 showModal={() => {
-                  setSelectedRecipeIngredients(randomRecipes.hits.recipe.ingredientLines); // here is where we query specific ingredients
-                  showModal();
-                }}
+            <QueryResults
+              setSelectedRecipeIngredients={setSelectedRecipeIngredients}
+              showModal={showModal}
             />
             <h2>Recipes you may like...</h2>
             <section className='recipe-carousel-mobile'>
