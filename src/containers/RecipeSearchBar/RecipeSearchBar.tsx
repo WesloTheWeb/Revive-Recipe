@@ -17,7 +17,6 @@ const RecipeSearchBar = () => {
     const { register, handleSubmit } = useForm<searchInputs>();
 
     const onSubmit: SubmitHandler<searchInputs> = data => {
-        console.log(data);
         dispatch(setQuery(data.recipe));
         dispatch(searchRecipes(data.recipe));  // This will fetch the data based on the query and update the `results` in state.
     };

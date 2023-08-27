@@ -8,7 +8,7 @@ export const fetchRecipeFromAPI = async (query: string) => {
     }
     
     const data = await response.json();
-    console.log("API Response Data:", data);
+    // console.log("API Response Data:", data); This is just to check if client side call is working.
 
     return data;
 };

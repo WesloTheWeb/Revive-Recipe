@@ -31,7 +31,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     return (
         <>
             <section className={queryHeader}>
-                Results for {query} showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, searchResults.length)}
+                Results for <span>{query}</span> showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, searchResults.length)}
             </section>
             <section>
                 {/* // TODO: Better loading clear old queries */}

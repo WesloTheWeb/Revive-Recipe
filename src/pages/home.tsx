@@ -112,9 +112,6 @@ export default function Home() {
 
   if (!randomRecipes) return null; // TODO Loading spinner or error.
 
-  console.log(randomRecipes);
-  console.log('the query was', QUERY);
-
   return (
     <>
       {isVisible &&

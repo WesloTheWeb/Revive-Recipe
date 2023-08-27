@@ -1,4 +1,10 @@
+@import '../../styles/variables.scss';
+
 .queryHeader {
     text-align: center;
     font-weight: bold;
+
+    span {
+        color: rebeccapurple;
+    }
 }
