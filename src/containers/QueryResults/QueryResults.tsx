@@ -23,7 +23,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     return (
         <>
             <section className={queryHeader}>
-                <label>Results for {query} {searchResults.length}</label>
+                <label>Results for {query} showing 5 out of {searchResults.length}</label>
             </section>
             <section>
                 {loading && <div>Loading...</div>}
