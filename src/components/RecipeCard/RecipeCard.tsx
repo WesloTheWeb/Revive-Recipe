@@ -43,30 +43,33 @@ const RecipeCard = ({ showModal, image, recipeName, description, servingSize, ca
     return (
         <div>
             <section className={recipeCardContainer}>
-                <Image src={image} alt={description} width={250} height={300} />
+                <Image src={image} alt={description} width={250} height={350} />
                 <h3>{recipeName}</h3>
-                <div className={recipeCardActionsContainer}>
-                    <Button
-                        buttonType={ButtonTypes.VIEWINGREDIENTS}
-                        handleClick={showModal}
-                    />
-                </div>
                 <section className={recipeNutritionContainer}>
-                    {/* <div className={macroGrid}> */}
                     <div className={recipeNutritionDetails}>
-                        <div>Calories</div>
-                        <div>{calories}</div>
-                        <div>
-                            Serves:
-                        </div>
-                        <div>{servingSize}</div>
-                        <div>per-serving: </div>
-                        <div>{getServingAmount(calories, servingSize)}</div>
+                        <section className={recipeCardActionsContainer}>
+                            <Button
+                                buttonType={ButtonTypes.VIEWINGREDIENTS}
+                                handleClick={showModal}
+                            />
+                                      <Button
+                                buttonType={ButtonTypes.VIEWINGREDIENTS}
+                                handleClick={showModal}
+                            />
+                                      <Button
+                                buttonType={ButtonTypes.VIEWINGREDIENTS}
+                                handleClick={showModal}
+                            />
+                        </section>
                     </div>
-                    <h5>Macros</h5>
-                    {renderMacros()}
-                    <h5>Minerals &amp; Electrolytes</h5>
-                    {renderMinerals()}
+                    <section>
+                        <h5>Macros</h5>
+                        {renderMacros()}
+                    </section>
+                    <section>
+                        <h5>Minerals &amp; Electrolytes</h5>
+                        {renderMinerals()}
+                    </section>
 
                 </section>
             </section>
