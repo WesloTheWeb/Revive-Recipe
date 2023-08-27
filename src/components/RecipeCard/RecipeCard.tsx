@@ -4,7 +4,7 @@ import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
-const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, recipe, recipeDetails, macroGrid } = classes;
+const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, macroGrid } = classes;
 
 const RecipeCard = ({ showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
@@ -42,55 +42,35 @@ const RecipeCard = ({ showModal, image, recipeName, description, servingSize, ca
 
     return (
         <div>
-            <section className='test-grid'>
-                <div style={{ gridArea: 'img' }}>
-                    <img src="https://placehold.co/453x365" alt="test" width={453} height={365} />
-                </div>
-                <h3 className='test-header' style={{ gridArea: 'header' }}>Header food item label here</h3>
-                <div style={{ gridArea: 'btn' }}>
-                    <Button />
-                </div>
-                <div style={{ gridArea: 'desc' }}>
-                    <div className='test-flex'>
-                        <div>Cholesterol:</div>
-                        <div>36mg</div>
-                        <div>Sodium:</div>
-                        <div>36mg</div>
-                        <div>Calcium:</div>
-                        <div>36mg</div>
-                        <div>Magnesium:</div>
-                        <div>36mg</div>
-                        <div>Potassium:</div>
-                        <div>36mg</div>
-                        <div>Iron:</div>
-                        <div>36mg</div>
-                    </div>
-                </div>
-            </section>
-            <section className={recipe}>
+            <section className={recipeCardContainer}>
                 <Image src={image} alt={description} width={250} height={300} />
                 <h3>{recipeName}</h3>
-            </section>
-            <section className={recipeDetails}>
-                <div className={macroGrid}>
-                    <div>Calories</div>
-                    <div>{calories}</div>
-                    <div>
-                        Serves:
-                    </div>
-                    <div>{servingSize}</div>
-                    <div>per-serving: </div>
-                    <div>{getServingAmount(calories, servingSize)}</div>
+                <div className={recipeCardActionsContainer}>
+                    <Button
+                        buttonType={ButtonTypes.VIEWINGREDIENTS}
+                        handleClick={showModal}
+                    />
                 </div>
-                <h5>Macros</h5>
-                {renderMacros()}
-                <h5>Minerals &amp; Electrolytes</h5>
-                {renderMinerals()}
-                <Button
-                    buttonType={ButtonTypes.VIEWINGREDIENTS}
-                    handleClick={showModal}
-                />
+                <section className={recipeNutritionContainer}>
+                    {/* <div className={macroGrid}> */}
+                    <div className={recipeNutritionDetails}>
+                        <div>Calories</div>
+                        <div>{calories}</div>
+                        <div>
+                            Serves:
+                        </div>
+                        <div>{servingSize}</div>
+                        <div>per-serving: </div>
+                        <div>{getServingAmount(calories, servingSize)}</div>
+                    </div>
+                    <h5>Macros</h5>
+                    {renderMacros()}
+                    <h5>Minerals &amp; Electrolytes</h5>
+                    {renderMinerals()}
+
+                </section>
             </section>
+
         </div>
     );
 };
