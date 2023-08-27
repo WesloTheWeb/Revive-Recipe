@@ -35,6 +35,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                         image={recipe.image}
                         recipeName={recipe.label}
                         description=""
+                        ingredients={recipe.ingredientLines}
                         setSelectedRecipeIngredients={setSelectedRecipeIngredients}
                         showModal={showModal}
                         calories={recipe.calories}

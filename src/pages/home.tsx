@@ -137,7 +137,6 @@ export default function Home() {
           </div>
           <div className="recipe-content">
             <RecipeSearchBar />
-            {/* // TODO: !This needs view recipes to work */}
             <QueryResults
               setSelectedRecipeIngredients={setSelectedRecipeIngredients}
               showModal={showModal}

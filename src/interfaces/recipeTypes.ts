@@ -22,7 +22,7 @@ export interface MineralsElectrolytes {
 
 export interface RecipeRandomCardProps {
     showModal: () => void;
-    setSelectedRecipeIngredients?: () => void;
+    setSelectedRecipeIngredients?: (ingredientLines: string[]) => void;
     ingredients?: string[];
     image: string;
     recipeName: string;
