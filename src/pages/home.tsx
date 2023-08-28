@@ -110,7 +110,7 @@ export default function Home() {
       });
   }, []);
 
-  if (!randomRecipes) return null; // TODO Loading spinner or error.
+  if (!randomRecipes) return null;
 
   return (
     <>
@@ -150,11 +150,9 @@ export default function Home() {
               <section className='randomized-recipe-container'>
                 {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
                   const servingSize = hit.recipe.yield;
-                  // extract protein
                   const calorieCount = hit.recipe.calories;
                   const proteinInfo = hit.recipe.totalNutrients.PROCNT;
                   const fatInfo = hit.recipe.totalNutrients.FAT;
-                  // others
                   const carbInfo = hit.recipe.totalNutrients.CHOCDF;
                   const sodiumInfo = hit.recipe.totalNutrients.NA;
                   const calciumInfo = hit.recipe.totalNutrients.CA;

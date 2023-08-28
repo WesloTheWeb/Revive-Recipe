@@ -8,7 +8,7 @@ interface SearchState {
     results: RecipeData[];
     loading: boolean;
     error: string | null;
-}
+};
 
 export const searchRecipes = createAsyncThunk(
     'search/fetchRecipes',

@@ -81,5 +81,3 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
 };
 
 export default RecipeCard;
-
-// TODO: May or may not be missing Calories. But this is a dummy component to feed data in. Fix later now that structure is set.
