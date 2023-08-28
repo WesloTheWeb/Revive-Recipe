@@ -85,7 +85,7 @@ const LandingContent = ({ }) => {
                     <section className={blurb}>
                         <h2>Discover a world of healthy living</h2>
                         <p>
-                            Join or log in now to start your journey to a nourished body and a vibrant community. Let's cook, stay fit, and make lasting connections together!
+                            Join or log in now to start your journey to a nourished body and a vibrant community. Let&apos;s cook, stay fit, and make lasting connections together!
                         </p>
                         <div className={loginContainer}>
                             <Link href="/signup">
