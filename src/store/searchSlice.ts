@@ -10,6 +10,12 @@ interface SearchState {
     error: string | null;
 };
 
+interface RecipeSearchPayload {
+    hits: {
+        recipe: RecipeData;
+    }[];
+}
+
 export const searchRecipes = createAsyncThunk(
     'search/fetchRecipes',
     async (query: string, thunkAPI) => {
@@ -17,11 +23,13 @@ export const searchRecipes = createAsyncThunk(
             const response = await fetchRecipeFromAPI(query);
             return response;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error.message);
+            if (error instanceof Error) {
+                return thunkAPI.rejectWithValue(error.message);
+            }
+            return thunkAPI.rejectWithValue("An unexpected error occurred");
         };
     }
 );
-
 
 const initialState: SearchState = {
     query: '',
@@ -53,10 +61,10 @@ const searchSlice = createSlice({
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(searchRecipes.fulfilled, (state, action) => {
+            .addCase(searchRecipes.fulfilled, (state, action: PayloadAction<RecipeSearchPayload>) => {
                 state.loading = false;
                 state.results = action.payload.hits.map(hit => hit.recipe); // extracting the recipes from the hits
-            })            
+            })
             .addCase(searchRecipes.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message || 'An unknown error occurred.';
