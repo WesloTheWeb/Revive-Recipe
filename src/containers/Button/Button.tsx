@@ -1,6 +1,6 @@
 import classes from './Button.module.scss';
 
-const { loginButton, signUpButton, guestButton, returnButton, cancelButton, viewIngredientsButton } = classes;
+const { loginButton, signUpButton, guestButton, returnButton, cancelButton, viewIngredientsButton, recipeSearchButton } = classes;
 
 interface ButtonProps {
     buttonType: ButtonTypes;
@@ -15,7 +15,8 @@ export enum ButtonTypes {
     SIGNUPACCOUNT = 'createAccount',
     RETURN = 'returnButton',
     CANCEL = 'cancelButton',
-    VIEWINGREDIENTS = 'viewIngredientsButton'
+    VIEWINGREDIENTS = 'viewIngredientsButton',
+    RECIPESEARCH = 'recipeSearchButton'
 };
 
 // binds CSS classes to whatever prop is passed:
@@ -26,7 +27,8 @@ const buttonPaths = {
     [ButtonTypes.SIGNUPACCOUNT]: signUpButton,
     [ButtonTypes.RETURN]: returnButton,
     [ButtonTypes.CANCEL]: cancelButton,
-    [ButtonTypes.VIEWINGREDIENTS]: viewIngredientsButton
+    [ButtonTypes.VIEWINGREDIENTS]: viewIngredientsButton,
+    [ButtonTypes.RECIPESEARCH]: recipeSearchButton
 
 };
 
@@ -48,6 +50,8 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
                 return buttonPaths[ButtonTypes.CANCEL];
             case ButtonTypes.VIEWINGREDIENTS:
                 return buttonPaths[ButtonTypes.VIEWINGREDIENTS];
+            case ButtonTypes.RECIPESEARCH:
+                return buttonPaths[ButtonTypes.RECIPESEARCH];
             default:
                 return undefined;
         };
@@ -70,6 +74,8 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
                 return 'Cancel'
             case ButtonTypes.VIEWINGREDIENTS:
                 return 'View Ingredients'
+            case ButtonTypes.RECIPESEARCH:
+                return 'Search Recipe'
             default:
                 return 'Click Me';
         };

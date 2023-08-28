@@ -1,7 +1,11 @@
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '@/store/store';
+import { setQuery, searchRecipes } from '@/store/searchSlice';
+import { useForm, SubmitHandler } from "react-hook-form";
 import classes from './RecipeSearchBar.module.scss';
+import Button, { ButtonTypes } from '../Button/Button';
 
-const { recipeSearch } = classes;
+const { recipeSearch, searchBarFlex } = classes;
 
 interface searchInputs {
     recipe: string;
@@ -9,8 +13,13 @@ interface searchInputs {
 
 const RecipeSearchBar = () => {
 
+    const dispatch = useDispatch<AppDispatch>();
     const { register, handleSubmit } = useForm<searchInputs>();
-    const onSubmit: SubmitHandler<searchInputs> = data => console.log(data);
+
+    const onSubmit: SubmitHandler<searchInputs> = data => {
+        dispatch(setQuery(data.recipe));
+        dispatch(searchRecipes(data.recipe));  // This will fetch the data based on the query and update the `results` in state.
+    };
 
     return (
         <>
@@ -22,7 +31,11 @@ const RecipeSearchBar = () => {
                 className={recipeSearch}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input placeholder="Recipe name"{...register("recipe", { required: true })} />
+                <div className={searchBarFlex}>
+                    <input placeholder="Recipe name"{...register("recipe", { required: true })} />
+                    {/* <button type="submit">Search</button> */}
+                    <Button buttonType={ButtonTypes.RECIPESEARCH} />
+                </div>
             </form>
         </>
     );

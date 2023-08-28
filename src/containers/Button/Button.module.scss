@@ -55,3 +55,13 @@
         background-color: $blue-600;
     }
 }
+
+.recipeSearchButton {
+    font-size: 1rem;
+    background-color: $green-600;
+    color: $neutral-100;
+
+    &:hover {
+        background-color: $green-500-primary;
+    }
+}

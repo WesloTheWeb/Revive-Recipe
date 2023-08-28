@@ -41,3 +41,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+
+## Known Bugs
+List of known bugs from the API that I am aware and need to address:
+- Some recipe ingredients are way too big for the modal. Example search for 'tower' and the Macaroon wedding tower. Right now it is possible to still exit out via clicking the overlay, but need to find a better way to parse that data in a modal of ingredients being way too much.

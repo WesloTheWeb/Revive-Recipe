@@ -8,6 +8,7 @@ import Button, { ButtonTypes } from '@/containers/Button/Button';
 import Overlay from '@/components/Overlay/Overlay';
 import Modal from '@/components/Modal/Modal';
 import RecipeCarousel from '@/components/RecipeCarousel/RecipeCarousel';
+import QueryResults from '@/containers/QueryResults/QueryResults';
 
 interface Nutrient {
   quantity: number;
@@ -44,6 +45,7 @@ export default function Home() {
 
   const { isVisible, showModal, hideModal } = useModal();
   const [selectedRecipeIngredients, setSelectedRecipeIngredients] = useState<string[] | null>(null);
+  const [randomRecipes, setRandomRecipes] = useState<RandomRecipesType | null>(null);
 
   const suggestedRecipeQueries = () => {
 
@@ -80,7 +82,6 @@ export default function Home() {
   };
   let QUERY = suggestedRecipeQueries();
   const URL = `/api/searchRecipe?query=${QUERY}`;
-  const [randomRecipes, setRandomRecipes] = useState<RandomRecipesType | null>(null);
 
   // Shuffle Algorithm - O(n) time
   const shuffleAndTakeThree = (arr: []) => {
@@ -111,9 +112,6 @@ export default function Home() {
 
   if (!randomRecipes) return null; // TODO Loading spinner or error.
 
-  console.log(randomRecipes);
-  console.log('the query was', QUERY);
-
   return (
     <>
       {isVisible &&
@@ -136,6 +134,10 @@ export default function Home() {
           </div>
           <div className="recipe-content">
             <RecipeSearchBar />
+            <QueryResults
+              setSelectedRecipeIngredients={setSelectedRecipeIngredients}
+              showModal={showModal}
+            />
             <h2>Recipes you may like...</h2>
             <section className='recipe-carousel-mobile'>
               <RecipeCarousel

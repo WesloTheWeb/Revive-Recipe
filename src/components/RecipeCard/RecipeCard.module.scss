@@ -1,0 +1,65 @@
+@import '../../styles/variables.scss';
+
+.recipeCardContainer {
+    width: 100%;
+    margin: 1.43rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1.05);
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-areas:
+        "food header"
+        "food desc";
+
+    img {
+        border-radius: 8px 0 0 8px;
+        grid-area: food;
+    }
+
+    h3 {
+        grid-area: header;
+        background-color: $brandColorSecondary;
+        padding: 2rem;
+        margin: 0;
+        border-radius: 0 8px 0 0;
+        font-size: 1.85rem;
+        color: $brandColorTertiary;
+    }
+
+    h5 {
+        margin-bottom: 0;
+        text-decoration: underline;
+    }
+
+    .recipeCardActionsContainer {
+        margin: 1rem;
+    }
+
+    .recipeNutritionContainer {
+        background-color: $brandColorTertiary;
+        display: flex;
+        grid-template-columns: repeat(2, 1fr);
+        grid-area: desc;
+
+        section {
+            padding: 0 1rem;
+        }
+    }
+}
+
+.macroGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    div:nth-child(even) {
+        font-size: 1rem;
+        text-align: right;
+    }
+}
+
+.macroHighlight {
+    background-color: $neutral-200;
+    opacity: .8;
+    padding: .5rem;
+    border-radius: 8px;
+}
