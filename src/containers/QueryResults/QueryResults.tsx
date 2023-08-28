@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { RecipeData } from '@/interfaces/recipeTypes';
@@ -28,6 +28,11 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [query]);
+
+
     return (
         <>
             {loading ? (
@@ -35,7 +40,11 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
             ) : (
                 <>
                     <section className={queryHeader}>
-                        Results for <span>{query}</span> showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, searchResults.length)}
+                        {searchResults.length === 0 ? (
+                            <>No results found for <span>{query}</span></>
+                        ) : (
+                            <>Results for <span>{query}</span> showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, searchResults.length)} entries</>
+                        )}
                     </section>
                     <section>
                         {error && <div>Error: {error}</div>}
