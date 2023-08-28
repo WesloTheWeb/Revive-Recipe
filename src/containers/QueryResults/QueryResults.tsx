@@ -4,9 +4,10 @@ import { RootState } from '@/store/store';
 import { RecipeData } from '@/interfaces/recipeTypes';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
 import Loading from '@/components/Loading/Loading';
+import Button, { ButtonTypes } from '../Button/Button';
 import classes from './QueryResults.module.scss';
 
-const { queryHeader } = classes;
+const { queryHeader, paginationContainer } = classes;
 
 interface QueryResultsProps {
     setSelectedRecipeIngredients: (ingredients: string[] | null) => void;
@@ -32,7 +33,6 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
         setCurrentPage(1);
     }, [query]);
 
-
     return (
         <>
             {loading ? (
@@ -40,10 +40,12 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
             ) : (
                 <>
                     <section className={queryHeader}>
-                        {searchResults.length === 0 ? (
+                        {searchResults.length === 0 && query ? (
                             <>No results found for <span>{query}</span></>
-                        ) : (
+                        ) : searchResults.length > 0 ? (
                             <>Results for <span>{query}</span> showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, searchResults.length)} entries</>
+                        ) : (
+                            null
                         )}
                     </section>
                     <section>
@@ -75,25 +77,43 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                             />
                         ))}
                     </section>
-                    <button onClick={() => {
-                        setCurrentPage(1);
-                        window.scrollTo(0, 0);
-                    }}>First</button>
+                    <section className={paginationContainer}>
+                        <Button
+                            buttonType={ButtonTypes.FIRSTPAGE}
+                            disabled={currentPage === 1}
+                            handleClick={() => {
+                                setCurrentPage(1);
+                                window.scrollTo(0, 0);
+                            }}
+                        />
 
-                    <button onClick={() => {
-                        setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
-                        window.scrollTo(0, 0);
-                    }}>Prev</button>
+                        <Button
+                            buttonType={ButtonTypes.PREVPAGE}
+                            disabled={currentPage === 1}
+                            handleClick={() => {
+                                setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+                                window.scrollTo(0, 0);
+                            }}
+                        />
 
-                    <button onClick={() => {
-                        setCurrentPage(nextPage => Math.min(nextPage + 1, Math.ceil(searchResults.length / itemsPerPage)));
-                        window.scrollTo(0, 0);
-                    }}>Next</button>
+                        <Button
+                            buttonType={ButtonTypes.NEXTPAGE}
+                            disabled={currentPage === Math.ceil(searchResults.length / itemsPerPage)}
+                            handleClick={() => {
+                                setCurrentPage(nextPage => Math.min(nextPage + 1, Math.ceil(searchResults.length / itemsPerPage)));
+                                window.scrollTo(0, 0);
+                            }}
+                        />
 
-                    <button onClick={() => {
-                        setCurrentPage(Math.ceil(searchResults.length / itemsPerPage));
-                        window.scrollTo(0, 0);
-                    }}>Last</button>
+                        <Button
+                            buttonType={ButtonTypes.LASTPAGE}
+                            disabled={currentPage === Math.ceil(searchResults.length / itemsPerPage)}
+                            handleClick={() => {
+                                setCurrentPage(Math.ceil(searchResults.length / itemsPerPage));
+                                window.scrollTo(0, 0);
+                            }}
+                        />
+                    </section>
                 </>
             )
             }

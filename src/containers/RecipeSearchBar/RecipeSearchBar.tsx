@@ -25,7 +25,7 @@ const RecipeSearchBar = () => {
         <>
             <section>
                 <h2>Recipe Finder</h2>
-                <span>Enter any food below to query for the nutritional data.</span>
+                <span>Enter any food below to query for the nutritional data for up to 20 entries.</span>
             </section>
             <form
                 className={recipeSearch}
