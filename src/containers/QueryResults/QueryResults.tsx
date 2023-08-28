@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { RecipeData } from '@/interfaces/recipeTypes';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
-
+import Loading from '@/components/Loading/Loading';
+import Button, { ButtonTypes } from '../Button/Button';
 import classes from './QueryResults.module.scss';
 
-const { queryHeader } = classes;
+const { queryHeader, paginationContainer } = classes;
 
 interface QueryResultsProps {
     setSelectedRecipeIngredients: (ingredients: string[] | null) => void;
@@ -28,61 +29,94 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
 
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [query]);
+
     return (
         <>
-            <section className={queryHeader}>
-                Results for <span>{query}</span> showing {indexOfFirstItem + 1} to {Math.min(indexOfLastItem, searchResults.length)}
-            </section>
-            <section>
-                {/* // TODO: Better loading clear old queries */}
-                {loading && <div>Loading...</div>}
-                {error && <div>Error: {error}</div>}
-                {currentItems.map((recipe, index) => (
-                    <RecipeCard
-                        key={index}
-                        image={recipe.image}
-                        recipeName={recipe.label}
-                        description=""
-                        ingredients={recipe.ingredientLines}
-                        setSelectedRecipeIngredients={setSelectedRecipeIngredients}
-                        showModal={showModal}
-                        calories={recipe.calories}
-                        servingSize={recipe.yield}
-                        macros={{
-                            protein: recipe.totalNutrients.PROCNT,
-                            fats: recipe.totalNutrients.FAT,
-                            carbs: recipe.totalNutrients.CHOCDF
-                        }}
-                        minerals={{
-                            cholesterol: recipe.totalNutrients.CHOLE,
-                            sodium: recipe.totalNutrients.NA,
-                            calcium: recipe.totalNutrients.CA,
-                            magnesium: recipe.totalNutrients.MG,
-                            potassium: recipe.totalNutrients.K,
-                            iron: recipe.totalNutrients.FE
-                        }}
-                    />
-                ))}
-            </section>
-            <button onClick={() => {
-                setCurrentPage(1);
-                window.scrollTo(0, 0);
-            }}>First</button>
+            {loading ? (
+                <Loading />
+            ) : (
+                <>
+                    <section className={queryHeader}>
+                        {searchResults.length === 0 && query ? (
+                            <>No results found for <span>{query}</span></>
+                        ) : searchResults.length > 0 ? (
+                            <>Results for <span>{query}</span> showing {indexOfFirstItem + 1} - {Math.min(indexOfLastItem, searchResults.length)} entries</>
+                        ) : (
+                            null
+                        )}
+                    </section>
+                    <section>
+                        {error && <div>Error: {error}</div>}
+                        {currentItems.map((recipe, index) => (
+                            <RecipeCard
+                                key={index}
+                                image={recipe.image}
+                                recipeName={recipe.label}
+                                description=""
+                                ingredients={recipe.ingredientLines}
+                                setSelectedRecipeIngredients={setSelectedRecipeIngredients}
+                                showModal={showModal}
+                                calories={recipe.calories}
+                                servingSize={recipe.yield}
+                                macros={{
+                                    protein: recipe.totalNutrients.PROCNT,
+                                    fats: recipe.totalNutrients.FAT,
+                                    carbs: recipe.totalNutrients.CHOCDF
+                                }}
+                                minerals={{
+                                    cholesterol: recipe.totalNutrients.CHOLE,
+                                    sodium: recipe.totalNutrients.NA,
+                                    calcium: recipe.totalNutrients.CA,
+                                    magnesium: recipe.totalNutrients.MG,
+                                    potassium: recipe.totalNutrients.K,
+                                    iron: recipe.totalNutrients.FE
+                                }}
+                            />
+                        ))}
+                    </section>
+                    <section className={paginationContainer}>
+                        <Button
+                            buttonType={ButtonTypes.FIRSTPAGE}
+                            disabled={currentPage === 1}
+                            handleClick={() => {
+                                setCurrentPage(1);
+                                window.scrollTo(0, 0);
+                            }}
+                        />
 
-            <button onClick={() => {
-                setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
-                window.scrollTo(0, 0);
-            }}>Prev</button>
+                        <Button
+                            buttonType={ButtonTypes.PREVPAGE}
+                            disabled={currentPage === 1}
+                            handleClick={() => {
+                                setCurrentPage(prevPage => Math.max(prevPage - 1, 1));
+                                window.scrollTo(0, 0);
+                            }}
+                        />
 
-            <button onClick={() => {
-                setCurrentPage(nextPage => Math.min(nextPage + 1, Math.ceil(searchResults.length / itemsPerPage)));
-                window.scrollTo(0, 0);
-            }}>Next</button>
+                        <Button
+                            buttonType={ButtonTypes.NEXTPAGE}
+                            disabled={currentPage === Math.ceil(searchResults.length / itemsPerPage)}
+                            handleClick={() => {
+                                setCurrentPage(nextPage => Math.min(nextPage + 1, Math.ceil(searchResults.length / itemsPerPage)));
+                                window.scrollTo(0, 0);
+                            }}
+                        />
 
-            <button onClick={() => {
-                setCurrentPage(Math.ceil(searchResults.length / itemsPerPage));
-                window.scrollTo(0, 0);
-            }}>Last</button>
+                        <Button
+                            buttonType={ButtonTypes.LASTPAGE}
+                            disabled={currentPage === Math.ceil(searchResults.length / itemsPerPage)}
+                            handleClick={() => {
+                                setCurrentPage(Math.ceil(searchResults.length / itemsPerPage));
+                                window.scrollTo(0, 0);
+                            }}
+                        />
+                    </section>
+                </>
+            )
+            }
         </>
     );
 };

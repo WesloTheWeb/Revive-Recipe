@@ -4,7 +4,8 @@ import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
-const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, macroGrid, macroHighlight } = classes;
+const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
+    macroGrid, macroHighlight, calorieProperties } = classes;
 
 const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
 
@@ -48,6 +49,12 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
                 <section className={recipeNutritionContainer}>
                     <div className={recipeNutritionDetails}>
                         <section className={recipeCardActionsContainer}>
+                            <div className={`${macroGrid} ${calorieProperties}`}>
+                                <div>Calories</div>
+                                <div>{Math.floor(calories)}</div>
+                                <span>serving: </span>
+                                <div>{getServingAmount(calories, servingSize)}</div>
+                            </div>
                             <Button
                                 buttonType={ButtonTypes.VIEWINGREDIENTS}
                                 handleClick={() => {
@@ -67,7 +74,6 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
                         <h5>Minerals &amp; Electrolytes</h5>
                         {renderMinerals()}
                     </section>
-
                 </section>
             </section>
         </div>
@@ -75,5 +81,3 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
 };
 
 export default RecipeCard;
-
-// TODO: May or may not be missing Calories. But this is a dummy component to feed data in. Fix later now that structure is set.

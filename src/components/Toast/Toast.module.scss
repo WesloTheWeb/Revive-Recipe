@@ -1,0 +1,45 @@
+@import '../../styles/variables.scss';
+
+.toastContainer {
+    z-index: 12;
+    position: absolute;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    /* Optional - set a width for the container to make it responsive */
+
+    svg {
+        display: block;
+        width: 25px;
+        margin-left: 1rem;
+    }
+}
+
+.toastHeaderContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: $orange-400;
+    border-radius: 8px 8px 0 0;
+
+}
+
+.noticeToast {
+
+    h3 {
+        background-color: inherit;
+        text-align: center;
+        color: $orange-100;
+        margin: 0 auto;
+        padding: 0.5rem 1rem;
+    }
+
+    p {
+        margin: 0;
+        padding: 1.43rem;
+        background-color: $orange-200;
+        color: $orange-800;
+    }
+}

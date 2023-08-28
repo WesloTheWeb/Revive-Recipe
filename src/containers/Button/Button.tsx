@@ -1,10 +1,14 @@
 import classes from './Button.module.scss';
 
-const { loginButton, signUpButton, guestButton, returnButton, cancelButton, viewIngredientsButton, recipeSearchButton } = classes;
+const { loginButton, signUpButton, guestButton,
+    returnButton, cancelButton, viewIngredientsButton,
+    recipeSearchButton, firstPage, prevPage, nextPage,
+    lastPage } = classes;
 
 interface ButtonProps {
     buttonType: ButtonTypes;
     handleClick?: () => void;
+    disabled?: boolean;
 };
 
 // pass to the parent component for the prop calling allow multiple constants
@@ -16,7 +20,11 @@ export enum ButtonTypes {
     RETURN = 'returnButton',
     CANCEL = 'cancelButton',
     VIEWINGREDIENTS = 'viewIngredientsButton',
-    RECIPESEARCH = 'recipeSearchButton'
+    RECIPESEARCH = 'recipeSearchButton',
+    FIRSTPAGE = 'firstPage',
+    PREVPAGE = 'prevPage',
+    NEXTPAGE = 'nextPage',
+    LASTPAGE = 'lastPage',
 };
 
 // binds CSS classes to whatever prop is passed:
@@ -28,11 +36,15 @@ const buttonPaths = {
     [ButtonTypes.RETURN]: returnButton,
     [ButtonTypes.CANCEL]: cancelButton,
     [ButtonTypes.VIEWINGREDIENTS]: viewIngredientsButton,
-    [ButtonTypes.RECIPESEARCH]: recipeSearchButton
+    [ButtonTypes.RECIPESEARCH]: recipeSearchButton,
+    [ButtonTypes.FIRSTPAGE]: firstPage,
+    [ButtonTypes.PREVPAGE]: prevPage,
+    [ButtonTypes.NEXTPAGE]: nextPage,
+    [ButtonTypes.LASTPAGE]: lastPage
 
 };
 
-const Button = ({ buttonType, handleClick }: ButtonProps) => {
+const Button = ({ buttonType, handleClick, disabled }: ButtonProps) => {
 
     const determineButtonTypeFromProps = (type: ButtonTypes) => {
         switch (type) {
@@ -52,6 +64,14 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
                 return buttonPaths[ButtonTypes.VIEWINGREDIENTS];
             case ButtonTypes.RECIPESEARCH:
                 return buttonPaths[ButtonTypes.RECIPESEARCH];
+            case ButtonTypes.FIRSTPAGE:
+                return buttonPaths[ButtonTypes.FIRSTPAGE];
+            case ButtonTypes.PREVPAGE:
+                return buttonPaths[ButtonTypes.PREVPAGE];
+            case ButtonTypes.NEXTPAGE:
+                return buttonPaths[ButtonTypes.NEXTPAGE];
+            case ButtonTypes.LASTPAGE:
+                return buttonPaths[ButtonTypes.LASTPAGE];
             default:
                 return undefined;
         };
@@ -76,6 +96,14 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
                 return 'View Ingredients'
             case ButtonTypes.RECIPESEARCH:
                 return 'Search Recipe'
+            case ButtonTypes.FIRSTPAGE:
+                return 'First'
+            case ButtonTypes.PREVPAGE:
+                return 'Prev'
+            case ButtonTypes.NEXTPAGE:
+                return 'Next'
+            case ButtonTypes.LASTPAGE:
+                return 'Last'
             default:
                 return 'Click Me';
         };
@@ -92,6 +120,7 @@ const Button = ({ buttonType, handleClick }: ButtonProps) => {
         <button
             className={determineButtonTypeFromProps(buttonType)}
             onClick={handleButtonClick}
+            disabled={disabled}
         >
             {determineButtonText(buttonType)}
         </button>

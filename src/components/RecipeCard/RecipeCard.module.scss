@@ -32,7 +32,7 @@
     }
 
     .recipeCardActionsContainer {
-        margin: 1rem;
+        margin: 1rem 0;
     }
 
     .recipeNutritionContainer {
@@ -62,4 +62,8 @@
     opacity: .8;
     padding: .5rem;
     border-radius: 8px;
+}
+
+.calorieProperties {
+    // font-size: .85rem;
 }
