@@ -8,11 +8,6 @@ export default function Home() {
     <>
       <PageLayout>
         <LandingContent />
-        <Toast
-          type="notice"
-          content="There is no backend integrated into the web app yet. But this is just demo to show react-hook forms. If you 
-          are interested in the data you entered, it is logged to the console."
-        />
       </PageLayout>
     </>
   );
