@@ -10,11 +10,13 @@ const Toast = ({ type, content }: NotificationProps) => {
         return null; // Or some error message.
     }
 
+    // dynamically grab icon for matching type from find method.
+    const IconComponent = notification.icon;
+
     return (
-        // <div className={`${toastContainer} ${type}Toast`} style={{ backgroundColor: notification.bgColor }}>
-        <div className={`${String(type)}Toast`} style={{ backgroundColor: notification.bgColor }}>
+        <div className={`${toastContainer} ${String(type)}Toast`} style={{ backgroundColor: notification.bgColor }}>
             <div className={toastHeaderContainer} style={{ color: notification.textColor }}>
-                {notification.icon}
+                <IconComponent /> {/* Render the icon component here */}
                 <h3>{notification.header}</h3>
             </div>
             <p>{content}</p>

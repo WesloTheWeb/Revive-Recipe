@@ -1,6 +1,7 @@
 @import '../../styles/variables.scss';
 
 .toastContainer {
+    z-index: 12;
     position: absolute;
     height: 300px;
     top: 50%;

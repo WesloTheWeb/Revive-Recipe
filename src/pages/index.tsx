@@ -8,7 +8,10 @@ export default function Home() {
     <>
       <PageLayout>
         <LandingContent />
-        <Toast />
+        <Toast 
+          type="notice"
+          content="Feature not implemented yet"
+          />
       </PageLayout>
     </>
   )

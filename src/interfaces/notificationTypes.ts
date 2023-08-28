@@ -1,9 +1,10 @@
-import { JSX } from 'react';
+import React from 'react';
+import NoticeIcon from '@/icons/NoticeIcon';
 
 export interface NotificationData {
     type: string;
     header: string;
-    icon: JSX.Element;
+    icon: React.ComponentType;
     bgColor: string;
     textColor: string;
 };
@@ -12,7 +13,7 @@ export const notificationTypes: NotificationData[] = [
     {
         type: 'notice',
         header: 'Feature Disabled',
-        icon: (/*... your SVG here...*/),
+        icon: NoticeIcon,
         bgColor: 'orange',
         textColor: 'dark'
     }
