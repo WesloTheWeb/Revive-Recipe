@@ -5,6 +5,7 @@ import { RecipeData } from '@/interfaces/recipeTypes';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
 
 import classes from './QueryResults.module.scss';
+import Loading from '@/components/Loading/Loading';
 
 const { queryHeader } = classes;
 
@@ -35,7 +36,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
             </section>
             <section>
                 {/* // TODO: Better loading clear old queries */}
-                {loading && <div>Loading...</div>}
+                {loading && <Loading />}
                 {error && <div>Error: {error}</div>}
                 {currentItems.map((recipe, index) => (
                     <RecipeCard
