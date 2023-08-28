@@ -12,7 +12,6 @@ const LoginForm = () => {
     const [showToast, setShowToast] = useState(false);
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
 
-
     const onSubmit: SubmitHandler<Inputs> = (data) => {
         console.log(data);
         setShowToast(true);
@@ -27,8 +26,6 @@ const LoginForm = () => {
             return () => clearTimeout(timer);
         }
     }, [showToast])
-
-
 
     return (
         <>
