@@ -57,6 +57,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                             return (
                                 <RecipeCard
                                     key={recipeHash}
+                                    hash={recipeHash} // Pass the hash here
                                     uri={recipe.uri}
                                     image={recipe.image}
                                     label={recipe.label}

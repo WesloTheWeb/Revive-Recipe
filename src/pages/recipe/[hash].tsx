@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchRecipeByUri } from '@/helpers/apiHelpers';
+import { fetchRecipeByHash } from '@/helpers/apiHelpers';
 
 // This is your actual page component
 const RecipePage = ({ recipe }) => {
@@ -18,7 +18,7 @@ export const getServerSideProps = async (context) => {
       };
   }
 
-  const recipeData = await fetchRecipeByUri(uri);
+  const recipeData = await fetchRecipeByHash(uri);
 
   return {
       props: {

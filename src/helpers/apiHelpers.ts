@@ -14,7 +14,7 @@ export const fetchRecipeFromAPI = async (query: string) => {
 };
 
 
-export const fetchRecipeByUri = async (uri: string) => {
+export const fetchRecipeByHash = async (uri: string) => {
     const URL = `/api/getRecipe?uri=${uri}`;
     console.log('Fetching URL:', URL);
     const response = await fetch(URL);
