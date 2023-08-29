@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '@/store/store';
+import { storeRecipe } from '@/store/recipeSlice';
 import { RecipeData } from '@/interfaces/recipeTypes';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
 import { generateRecipeHash } from '@/helpers/hashHelpers';
@@ -21,6 +22,9 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const searchResults = useSelector((state: RootState): RecipeData[] => state.search.results);
     const loading = useSelector((state: RootState) => state.search.loading);
     const error = useSelector((state: RootState) => state.search.error);
+
+    const recipeHash = generateRecipeHash(recipe);
+    const dispatch = useDispatch<AppDispatch>();
 
     // component state for pagination
     const [currentPage, setCurrentPage] = useState(1);
@@ -53,7 +57,9 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                         {error && <div>Error: {error}</div>}
                         {currentItems.map((recipe, index) => {
                             const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe
-
+                            dispatch<AppDispatch>(storeRecipe({ hash: recipeHash, recipe }));
+                            // TODO: Fix typing
+                            
                             return (
                                 <RecipeCard
                                     key={recipeHash}
