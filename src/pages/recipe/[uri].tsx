@@ -10,13 +10,19 @@ const RecipePage = ({ recipe }) => {
 export default RecipePage;
 
 export const getServerSideProps = async (context) => {
-  const uri = decodeURIComponent(context.params.id);
-  // Fetch your data based on the URI here
+  const uri = context.params?.uri ? decodeURIComponent(decodeURIComponent(context.params.uri)) : undefined;
+
+  if (!uri) {
+      return {
+          notFound: true
+      };
+  }
+
   const recipeData = await fetchRecipeByUri(uri);
 
   return {
-    props: {
-      recipe: recipeData,
-    },
+      props: {
+          recipe: recipeData,
+      },
   };
 };

@@ -67,7 +67,7 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
                                     showModal();
                                 }}
                             />
-                            <Link href={`/recipe/${encodeURIComponent(uri)}`}>
+                            <Link href={`/recipe/${encodeURIComponent(encodeURIComponent(uri))}`}>
                                 View Recipe
                             </Link>
                         </section>
