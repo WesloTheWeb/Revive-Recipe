@@ -12,3 +12,16 @@ export const fetchRecipeFromAPI = async (query: string) => {
 
     return data;
 };
+
+
+export const fetchRecipeByUri = async (uri: string) => {
+    const URL = `/api/getRecipe?uri=${uri}`;
+    const response = await fetch(URL);
+    
+    if (!response.ok) {
+        throw new Error('Failed to fetch recipe by URI.');
+    }
+    
+    const data = await response.json();
+    return data;
+};

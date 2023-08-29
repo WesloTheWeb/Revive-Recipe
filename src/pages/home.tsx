@@ -111,6 +111,7 @@ export default function Home() {
   }, []);
 
   if (!randomRecipes) return null;
+  console.log(randomRecipes);
 
   return (
     <>

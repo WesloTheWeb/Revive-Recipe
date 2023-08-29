@@ -53,6 +53,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                         {currentItems.map((recipe, index) => (
                             <RecipeCard
                                 key={index}
+                                uri={recipe.uri}
                                 image={recipe.image}
                                 recipeName={recipe.label}
                                 description=""

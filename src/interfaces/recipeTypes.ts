@@ -25,6 +25,7 @@ export interface RecipeRandomCardProps {
     setSelectedRecipeIngredients?: (ingredientLines: string[]) => void;
     ingredients?: string[];
     image: string;
+    uri: string;
     recipeName: string;
     description: string;
     servingSize: number;
@@ -48,6 +49,7 @@ export interface RecipeTotalNutrients {
 
 export interface RecipeData {
     image: string;
+    uri: string;
     label: string;
     yield: number;
     calories: number;
