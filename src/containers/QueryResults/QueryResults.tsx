@@ -23,7 +23,6 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const loading = useSelector((state: RootState) => state.search.loading);
     const error = useSelector((state: RootState) => state.search.error);
 
-    const recipeHash = generateRecipeHash(recipe);
     const dispatch = useDispatch<AppDispatch>();
 
     // component state for pagination
@@ -57,9 +56,10 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                         {error && <div>Error: {error}</div>}
                         {currentItems.map((recipe, index) => {
                             const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe
-                            dispatch<AppDispatch>(storeRecipe({ hash: recipeHash, recipe }));
-                            // TODO: Fix typing
                             
+                            // Store the recipe in Redux
+                            dispatch(storeRecipe({ hash: recipeHash, recipe }));
+
                             return (
                                 <RecipeCard
                                     key={recipeHash}
