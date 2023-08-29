@@ -33,9 +33,19 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
 
+    // useEffect(() => {
+    //     setCurrentPage(1);
+    // }, [query]);
+    // ? New Bit
     useEffect(() => {
-        setCurrentPage(1);
-    }, [query]);
+        searchResults.forEach(recipe => {
+            const recipeHash = generateRecipeHash(recipe);
+            // TODO: Check if the recipe already exists in the store to avoid unnecessary dispatches
+            dispatch(storeRecipe({ hash: recipeHash, recipe }));
+        });
+    }, [searchResults, dispatch]);
+    
+
 
     return (
         <>
@@ -58,7 +68,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                             const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe
                             
                             // Store the recipe in Redux
-                            dispatch(storeRecipe({ hash: recipeHash, recipe }));
+                            // dispatch(storeRecipe({ hash: recipeHash, recipe }));
 
                             return (
                                 <RecipeCard

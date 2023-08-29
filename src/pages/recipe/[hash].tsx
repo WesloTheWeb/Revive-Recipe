@@ -32,6 +32,11 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 
   const recipeData = reduxState.recipe.recipes[hash];
 
+  // ? Debug to see if fetching data.
+  console.log("Redux State: ", reduxState);
+console.log("Recipe Data: ", recipeData);
+
+
   if (!recipeData) {
     return {
       notFound: true
