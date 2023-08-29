@@ -20,6 +20,7 @@ export interface MineralsElectrolytes {
     iron: Nutrient;
 };
 
+// Renamed 'recipeName' to 'label' to match RecipeData.
 export interface RecipeRandomCardProps {
     key: any,
     showModal: () => void;
@@ -27,15 +28,15 @@ export interface RecipeRandomCardProps {
     ingredients?: string[];
     image: string;
     uri: string;
-    recipeName: string;
+    label: string;  // <-- Changed this from recipeName
     description: string;
-    servingSize: number;
+    servings: number;  // <-- Changed this from servingSize to servings
     calories: number;
     macros: Macros;
     minerals: MineralsElectrolytes;
 };
 
-// ? Mobile Carousel Interfaces:
+// Kept these as they are since they're consistent.
 export interface RecipeTotalNutrients {
     PROCNT: Nutrient;
     FAT: Nutrient;
@@ -52,7 +53,7 @@ export interface RecipeData {
     image: string;
     uri: string;
     label: string;
-    yield: number;
+    yield: number;  
     calories: number;
     totalNutrients: RecipeTotalNutrients;
     ingredientLines: string[];

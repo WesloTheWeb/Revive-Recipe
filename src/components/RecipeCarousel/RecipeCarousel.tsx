@@ -29,7 +29,7 @@ const RecipeCarousel = ({ recipes, showModal, setSelectedRecipeIngredients }: Re
         <Carousel responsive={responsive}>
             {recipes.map((hit, index) => {
                 // Extracting required values just like in the original
-                const servingSize = hit.recipe.yield;
+                const servings = hit.recipe.yield;
                 const calorieCount = hit.recipe.calories;
                 const proteinInfo = hit.recipe.totalNutrients.PROCNT;
                 const fatInfo = hit.recipe.totalNutrients.FAT;
@@ -45,14 +45,14 @@ const RecipeCarousel = ({ recipes, showModal, setSelectedRecipeIngredients }: Re
                     <div key={index}>
                         <RecipeRandomCard
                             image={hit.recipe.image}
-                            recipeName={hit.recipe.label}
+                            label={hit.recipe.label}
                             showModal={() => {
                                 setSelectedRecipeIngredients(hit.recipe.ingredientLines);
                                 showModal();
                             }}
                             description={hit.recipe.label}
                             calories={convertedCalorie(calorieCount)}
-                            servingSize={servingSize}
+                            servings={servings}
                             macros={{
                                 protein: {
                                     quantity: proteinInfo.quantity,

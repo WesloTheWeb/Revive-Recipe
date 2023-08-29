@@ -6,7 +6,7 @@ import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
 const { recipe, recipeDetails, macroGrid } = classes;
 
-const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
+const RecipeRandomCard = ({ showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
 
@@ -20,7 +20,7 @@ const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSi
             {Object.entries(macros).map(([key, nutrient]) => (
                 <React.Fragment key={key}>
                     <div><b>{key.charAt(0).toUpperCase() + key.slice(1)}:</b></div>
-                    <div>{getServingAmount(convertNumber(nutrient.quantity), servingSize)}{nutrient.unit}</div>
+                    <div>{getServingAmount(convertNumber(nutrient.quantity), servings)}{nutrient.unit}</div>
                 </React.Fragment>
             ))}
         </div>
@@ -33,7 +33,7 @@ const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSi
                 {Object.entries(minerals).map(([key, nutrient]) => (
                     <React.Fragment key={key}>
                         <div>{key.charAt(0).toUpperCase() + key.slice(1)}:</div>
-                        <div>{getServingAmount(convertNumber(nutrient.quantity), servingSize)}{nutrient.unit}</div>
+                        <div>{getServingAmount(convertNumber(nutrient.quantity), servings)}{nutrient.unit}</div>
                     </React.Fragment>
                 ))}
             </div>
@@ -44,7 +44,7 @@ const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSi
         <div>
             <section className={recipe}>
                 <Image src={image} alt={description} width={250} height={300} />
-                <h3>{recipeName}</h3>
+                <h3>{label}</h3>
             </section>
             <section className={recipeDetails}>
                 <div className={macroGrid}>
@@ -53,9 +53,9 @@ const RecipeRandomCard = ({ showModal, image, recipeName, description, servingSi
                     <div>
                         Serves:
                     </div>
-                    <div>{servingSize}</div>
+                    <div>{servings}</div>
                     <div>per-serving: </div>
-                    <div>{getServingAmount(calories, servingSize)}</div>
+                    <div>{getServingAmount(calories, servings)}</div>
                 </div>
                 <h5>Macros</h5>
                 {renderMacros()}

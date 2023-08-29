@@ -59,13 +59,13 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                                     key={recipeHash}
                                     uri={recipe.uri}
                                     image={recipe.image}
-                                    recipeName={recipe.label}
+                                    label={recipe.label}
                                     description=""
                                     ingredients={recipe.ingredientLines}
                                     setSelectedRecipeIngredients={setSelectedRecipeIngredients}
                                     showModal={showModal}
                                     calories={recipe.calories}
-                                    servingSize={recipe.yield}
+                                    servings={recipe.yield}
                                     macros={{
                                         protein: recipe.totalNutrients.PROCNT,
                                         fats: recipe.totalNutrients.FAT,

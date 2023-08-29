@@ -150,7 +150,7 @@ export default function Home() {
             <section className='random-recipe-list'>
               <section className='randomized-recipe-container'>
                 {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
-                  const servingSize = hit.recipe.yield;
+                  const servings = hit.recipe.yield;
                   const calorieCount = hit.recipe.calories;
                   const proteinInfo = hit.recipe.totalNutrients.PROCNT;
                   const fatInfo = hit.recipe.totalNutrients.FAT;
@@ -169,14 +169,14 @@ export default function Home() {
                     <RecipeRandomCard
                       key={index}
                       image={hit.recipe.image}
-                      recipeName={hit.recipe.label}
+                      label={hit.recipe.label}
                       showModal={() => {
                         setSelectedRecipeIngredients(hit.recipe.ingredientLines); // here is where we query specific ingredients
                         showModal();
                       }}
                       description={hit.recipe.label} // Modify as needed.
                       calories={convertedCalorie(calorieCount)}
-                      servingSize={servingSize}
+                      servings={servings}
                       macros={{
                         protein: {
                           quantity: proteinInfo.quantity,
