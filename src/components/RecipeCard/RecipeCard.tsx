@@ -4,12 +4,14 @@ import Image from 'next/image';
 import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
+import { generateRecipeHash } from '@/helpers/hashHelpers';
 
 const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
     macroGrid, macroHighlight, calorieProperties } = classes;
 
 const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, image, recipeName, description, servingSize, calories, macros, minerals, uri }: RecipeRandomCardProps) => {
 
+    const recipeHash = generateRecipeHash({ uri, recipeName, image, description });
     const convertNumber = (num: number) => Math.ceil(num);
 
     const getServingAmount = (quantity: number, servings: number) => {
@@ -67,7 +69,7 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
                                     showModal();
                                 }}
                             />
-                            <Link href={`/recipe/${encodeURIComponent(encodeURIComponent(uri))}`}>
+                            <Link href={`/recipe/${recipeHash}`}>
                                 View Recipe
                             </Link>
                         </section>
