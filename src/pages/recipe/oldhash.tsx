@@ -1,23 +1,39 @@
-// ! old hash
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { useState, useEffect } from 'react';
 
 const RecipeDetails = () => {
   const router = useRouter();
-  const { hash } = router.query;
+  const { id } = router.query; // This grabs the "id" (or "uri") from the URL
 
-  // Assuming you store your recipes in a map/object where the hash is the key
-  const recipe = useSelector((state: RootState) => state.recipes[hash]);
+  const [recipe, setRecipe] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (!recipe) {
-    return <p>Loading or not found...</p>;
+  useEffect(() => {
+    if (id) {
+      // Fetch the detailed information for this recipe
+      fetch(`/api/recipeDetails/${id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          setRecipe(data.recipe); // This assumes the returned data has a "recipe" field.
+          setIsLoading(false);
+        })
+        .catch(() => setIsLoading(false)); // In real use, you might want to set an error state here too
+    }
+  }, [id]);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
   }
 
-  // Render the recipe details here...
+  if (!recipe) {
+    return <p>Recipe not found.</p>;
+  }
+
   return (
     <div>
-      {/* Render the recipe details */}
+      <h1>{recipe.label}</h1>
+      <img src={recipe.image} alt={recipe.label} />
+      {/* Render other recipe details as needed */}
     </div>
   );
 };

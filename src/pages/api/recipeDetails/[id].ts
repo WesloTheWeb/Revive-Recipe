@@ -8,6 +8,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return;
     }
 
+    // Retrieve the URI from the query
+    const uri = req.query.uri;
+
+    if (!uri) {
+        res.status(400).json({ error: 'Recipe URI parameter is missing' });
+        return;
+    }
+
     const recipeId = req.query.id as string;
 
     // Ensure environment variables are set
@@ -22,7 +30,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const USER_ID = process.env.REACT_APP_EDAMAM_USER_ID as string;
 
     // Adjusted URL to target the specific recipe info endpoint
-    const URL = `https://api.edamam.com/api/recipes/v2/${encodeURIComponent(recipeId)}?type=public&app_id=${encodeURIComponent(APP_ID)}&app_key=${encodeURIComponent(APP_KEY)}`;
+    // Replace the recipeId with the uri parameter for fetching recipe details
+    const URL = `https://api.edamam.com/api/recipes/v2/${encodeURIComponent(uri)}?type=public&app_id=${encodeURIComponent(APP_ID)}&app_key=${encodeURIComponent(APP_KEY)}`;
 
     const headers = {
         'Edamam-Account-User': USER_ID,
