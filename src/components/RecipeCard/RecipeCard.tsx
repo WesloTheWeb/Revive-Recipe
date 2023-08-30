@@ -8,7 +8,7 @@ import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
     macroGrid, macroHighlight, calorieProperties } = classes;
 
-const RecipeCard = ({ hash, setSelectedRecipeIngredients, ingredients, showModal, image, label, description, servings, calories, macros, minerals, uri }: RecipeRandomCardProps) => {
+const RecipeCard = ({ hash, uri, setSelectedRecipeIngredients, ingredients, showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);
 
@@ -67,7 +67,7 @@ const RecipeCard = ({ hash, setSelectedRecipeIngredients, ingredients, showModal
                                     showModal();
                                 }}
                             />
-                            <Link href={`/recipe/${hash}`}>
+                            <Link href={`/recipe/${encodeURIComponent(uri)}`}>
                                 View Recipe
                             </Link>
                         </section>

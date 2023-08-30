@@ -11,14 +11,14 @@ const RecipeDetails = () => {
   const [recipe, setRecipe] = useState<RecipeData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-
   // Use the useSelector hook to get the recipe from the Redux store using the hash
   const recipeFromStore = useSelector((state: RootState) => state.recipe.recipes[id as string]);
 
   useEffect(() => {
     if (id && recipeFromStore?.uri) {
       // Fetch the detailed information for this recipe
-      fetch(`/api/recipeDetails/${id}?uri=${recipeFromStore.uri}`)
+      // fetch(`/api/recipeDetails/${id}?uri=${recipeFromStore.uri}`)
+      fetch(`/api/recipeDetails/${encodeURIComponent(id)}?uri=${encodeURIComponent(recipeFromStore.uri)}`)
         .then((response) => response.json())
         .then((data) => {
           setRecipe(data.recipe); // This assumes the returned data has a "recipe" field.
@@ -40,6 +40,7 @@ const RecipeDetails = () => {
     <div>
       <h1>{recipe.label}</h1>
       <img src={recipe.image} alt={recipe.label} />
+      I AM HERE
       {/* Render other recipe details as needed */}
     </div>
   );
