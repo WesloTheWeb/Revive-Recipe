@@ -1,51 +1,31 @@
-import React from 'react';
-import { store } from '@/store/store';
-import { GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 
-type Recipe = {
-  name: string;
-};
-
-interface RecipePageProps {
-  recipe: Recipe;
-}
-
-const RecipePage: React.FC<RecipePageProps> = ({ recipe }) => {
+const RecipeDetails = ({ recipe }) => {
   if (!recipe) {
-    return <div>Recipe not found</div>;
+    return <p>Loading or not found...</p>;
   }
-  return <div>{recipe.name}</div>;
+
+  // Render the recipe details here...
+  return (
+    <div>
+      {/* Render the recipe details */}
+    </div>
+  );
 };
 
-export default RecipePage;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const hash = context.params?.hash;
+  let recipe;
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const hash = context.params?.hash as string; // ? example of a typecast to string since params can be string | string[]
-
-  if (!hash) {
-    return {
-      notFound: true
-    };
-  }
-
-  const reduxState = store.getState();
-
-  const recipeData = reduxState.recipe.recipes[hash];
-
-  // ? Debug to see if fetching data.
-  console.log("Redux State: ", reduxState);
-console.log("Recipe Data: ", recipeData);
-
-
-  if (!recipeData) {
-    return {
-      notFound: true
-    };
+  // Fetch the detailed recipe data using the hash from your API
+  const response = await fetch(`YOUR_API_ENDPOINT/${hash}`);
+  if (response.ok) {
+    recipe = await response.json();
   }
 
   return {
-    props: {
-      recipe: recipeData,
-    },
+    props: { recipe }
   };
-};
+}
+
+export default RecipeDetails;
