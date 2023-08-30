@@ -11,22 +11,32 @@ const RecipeDetails = () => {
   const [recipe, setRecipe] = useState<RecipeData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Use the useSelector hook to get the recipe from the Redux store using the hash
+  // Use the useSelector hook to get the recipe from the Redux store
   const recipeFromStore = useSelector((state: RootState) => state.recipe.recipes[id as string]);
 
+  // debug to check
+  console.log('ID:', id, 'URI:', recipeFromStore?.uri);
+  const actualId = Array.isArray(id) ? id[0] : id;
+
+
   useEffect(() => {
-    if (id && recipeFromStore?.uri) {
-      // Fetch the detailed information for this recipe
-      // fetch(`/api/recipeDetails/${id}?uri=${recipeFromStore.uri}`)
-      fetch(`/api/recipeDetails/${encodeURIComponent(id)}?uri=${encodeURIComponent(recipeFromStore.uri)}`)
-        .then((response) => response.json())
+    if (actualId && recipeFromStore?.uri) {
+      fetch(`/api/recipeDetails/${encodeURIComponent(actualId)}?uri=${encodeURIComponent(recipeFromStore.uri)}`)
+        .then((response) => {
+          console.log("API Response:", response);
+          return response.json();
+        })
         .then((data) => {
-          setRecipe(data.recipe); // This assumes the returned data has a "recipe" field.
+          console.log("API Data:", data);
+          setRecipe(data.recipe);
           setIsLoading(false);
         })
-        .catch(() => setIsLoading(false)); // In real use, you might want to set an error state here too
+        .catch((error) => {
+          console.error("API Error:", error);
+          setIsLoading(false);
+        });
     }
-  }, [id, recipeFromStore]);
+  }, [actualId, recipeFromStore]);
 
   if (isLoading) {
     return <p>Loading...</p>;

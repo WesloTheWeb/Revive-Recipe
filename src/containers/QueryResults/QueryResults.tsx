@@ -41,7 +41,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
         searchResults.forEach(recipe => {
             const recipeHash = generateRecipeHash(recipe);
             // TODO: Check if the recipe already exists in the store to avoid unnecessary dispatches
-            dispatch(storeRecipe({ hash: recipeHash, recipe }));
+            dispatch(storeRecipe({ recipe }));
         });
     }, [searchResults, dispatch]);
     
@@ -65,15 +65,11 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                     <section>
                         {error && <div>Error: {error}</div>}
                         {currentItems.map((recipe, index) => {
-                            const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe
+                            const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe key
                             
-                            // Store the recipe in Redux
-                            // dispatch(storeRecipe({ hash: recipeHash, recipe }));
-
                             return (
                                 <RecipeCard
                                     key={recipeHash}
-                                    hash={recipeHash} // Pass the hash here
                                     uri={recipe.uri}
                                     image={recipe.image}
                                     label={recipe.label}
