@@ -17,6 +17,7 @@ const RecipeDetails = () => {
   // debug to check
   console.log('ID:', id, 'URI:', recipeFromStore?.uri);
   const actualId = Array.isArray(id) ? id[0] : id;
+  console.log('Decoded URI:', id); // check
 
 
   useEffect(() => {

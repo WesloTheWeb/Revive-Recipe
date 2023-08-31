@@ -7,7 +7,6 @@ interface RecipeState {
   };
 }
 
-
 const initialState: RecipeState = {
   recipes: {},
 };

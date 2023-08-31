@@ -54,6 +54,7 @@ export interface RecipeData {
     uri: string;
     label: string;
     yield: number;  
+    description?: string;
     calories: number;
     totalNutrients: RecipeTotalNutrients;
     ingredientLines: string[];

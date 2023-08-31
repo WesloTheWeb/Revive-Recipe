@@ -1,19 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
 import classes from './RecipeRandomCard.module.scss';
+import { storeRecipe } from '@/store/recipeSlice';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
 const { recipe, recipeDetails, macroGrid } = classes;
 
 const RecipeRandomCard = ({ uri, showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
-    console.log('RANDOM RECIPE CARD URI', uri);
-    
+    console.log('Original URI:', uri);
+    const dispatch = useDispatch();
     const convertNumber = (num: number) => Math.ceil(num);
     const getServingAmount = (quantity: number, servings: number) => {
         return convertNumber(quantity / servings);
     };
+
+    useEffect(() => {
+        dispatch(storeRecipe({
+            recipe: {
+                uri,
+                image,
+                label,
+                description,
+                servings,
+                calories,
+                macros,
+                minerals,
+                // ... Add any other properties as needed
+            }
+        }));
+    }, [uri, image, label, description, servings, calories, macros, minerals]);
 
     // Render out macros:
     const renderMacros = () => (
