@@ -1,0 +1,14 @@
+@import '../../styles/variables.scss';
+
+.detailedHeaderFlex {
+    display: flex;
+
+    h2 {
+        background-color: $brandColorSecondary;
+        color: $brandColorTertiary;
+        width: 100%;
+        padding: 1.43rem;
+        margin: 0;
+        font-size: 3rem;
+    }
+}

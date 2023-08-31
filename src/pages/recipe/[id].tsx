@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { RecipeData } from '@/interfaces/recipeTypes';
+import DetailsHeader from '@/components/DetailsHeader/DetailsHeader';
+import PageLayout from '@/components/PageLayout/PageLayout';
+import DetailsNutrition from '@/components/DetailsNutrition/DetailsNutrition';
 
 const RecipeDetails = () => {
   const router = useRouter();
@@ -47,12 +50,22 @@ const RecipeDetails = () => {
   }
 
   return (
-    <div>
-      <h1>{recipe.label}</h1>
-      <img src={recipe.image} alt={recipe.label} />
-      This is a meal has {recipe.calories}
-      {/* Render other recipe details as needed */}
-    </div>
+    <PageLayout>
+      <div className='detailed-recipe-page'>
+        <DetailsHeader
+          img={recipe.image}
+          label={recipe.label}
+        />
+        {/* <h1>{recipe.label}</h1>
+      <img src={recipe.image} alt={recipe.label} /> */}
+        This is a meal has {recipe.calories}
+        {/* Render other recipe details as needed */}
+        <section>
+          <DetailsNutrition />
+        </section>
+      </div>
+
+    </PageLayout>
   );
 };
 

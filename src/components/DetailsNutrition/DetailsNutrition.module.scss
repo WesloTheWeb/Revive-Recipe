@@ -1,0 +1,6 @@
+@import '../../styles/variables.scss';
+
+.cuisineTypeContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1);
+}
