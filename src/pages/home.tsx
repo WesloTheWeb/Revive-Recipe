@@ -17,6 +17,7 @@ interface Nutrient {
 
 interface RecipeType {
   recipe: {
+    uri: string;
     label: string;
     image: string;
     ingredientLines: string[];
@@ -150,6 +151,7 @@ export default function Home() {
             <section className='random-recipe-list'>
               <section className='randomized-recipe-container'>
                 {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
+                  const uri = hit.recipe.uri;
                   const servings = hit.recipe.yield;
                   const calorieCount = hit.recipe.calories;
                   const proteinInfo = hit.recipe.totalNutrients.PROCNT;
@@ -167,6 +169,7 @@ export default function Home() {
 
                   return (
                     <RecipeRandomCard
+                      uri={uri}
                       key={index}
                       image={hit.recipe.image}
                       label={hit.recipe.label}

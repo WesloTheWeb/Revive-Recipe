@@ -23,11 +23,11 @@ export interface MineralsElectrolytes {
 // Renamed 'recipeName' to 'label' to match RecipeData.
 export interface RecipeRandomCardProps {
     key: any,
+    uri: string;
     showModal: () => void;
     setSelectedRecipeIngredients?: (ingredientLines: string[]) => void;
     ingredients?: string[];
     image: string;
-    uri: string;
     label: string;  // <-- Changed this from recipeName
     description: string;
     servings: number;  // <-- Changed this from servingSize to servings

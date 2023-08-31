@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import classes from './RecipeRandomCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
@@ -6,10 +7,10 @@ import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
 const { recipe, recipeDetails, macroGrid } = classes;
 
-const RecipeRandomCard = ({ showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
-
+const RecipeRandomCard = ({ uri, showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
+    console.log('RANDOM RECIPE CARD URI', uri);
+    
     const convertNumber = (num: number) => Math.ceil(num);
-
     const getServingAmount = (quantity: number, servings: number) => {
         return convertNumber(quantity / servings);
     };
@@ -65,6 +66,9 @@ const RecipeRandomCard = ({ showModal, image, label, description, servings, calo
                     buttonType={ButtonTypes.VIEWINGREDIENTS}
                     handleClick={showModal}
                 />
+                <Link href={`/recipe/${encodeURIComponent(uri)}`}>
+                    <Button buttonType={ButtonTypes.VIEWRECIPE} />
+                </Link>
             </section>
         </div>
     );
