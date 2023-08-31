@@ -49,12 +49,12 @@ export interface RecipeTotalNutrients {
     FE: Nutrient;
 };
 
+// Actual keys and values from the api
 export interface RecipeData {
     image: string;
     uri: string;
     label: string;
     yield: number;  
-    description?: string;
     calories: number;
     totalNutrients: RecipeTotalNutrients;
     ingredientLines: string[];

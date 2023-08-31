@@ -33,19 +33,11 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
 
-    // useEffect(() => {
-    //     setCurrentPage(1);
-    // }, [query]);
-    // ? New Bit
     useEffect(() => {
         searchResults.forEach(recipe => {
-            const recipeHash = generateRecipeHash(recipe);
-            // TODO: Check if the recipe already exists in the store to avoid unnecessary dispatches
             dispatch(storeRecipe({ recipe }));
         });
     }, [searchResults, dispatch]);
-    
-
 
     return (
         <>
@@ -66,7 +58,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                         {error && <div>Error: {error}</div>}
                         {currentItems.map((recipe, index) => {
                             const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe key
-                            
+
                             return (
                                 <RecipeCard
                                     key={recipeHash}
