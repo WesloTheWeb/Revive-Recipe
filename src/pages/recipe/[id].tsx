@@ -19,7 +19,6 @@ const RecipeDetails = () => {
   const actualId = Array.isArray(id) ? id[0] : id;
   console.log('Decoded URI:', id); // check
 
-
   useEffect(() => {
     if (actualId && recipeFromStore?.uri) {
       fetch(`/api/recipeDetails/${encodeURIComponent(actualId)}?uri=${encodeURIComponent(recipeFromStore.uri)}`)
@@ -51,7 +50,7 @@ const RecipeDetails = () => {
     <div>
       <h1>{recipe.label}</h1>
       <img src={recipe.image} alt={recipe.label} />
-      I AM HERE
+      This is a meal has {recipe.calories}
       {/* Render other recipe details as needed */}
     </div>
   );

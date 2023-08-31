@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RecipeData } from '@/interfaces/recipeTypes';
+import { RecipeData, ExtendedRecipeData } from '@/interfaces/recipeTypes';
 
 interface RecipeState {
   recipes: {
-    [uri: string]: RecipeData;
+    [uri: string]: ExtendedRecipeData;
   };
 }
 
@@ -15,7 +15,7 @@ const recipeSlice = createSlice({
   name: 'recipe',
   initialState,
   reducers: {
-    storeRecipe: (state, action: PayloadAction<{ recipe: RecipeData }>) => {
+    storeRecipe: (state, action: PayloadAction<{ recipe: ExtendedRecipeData }>) => {
       const { recipe } = action.payload;
       state.recipes[recipe.uri] = recipe;  // Use URI as the key.
     },

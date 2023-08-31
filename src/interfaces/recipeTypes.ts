@@ -20,21 +20,39 @@ export interface MineralsElectrolytes {
     iron: Nutrient;
 };
 
-// Renamed 'recipeName' to 'label' to match RecipeData.
-export interface RecipeRandomCardProps {
-    key: any,
-    uri: string;
-    showModal: () => void;
-    setSelectedRecipeIngredients?: (ingredientLines: string[]) => void;
-    ingredients?: string[];
+// Actual raw keys and values from the api
+export interface RecipeData {
     image: string;
-    label: string;  // <-- Changed this from recipeName
-    description: string;
-    servings: number;  // <-- Changed this from servingSize to servings
+    uri: string;
+    label: string;
+    yield?: number; // but technically named it to servings.
     calories: number;
+    totalNutrients: RecipeTotalNutrients;
+    ingredientLines: string[];
+};
+
+export interface ExtendedRecipeData extends RecipeData {
+    description: string;
+    servings: number;
     macros: Macros;
     minerals: MineralsElectrolytes;
+}
+
+export interface RecipeHit {
+    recipe: RecipeData;
+}
+
+export interface RandomRecipesType {
+    hits: RecipeHit[];
+}
+
+export interface RecipeRandomCardProps {
+    recipe: ExtendedRecipeData;
+    showModal: () => void;
+    setSelectedRecipeIngredients?: (ingredientLines: string[]) => void;
+    // ... any other props you may have
 };
+
 
 // Kept these as they are since they're consistent.
 export interface RecipeTotalNutrients {
@@ -49,16 +67,6 @@ export interface RecipeTotalNutrients {
     FE: Nutrient;
 };
 
-// Actual keys and values from the api
-export interface RecipeData {
-    image: string;
-    uri: string;
-    label: string;
-    yield: number;  
-    calories: number;
-    totalNutrients: RecipeTotalNutrients;
-    ingredientLines: string[];
-};
 
 export interface CarouselRecipe {
     recipe: RecipeData;

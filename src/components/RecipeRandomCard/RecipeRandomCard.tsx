@@ -9,7 +9,22 @@ import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
 const { recipe, recipeDetails, macroGrid } = classes;
 
-const RecipeRandomCard = ({ uri, showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
+const RecipeRandomCard = ({
+    recipe: {
+        uri,
+        image,
+        label,
+        description,
+        servings,
+        calories,
+        macros,
+        minerals,
+        totalNutrients,
+        ingredientLines,
+        // ... add other properties as needed 
+    },
+    showModal
+}: RecipeRandomCardProps) => {
     console.log('Original URI:', uri);
     const dispatch = useDispatch();
     const convertNumber = (num: number) => Math.ceil(num);
@@ -28,6 +43,8 @@ const RecipeRandomCard = ({ uri, showModal, image, label, description, servings,
                 calories,
                 macros,
                 minerals,
+                totalNutrients,
+                ingredientLines,
                 // ... Add any other properties as needed
             }
         }));
@@ -68,7 +85,7 @@ const RecipeRandomCard = ({ uri, showModal, image, label, description, servings,
             <section className={recipeDetails}>
                 <div className={macroGrid}>
                     <div>Calories</div>
-                    <div>{calories}</div>
+                    <div>{convertNumber(calories)}</div>
                     <div>
                         Serves:
                     </div>
