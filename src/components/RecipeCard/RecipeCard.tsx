@@ -68,7 +68,7 @@ const RecipeCard = ({ uri, setSelectedRecipeIngredients, ingredients, showModal,
                                 }}
                             />
                             <Link href={`/recipe/${encodeURIComponent(uri)}`}>
-                                View Recipe
+                                <Button buttonType={ButtonTypes.VIEWRECIPE} />
                             </Link>
                         </section>
                     </div>

@@ -71,6 +71,12 @@
     }
 }
 
+.viewRecipeButton {
+    background-color: $brandColorPrimary;
+    color: #fff;
+}
+
+
 // Pagination Buttons
 .firstPage, .prevPage,  .nextPage, .lastPage {
     background-color: $blue-400;
