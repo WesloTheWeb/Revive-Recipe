@@ -26,7 +26,6 @@ const RecipeRandomCard = ({
     },
     showModal
 }: RecipeRandomCardProps) => {
-    console.log('Original URI:', uri);
     const dispatch = useDispatch();
     const convertNumber = (num: number) => Math.ceil(num);
     const getServingAmount = (quantity: number, servings: number) => {

@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import RecipeRandomCard from '@/components/RecipeRandomCard/RecipeRandomCard';
-import { RecipeCarouselProps } from "@/interfaces/recipeTypes";
+import { RecipeCarouselProps, ExtendedRecipeData } from "@/interfaces/recipeTypes";
 
 const RecipeCarousel = ({ recipes, showModal, setSelectedRecipeIngredients }: RecipeCarouselProps) => {
     const responsive = {
@@ -28,70 +28,38 @@ const RecipeCarousel = ({ recipes, showModal, setSelectedRecipeIngredients }: Re
     return (
         <Carousel responsive={responsive}>
             {recipes.map((hit, index) => {
-                // Extracting required values just like in the original
-                const servings = hit.recipe.yield;
-                const calorieCount = hit.recipe.calories;
-                const proteinInfo = hit.recipe.totalNutrients.PROCNT;
-                const fatInfo = hit.recipe.totalNutrients.FAT;
-                const carbInfo = hit.recipe.totalNutrients.CHOCDF;
-                const cholesterolInfo = hit.recipe.totalNutrients.CHOLE;
-                const sodiumInfo = hit.recipe.totalNutrients.NA;
-                const calciumInfo = hit.recipe.totalNutrients.CA;
-                const magnesiumInfo = hit.recipe.totalNutrients.MG;
-                const potassiumInfo = hit.recipe.totalNutrients.K;
-                const ironInfo = hit.recipe.totalNutrients.FE;
+                const recipeData: ExtendedRecipeData = {
+                    image: hit.recipe.image,
+                    uri: hit.recipe.uri,
+                    label: hit.recipe.label,
+                    description: hit.recipe.label, // You've used label as description here, adjust if needed
+                    servings: hit.recipe.yield || 0,
+                    calories: hit.recipe.calories,
+                    totalNutrients: hit.recipe.totalNutrients,
+                    ingredientLines: hit.recipe.ingredientLines,
+                    mealType: hit.recipe.mealType,
+                    macros: {
+                        protein: hit.recipe.totalNutrients.PROCNT,
+                        fats: hit.recipe.totalNutrients.FAT,
+                        carbs: hit.recipe.totalNutrients.CHOCDF
+                    },
+                    minerals: {
+                        cholesterol: hit.recipe.totalNutrients.CHOLE,
+                        sodium: hit.recipe.totalNutrients.NA,
+                        calcium: hit.recipe.totalNutrients.CA,
+                        magnesium: hit.recipe.totalNutrients.MG,
+                        potassium: hit.recipe.totalNutrients.K,
+                        iron: hit.recipe.totalNutrients.FE
+                    }
+                };
 
                 return (
                     <div key={index}>
                         <RecipeRandomCard
-                            image={hit.recipe.image}
-                            label={hit.recipe.label}
+                            recipe={recipeData}
                             showModal={() => {
                                 setSelectedRecipeIngredients(hit.recipe.ingredientLines);
                                 showModal();
-                            }}
-                            description={hit.recipe.label}
-                            calories={convertedCalorie(calorieCount)}
-                            servings={servings}
-                            macros={{
-                                protein: {
-                                    quantity: proteinInfo.quantity,
-                                    unit: proteinInfo.unit
-                                },
-                                fats: {
-                                    quantity: fatInfo.quantity,
-                                    unit: fatInfo.unit
-                                },
-                                carbs: {
-                                    quantity: carbInfo.quantity,
-                                    unit: carbInfo.unit
-                                }
-                            }}
-                            minerals={{
-                                cholesterol: {
-                                    quantity: cholesterolInfo.quantity,
-                                    unit: cholesterolInfo.unit
-                                },
-                                sodium: {
-                                    quantity: sodiumInfo.quantity,
-                                    unit: sodiumInfo.unit
-                                },
-                                calcium: {
-                                    quantity: calciumInfo.quantity,
-                                    unit: calciumInfo.unit
-                                },
-                                magnesium: {
-                                    quantity: magnesiumInfo.quantity,
-                                    unit: magnesiumInfo.unit
-                                },
-                                potassium: {
-                                    quantity: potassiumInfo.quantity,
-                                    unit: potassiumInfo.unit
-                                },
-                                iron: {
-                                    quantity: ironInfo.quantity,
-                                    unit: ironInfo.unit
-                                }
                             }}
                         />
                     </div>

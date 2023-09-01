@@ -140,6 +140,10 @@ export default function Home() {
             <section className='random-recipe-list'>
               <section className='randomized-recipe-container'>
                 {randomRecipes.hits && randomRecipes.hits.map((hit, index) => {
+                  const extendedData = convertToExtendedRecipeData(hit);
+                  console.log("Hit Data:", hit);
+                  console.log("Transformed Data:", extendedData);
+
                   return (
                     <RecipeRandomCard
                       key={hit.recipe.uri} // using URI as a unique identifier
