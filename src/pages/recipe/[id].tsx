@@ -9,6 +9,7 @@ import PageLayout from '@/components/PageLayout/PageLayout';
 import DetailsNutrition from '@/components/DetailsNutrition/DetailsNutrition';
 import DetailsCuisineLabels from '@/components/DetailsCuisineLabels/DetailsCuisineLabels';
 import DetailsIngredients from '@/components/DetailsIngredients/DetailsIngredients';
+import Loading from '@/components/Loading/Loading';
 
 const RecipeDetails = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ const RecipeDetails = () => {
   }, [actualId, recipeFromStore]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   };
 
   if (!recipe) {
