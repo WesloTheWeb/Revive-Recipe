@@ -203,7 +203,7 @@ footer {
 
 .random-recipe-list {
     display: block;
-    
+
     @media #{ $mq-smallScreen } {
         display: none;
     }
@@ -212,11 +212,26 @@ footer {
 // Unique dedicated Recipe page
 .detailed-recipe-page {
     background-color: $brandColorTertiary;
+    border-radius: 8px;
     margin: 3rem;
 }
 
 .detailed-recipe-body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+    grid-template-rows: auto 1fr;
     padding: 2rem;
+}
+
+.cuisine-labels {
+    grid-row: 1;
+}
+
+.ingredients-details {
+    grid-row: 2;
+}
+
+.nutrition-details {
+    grid-row: 1 / span 2;
 }
