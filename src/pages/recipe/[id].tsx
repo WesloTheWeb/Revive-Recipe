@@ -10,6 +10,7 @@ import DetailsNutrition from '@/components/DetailsNutrition/DetailsNutrition';
 import DetailsCuisineLabels from '@/components/DetailsCuisineLabels/DetailsCuisineLabels';
 import DetailsIngredients from '@/components/DetailsIngredients/DetailsIngredients';
 import Loading from '@/components/Loading/Loading';
+import Button, { ButtonTypes } from '@/containers/Button/Button';
 
 const RecipeDetails = () => {
   const router = useRouter();
@@ -76,7 +77,9 @@ const RecipeDetails = () => {
           img={recipe.image}
           label={recipe.label}
         />
-        <Link href="/home">Return</Link>
+        <Link href="/home">
+          <Button buttonType={ButtonTypes.RETURN} />
+        </Link>
         {/* Render other recipe details as needed */}
         <section className='detailed-recipe-body'>
           <div className='cuisine-labels'>

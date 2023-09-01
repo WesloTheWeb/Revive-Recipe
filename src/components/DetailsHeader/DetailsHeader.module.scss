@@ -3,10 +3,15 @@
 .detailedHeaderFlex {
     display: flex;
 
+    img {
+        border-radius: 10px 0 0 0;
+    }
+
     h2 {
         background-color: $brandColorSecondary;
         color: $brandColorTertiary;
         width: 100%;
+        border-radius: 0 10px 0 0;
         padding: 1.43rem;
         margin: 0;
         font-size: 3rem;

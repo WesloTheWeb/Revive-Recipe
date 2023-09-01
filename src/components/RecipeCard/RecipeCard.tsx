@@ -6,7 +6,7 @@ import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeCardProps } from '@/interfaces/recipeTypes';
 
 const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
-    macroGrid, macroHighlight, calorieProperties } = classes;
+    macroGrid, macroHighlight } = classes;
 
 const RecipeCard = ({
     recipe: {
@@ -63,7 +63,7 @@ const RecipeCard = ({
                 <section className={recipeNutritionContainer}>
                     <div className={recipeNutritionDetails}>
                         <section className={recipeCardActionsContainer}>
-                            <div className={`${macroGrid} ${calorieProperties}`}>
+                            <div className={`${macroGrid}`}>
                                 <div>Calories</div>
                                 <div>{Math.floor(calories)}</div>
                                 <span>serving: </span>
