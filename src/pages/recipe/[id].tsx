@@ -83,14 +83,20 @@ const RecipeDetails = () => {
         {/* Render other recipe details as needed */}
         <section className='detailed-recipe-body'>
           <div className='cuisine-labels'>
-            <DetailsCuisineLabels
-              label={recipe.mealType}
-            />
+            {recipe.mealType &&
+              <DetailsCuisineLabels
+                meal
+                title={recipe.mealType}
+              />
+            }
+            {recipe.dishType &&
+              <DetailsCuisineLabels title={recipe.dishType} dishType />
+            }
           </div>
           <div className='nutrition-details'>
             <DetailsNutrition
               calories={recipe.calories}
-              servings={recipe.yield || 1} // Here's the default value in case yield is undefined
+              servings={recipe.yield || 1}
               minerals={mapTotalNutrientsToMinerals(recipe.totalNutrients)}
               macros={mapTotalNutrientsToMacros(recipe.totalNutrients)}
             />

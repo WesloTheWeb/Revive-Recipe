@@ -29,7 +29,8 @@ export interface RecipeData {
     calories: number;
     totalNutrients: RecipeTotalNutrients;
     ingredientLines: string[];
-    mealType?: string
+    mealType?: string;
+    dishType?: string[];
 };
 
 export interface ExtendedRecipeData extends RecipeData {

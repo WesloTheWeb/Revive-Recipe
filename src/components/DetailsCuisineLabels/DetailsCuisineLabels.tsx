@@ -1,17 +1,26 @@
 import classes from './DetailsCuisineLabels.module.scss';
 
 interface DetailsCuisineLabelsProps {
-    label: string;
+    title: string | string[];
     meal?: boolean;
     dishType?: boolean;
 };
 
-const { container } = classes;
+const { container, mealTypeLabel } = classes;
 
-const DetailsCuisineLabels = ({ label, meal, dishType }: DetailsCuisineLabelsProps) => {
+const DetailsCuisineLabels = ({ title, meal }: DetailsCuisineLabelsProps) => {
+    let displayLabel;
+
+    if (Array.isArray(title)) {
+        displayLabel = title.join(", ");
+    } else {
+        displayLabel = title;
+    }
+
     return (
-        <label className={container}>{label}</label>
+        <label className={`${container} ${meal ? mealTypeLabel : ''} `}>{displayLabel}</label>
     );
 };
+
 
 export default DetailsCuisineLabels;

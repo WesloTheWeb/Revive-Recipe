@@ -58,7 +58,7 @@ const RecipeCard = ({
     return (
         <div>
             <section className={recipeCardContainer}>
-                <Image src={image} alt={description} width={250} height={360} />
+                <Image src={image} alt={description} width={250} height={370} />
                 <h3>{label}</h3>
                 <section className={recipeNutritionContainer}>
                     <div className={recipeNutritionDetails}>
@@ -78,7 +78,6 @@ const RecipeCard = ({
                                     showModal();
                                 }}
                             />
-
                             <Link href={`/recipe/${encodeURIComponent(uri)}`}>
                                 <Button buttonType={ButtonTypes.VIEWRECIPE} />
                             </Link>

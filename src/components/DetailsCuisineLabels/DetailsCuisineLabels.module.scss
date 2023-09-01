@@ -1,6 +1,16 @@
+@import '../../styles/variables.scss';
+
 .container {
     border: 2px solid #000;
     border-radius: 10px;
     padding: .5rem .75rem;
     font-weight: bold;
+    background-color: #000;
+    color: #fff;
+}
+
+.mealTypeLabel {
+    background-color: $blue-100;
+    color: $blue-300;
+    margin: 0 1rem;
 }
