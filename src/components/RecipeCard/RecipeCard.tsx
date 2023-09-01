@@ -3,14 +3,26 @@ import Link from 'next/link';
 import Image from 'next/image';
 import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
-import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
+import { RecipeCardProps } from '@/interfaces/recipeTypes';
 
 const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
     macroGrid, macroHighlight, calorieProperties } = classes;
 
-    // TODO: Fix this similar to RecipeRandomCard
-const RecipeCard = ({ uri, setSelectedRecipeIngredients, ingredients, showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
-
+const RecipeCard = ({
+    recipe: {
+        uri,
+        image,
+        label,
+        description,
+        servings,
+        calories,
+        macros,
+        minerals,
+        ingredientLines
+    },
+    showModal,
+    setSelectedRecipeIngredients
+}: RecipeCardProps) => {
     const convertNumber = (num: number) => Math.ceil(num);
 
     const getServingAmount = (quantity: number, servings: number) => {
@@ -62,12 +74,11 @@ const RecipeCard = ({ uri, setSelectedRecipeIngredients, ingredients, showModal,
                             <Button
                                 buttonType={ButtonTypes.VIEWINGREDIENTS}
                                 handleClick={() => {
-                                    if (setSelectedRecipeIngredients && ingredients) {
-                                        setSelectedRecipeIngredients(ingredients);
-                                    }
+                                    setSelectedRecipeIngredients(ingredientLines);
                                     showModal();
                                 }}
                             />
+
                             <Link href={`/recipe/${encodeURIComponent(uri)}`}>
                                 <Button buttonType={ButtonTypes.VIEWRECIPE} />
                             </Link>

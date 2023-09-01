@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '@/store/store';
-import { storeRecipe } from '@/store/recipeSlice';
+import { storeBasicRecipe } from '@/store/recipeSlice';
 import { RecipeData } from '@/interfaces/recipeTypes';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
 import { generateRecipeHash } from '@/helpers/hashHelpers';
@@ -35,7 +35,7 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
 
     useEffect(() => {
         searchResults.forEach(recipe => {
-            dispatch(storeRecipe({ recipe }));
+            dispatch(storeBasicRecipe({ recipe }));
         });
     }, [searchResults, dispatch]);
 
@@ -56,34 +56,37 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                     </section>
                     <section>
                         {error && <div>Error: {error}</div>}
-                        {currentItems.map((recipe, index) => {
+                        {currentItems.map((recipe) => {
                             const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe key
 
                             return (
                                 <RecipeCard
                                     key={recipeHash}
-                                    uri={recipe.uri}
-                                    image={recipe.image}
-                                    label={recipe.label}
-                                    description=""
-                                    ingredients={recipe.ingredientLines}
+                                    recipe={{
+                                        uri: recipe.uri,
+                                        image: recipe.image,
+                                        label: recipe.label,
+                                        description: "",
+                                        ingredientLines: recipe.ingredientLines,
+                                        calories: recipe.calories,
+                                        totalNutrients: recipe.totalNutrients,
+                                        servings: recipe.yield ?? 1,
+                                        macros: {
+                                            protein: recipe.totalNutrients.PROCNT,
+                                            fats: recipe.totalNutrients.FAT,
+                                            carbs: recipe.totalNutrients.CHOCDF
+                                        },
+                                        minerals: {
+                                            cholesterol: recipe.totalNutrients.CHOLE,
+                                            sodium: recipe.totalNutrients.NA,
+                                            calcium: recipe.totalNutrients.CA,
+                                            magnesium: recipe.totalNutrients.MG,
+                                            potassium: recipe.totalNutrients.K,
+                                            iron: recipe.totalNutrients.FE
+                                        }
+                                    }}
                                     setSelectedRecipeIngredients={setSelectedRecipeIngredients}
                                     showModal={showModal}
-                                    calories={recipe.calories}
-                                    servings={recipe.yield}
-                                    macros={{
-                                        protein: recipe.totalNutrients.PROCNT,
-                                        fats: recipe.totalNutrients.FAT,
-                                        carbs: recipe.totalNutrients.CHOCDF
-                                    }}
-                                    minerals={{
-                                        cholesterol: recipe.totalNutrients.CHOLE,
-                                        sodium: recipe.totalNutrients.NA,
-                                        calcium: recipe.totalNutrients.CA,
-                                        magnesium: recipe.totalNutrients.MG,
-                                        potassium: recipe.totalNutrients.K,
-                                        iron: recipe.totalNutrients.FE
-                                    }}
                                 />
                             )
                         })}

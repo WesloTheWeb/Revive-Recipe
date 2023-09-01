@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RecipeData } from '@/interfaces/recipeTypes';
+import { RecipeData, ExtendedRecipeData } from '@/interfaces/recipeTypes';
 import { fetchRecipeFromAPI } from '@/helpers/apiHelpers';
 
 interface SearchState {

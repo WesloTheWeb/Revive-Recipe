@@ -29,9 +29,8 @@ export interface RecipeData {
     calories: number;
     totalNutrients: RecipeTotalNutrients;
     ingredientLines: string[];
-    mealType: string
+    mealType?: string
 };
-// TODO: Might can use an extend of recipeData for mealType
 
 export interface ExtendedRecipeData extends RecipeData {
     description: string;
@@ -52,9 +51,13 @@ export interface RecipeRandomCardProps {
     recipe: ExtendedRecipeData;
     showModal: () => void;
     setSelectedRecipeIngredients?: (ingredientLines: string[]) => void;
-    // ... any other props you may have
 };
 
+export interface RecipeCardProps {
+    recipe: ExtendedRecipeData;
+    showModal: () => void;
+    setSelectedRecipeIngredients: (ingredients: string[]) => void;
+};
 
 // Kept these as they are since they're consistent.
 export interface RecipeTotalNutrients {
@@ -68,7 +71,6 @@ export interface RecipeTotalNutrients {
     K: Nutrient;
     FE: Nutrient;
 };
-
 
 export interface CarouselRecipe {
     recipe: RecipeData;
