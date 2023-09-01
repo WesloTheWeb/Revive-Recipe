@@ -28,8 +28,10 @@ export interface RecipeData {
     yield?: number; // but technically named it to servings.
     calories: number;
     totalNutrients: RecipeTotalNutrients;
-    ingredientLines: string[];
+    ingredientLines: string;
+    mealType: string
 };
+// TODO: Might can use an extend of recipeData for mealType
 
 export interface ExtendedRecipeData extends RecipeData {
     description: string;

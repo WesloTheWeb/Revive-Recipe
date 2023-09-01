@@ -8,6 +8,7 @@ import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
     macroGrid, macroHighlight, calorieProperties } = classes;
 
+    // TODO: Fix this similar to RecipeRandomCard
 const RecipeCard = ({ uri, setSelectedRecipeIngredients, ingredients, showModal, image, label, description, servings, calories, macros, minerals }: RecipeRandomCardProps) => {
 
     const convertNumber = (num: number) => Math.ceil(num);

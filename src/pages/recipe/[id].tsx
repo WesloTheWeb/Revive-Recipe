@@ -1,11 +1,13 @@
-import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { RecipeData } from '@/interfaces/recipeTypes';
 import DetailsHeader from '@/components/DetailsHeader/DetailsHeader';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import DetailsNutrition from '@/components/DetailsNutrition/DetailsNutrition';
+import DetailsCuisineLabels from '@/components/DetailsCuisineLabels/DetailsCuisineLabels';
 
 const RecipeDetails = () => {
   const router = useRouter();
@@ -56,12 +58,20 @@ const RecipeDetails = () => {
           img={recipe.image}
           label={recipe.label}
         />
-        {/* <h1>{recipe.label}</h1>
-      <img src={recipe.image} alt={recipe.label} /> */}
-        This is a meal has {recipe.calories}
+        <Link href="/home">Return</Link>
         {/* Render other recipe details as needed */}
-        <section>
-          <DetailsNutrition />
+        <section className='detailed-recipe-body'>
+          <div>
+            <DetailsCuisineLabels
+              label={recipe.mealType}
+            />
+          </div>
+          <div>
+            <DetailsNutrition
+              calories={recipe.calories}
+              servings={recipe.yield}
+            />
+          </div>
         </section>
       </div>
 

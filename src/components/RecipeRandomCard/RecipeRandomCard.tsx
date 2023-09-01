@@ -21,6 +21,7 @@ const RecipeRandomCard = ({
         minerals,
         totalNutrients,
         ingredientLines,
+        mealType
         // ... add other properties as needed 
     },
     showModal
@@ -45,6 +46,7 @@ const RecipeRandomCard = ({
                 minerals,
                 totalNutrients,
                 ingredientLines,
+                mealType
                 // ... Add any other properties as needed
             }
         }));
