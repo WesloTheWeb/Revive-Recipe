@@ -1,6 +1,12 @@
+@import '../../styles/variables.scss';
+
 .container {
     border: 3px solid #000;
     border-radius: 8px;
+
+    @media #{ $mq-smallScreen } {
+        margin: 2rem 0;
+    }
 
     h3 {
         text-align: center;

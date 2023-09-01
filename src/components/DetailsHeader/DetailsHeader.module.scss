@@ -9,15 +9,25 @@
 
     img {
         border-radius: 10px 0 0 0;
+
+        @media #{ $mq-smallScreen } {
+            width: 100%;
+        }
     }
 
     h2 {
         background-color: $brandColorSecondary;
         color: $brandColorTertiary;
-        width: 100%;
+        max-width: 100%;
         border-radius: 0 10px 0 0;
         padding: 1.43rem;
         margin: 0;
         font-size: 3rem;
+
+        @media #{ $mq-smallScreen } {
+            font-size: 1.43rem;
+            border-radius: 0;
+            margin-top: -1rem;
+        }
     }
 }

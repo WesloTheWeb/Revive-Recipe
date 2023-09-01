@@ -25,8 +25,8 @@
 
 .returnButton {
     border: 1px solid $neutral-900;
-    background-color: #fff;
-    color: $neutral-900;
+    background-color: $blue-300;
+    color: #fff;
 
     &:hover {
         background-color: $neutral-900;
@@ -52,12 +52,12 @@
 
 .viewIngredientsButton {
     font-size: 1rem;
-    background-color: $blue-300;
-    color: $neutral-100;
+    background-color: $blue-100;
+    color: $blue-300;
     margin: 1rem auto;
 
     &:hover {
-        background-color: $blue-600;
+        background-color: $blue-200;
     }
 }
 
@@ -72,8 +72,12 @@
 }
 
 .viewRecipeButton {
-    background-color: $brandColorPrimary;
-    color: #fff;
+    background-color: $green-700;
+    color: $green-100;
+
+    &:hover {
+        background-color: $green-600;
+    }
 }
 
 
