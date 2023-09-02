@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const recipeDetails = async (req: NextApiRequest, res: NextApiResponse) => {
     // Check for the recipe ID in the request
     if (!req.query.id) {
         res.status(400).json({ error: 'Recipe ID parameter is missing' });
@@ -60,3 +60,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
     }
 };
+
+export default recipeDetails;

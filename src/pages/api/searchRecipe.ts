@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handleSearchRecipeRequest = async (req: NextApiRequest, res: NextApiResponse) => {
 
     // TypeScript specific check to see if query is present
     if (!req.query.query) {
@@ -36,3 +36,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(500).json({ error: 'Failed to fetch data' });
     };
 };
+
+export default handleSearchRecipeRequest;
