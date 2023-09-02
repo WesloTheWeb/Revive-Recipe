@@ -16,8 +16,8 @@ export default function Home() {
   function convertToExtendedRecipeData(hit: { recipe: RecipeData }): ExtendedRecipeData {
     return {
       ...hit.recipe,
-      description: '', // Placeholder or fetch from another source if you have one.
-      servings: hit.recipe.yield,
+      description: '', // Placeholder used on image alt text
+      servings: hit.recipe.yield || 0, // Provide a default value if yield is undefined
       macros: {
         protein: hit.recipe.totalNutrients.PROCNT,
         fats: hit.recipe.totalNutrients.FAT,
