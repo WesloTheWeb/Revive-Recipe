@@ -65,3 +65,12 @@
         text-align: right;
     }
 }
+
+// For now until can fix ingredients
+.viewIngredientContainer {
+    display: block;
+
+    @media #{ $mq-smallScreen } {
+        display: none;
+    }
+}

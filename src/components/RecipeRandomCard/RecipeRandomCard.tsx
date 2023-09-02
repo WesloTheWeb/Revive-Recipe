@@ -7,7 +7,7 @@ import { storeRecipe } from '@/store/recipeSlice';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
 
-const { recipe, recipeDetails, macroGrid } = classes;
+const { recipe, recipeDetails, viewIngredientContainer, macroGrid } = classes;
 
 const RecipeRandomCard = ({
     recipe: {
@@ -98,10 +98,12 @@ const RecipeRandomCard = ({
                 {renderMacros()}
                 <h5>Minerals &amp; Electrolytes</h5>
                 {renderMinerals()}
-                <Button
-                    buttonType={ButtonTypes.VIEWINGREDIENTS}
-                    handleClick={showModal}
-                />
+                <div className={viewIngredientContainer}>
+                    <Button
+                        buttonType={ButtonTypes.VIEWINGREDIENTS}
+                        handleClick={showModal}
+                    />
+                </div>
                 <Link href={`/recipe/${encodeURIComponent(uri)}`}>
                     <Button buttonType={ButtonTypes.VIEWRECIPE} />
                 </Link>

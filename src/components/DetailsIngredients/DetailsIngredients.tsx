@@ -13,7 +13,7 @@ const DetailsIngredients = ({ ingredients }: DetailsIngredientsProps) => {
             <ul>
                 {ingredients.map((ingredient: string) => {
                     return (
-                        <li>{ingredient}</li>
+                        <li key={ingredient}>{ingredient}</li>
                     )
                 })}
             </ul>
