@@ -12,9 +12,17 @@
         "food header"
         "food desc";
 
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+
     img {
         border-radius: 8px 0 0 8px;
         grid-area: food;
+
+        @media #{ $mq-smallScreen } {
+            width: 100%;
+        }
     }
 
     h3 {
@@ -42,6 +50,11 @@
         grid-template-columns: repeat(2, 1fr);
         grid-area: desc;
 
+        @media #{ $mq-smallScreen } {
+            display: block;
+            padding: 1rem 0;
+        }
+
         section {
             padding: 0 1rem;
         }
@@ -63,4 +76,14 @@
     opacity: .8;
     padding: .5rem;
     border-radius: 8px;
+}
+
+
+// For now until can fix ingredients
+.viewIngredientContainer, .mineralsElectrolytesContainer {
+    display: block;
+
+    @media #{ $mq-smallScreen } {
+        display: none;
+    }
 }

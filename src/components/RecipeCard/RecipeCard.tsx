@@ -5,8 +5,8 @@ import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
 import { RecipeCardProps } from '@/interfaces/recipeTypes';
 
-const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
-    macroGrid, macroHighlight } = classes;
+const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, viewIngredientContainer,
+    mineralsElectrolytesContainer, macroGrid, macroHighlight } = classes;
 
 const RecipeCard = ({
     recipe: {
@@ -71,13 +71,15 @@ const RecipeCard = ({
                                 <span>serves:</span>
                                 <div>{servings}</div>
                             </div>
-                            <Button
-                                buttonType={ButtonTypes.VIEWINGREDIENTS}
-                                handleClick={() => {
-                                    setSelectedRecipeIngredients(ingredientLines);
-                                    showModal();
-                                }}
-                            />
+                            <div className={viewIngredientContainer}>
+                                <Button
+                                    buttonType={ButtonTypes.VIEWINGREDIENTS}
+                                    handleClick={() => {
+                                        setSelectedRecipeIngredients(ingredientLines);
+                                        showModal();
+                                    }}
+                                />
+                            </div>
                             <Link href={`/recipe/${encodeURIComponent(uri)}`}>
                                 <Button buttonType={ButtonTypes.VIEWRECIPE} />
                             </Link>
@@ -87,7 +89,7 @@ const RecipeCard = ({
                         <h5>Macros</h5>
                         {renderMacros()}
                     </section>
-                    <section>
+                    <section className={mineralsElectrolytesContainer}>
                         <h5>Minerals &amp; Electrolytes</h5>
                         {renderMinerals()}
                     </section>
