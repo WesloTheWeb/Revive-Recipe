@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
-import { RecipeData, RecipeTotalNutrients, MineralsElectrolytes } from '@/interfaces/recipeTypes';
+import { RecipeData, RecipeTotalNutrients, MineralsElectrolytes, Macros } from '@/interfaces/recipeTypes';
 import DetailsHeader from '@/components/DetailsHeader/DetailsHeader';
 import PageLayout from '@/components/PageLayout/PageLayout';
 import DetailsNutrition from '@/components/DetailsNutrition/DetailsNutrition';
