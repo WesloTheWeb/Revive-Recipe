@@ -71,7 +71,6 @@ export default function Home() {
     return foodKeywords[Math.floor(Math.random() * foodKeywords.length)];
   };
   let QUERY = suggestedRecipeQueries();
-  const URL = `/api/searchRecipe?query=${QUERY}`;
 
   // Shuffle Algorithm - O(n) time
   const shuffleAndTakeThree = (arr: []) => {
@@ -84,6 +83,8 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const URL = `/api/searchRecipe?query=${QUERY}`;
+
     fetch(URL)
       .then(response => {
         if (!response.ok) {

@@ -49,7 +49,7 @@ const RecipeRandomCard = ({
                 // ... Add any other properties as needed
             }
         }));
-    }, [uri, image, label, description, servings, calories, macros, minerals]);
+    }, [dispatch, uri, image, label, description, servings, calories, macros, minerals, totalNutrients, ingredientLines, mealType]);
 
     // Render out macros:
     const renderMacros = () => (
