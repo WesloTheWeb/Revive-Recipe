@@ -57,7 +57,7 @@ const RecipeRandomCard = ({
             {Object.entries(macros).map(([key, nutrient]) => (
                 <React.Fragment key={key}>
                     <div><b>{key.charAt(0).toUpperCase() + key.slice(1)}:</b></div>
-                    <div>{getServingAmount(convertNumber(nutrient.quantity), servings)}{nutrient.unit}</div>
+                    <div>{getServingAmount(nutrient.quantity, servings)}{nutrient.unit}</div>
                 </React.Fragment>
             ))}
         </div>
@@ -70,7 +70,7 @@ const RecipeRandomCard = ({
                 {Object.entries(minerals).map(([key, nutrient]) => (
                     <React.Fragment key={key}>
                         <div>{key.charAt(0).toUpperCase() + key.slice(1)}:</div>
-                        <div>{getServingAmount(convertNumber(nutrient.quantity), servings)}{nutrient.unit}</div>
+                        <div>{getServingAmount(nutrient.quantity, servings)}{nutrient.unit}</div>
                     </React.Fragment>
                 ))}
             </div>

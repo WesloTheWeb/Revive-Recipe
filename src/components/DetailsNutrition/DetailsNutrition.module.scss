@@ -17,7 +17,11 @@
     align-items: center;
 
     @media #{ $mq-smallScreen } {
-        display: block;
+        font-size: 1rem;
+    }
+
+    label {
+        margin: 0 .5rem;
     }
 
     h3 {

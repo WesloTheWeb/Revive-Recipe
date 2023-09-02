@@ -49,25 +49,25 @@ const DetailsNutrition = ({ servings, calories, minerals, macros }: DetailsNutri
             <h3>Minerals &amp; Electrolytes</h3>
             <div className={nutritionDividerGrid}>
                 <label>Proteins</label>
-                <div>{convertNumber(macros.protein.quantity)}{macros.protein.unit}</div>
+                <div>{getServingAmount(macros.protein.quantity, servings)}{macros.protein.unit}</div>
                 <label>Fats</label>
-                <div>{convertNumber(macros.fats.quantity)}{macros.fats.unit}</div>
+                <div>{getServingAmount(macros.fats.quantity, servings)}{macros.fats.unit}</div>
                 <label>Carbs</label>
-                <div>{convertNumber(macros.carbs.quantity)}{macros.carbs.unit}</div>
+                <div>{getServingAmount(macros.carbs.quantity, servings)}{macros.carbs.unit}</div>
             </div>
             <div className={nutritionDividerGrid}>
                 <label>Cholesterol</label>
-                <div>{convertNumber(minerals.cholesterol.quantity)}{minerals.cholesterol.unit}</div>
+                <div>{getServingAmount(minerals.cholesterol.quantity, servings)}{minerals.cholesterol.unit}</div>
                 <label>Sodium</label>
-                <div>{convertNumber(minerals.sodium.quantity)}{minerals.sodium.unit}</div>
+                <div>{getServingAmount(minerals.sodium.quantity, servings)}{minerals.sodium.unit}</div>
                 <label>Calcium</label>
-                <div>{convertNumber(minerals.calcium.quantity)}{minerals.calcium.unit}</div>
+                <div>{getServingAmount(minerals.calcium.quantity, servings)}{minerals.calcium.unit}</div>
                 <label>Magnesium</label>
-                <div>{convertNumber(minerals.magnesium.quantity)}{minerals.magnesium.unit}</div>
+                <div>{getServingAmount(minerals.magnesium.quantity, servings)}{minerals.magnesium.unit}</div>
                 <label>Potassium</label>
-                <div>{convertNumber(minerals.potassium.quantity)}{minerals.potassium.unit}</div>
+                <div>{getServingAmount(minerals.potassium.quantity, servings)}{minerals.potassium.unit}</div>
                 <label>Iron</label>
-                <div>{convertNumber(minerals.iron.quantity)}{minerals.iron.unit}</div>
+                <div>{getServingAmount(minerals.iron.quantity, servings)}{minerals.iron.unit}</div>
             </div>
         </section>
     );
