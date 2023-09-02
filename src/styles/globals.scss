@@ -203,8 +203,46 @@ footer {
 
 .random-recipe-list {
     display: block;
-    
+
     @media #{ $mq-smallScreen } {
         display: none;
     }
+}
+
+// ? Unique dedicated Recipe page
+.detailed-recipe-page {
+    background-color: $brandColorTertiary;
+    border-radius: 8px;
+    margin: 3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 1.05);
+
+    @media #{ $mq-smallScreen } {
+       margin: 0;
+       margin-top: 1.43rem;
+    }
+}
+
+.detailed-recipe-body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5rem;
+    grid-template-rows: auto 1fr;
+    padding: 2rem;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+        padding: 1rem .5rem;
+    }
+}
+
+.cuisine-labels {
+    grid-row: 1;
+}
+
+.ingredients-details {
+    grid-row: 2;
+}
+
+.nutrition-details {
+    grid-row: 1 / span 2;
 }

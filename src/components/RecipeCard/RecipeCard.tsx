@@ -1,14 +1,28 @@
 import React from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
 import classes from './RecipeCard.module.scss';
 import Button, { ButtonTypes } from '@/containers/Button/Button';
-import { RecipeRandomCardProps } from '@/interfaces/recipeTypes';
+import { RecipeCardProps } from '@/interfaces/recipeTypes';
 
-const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails,
-    macroGrid, macroHighlight, calorieProperties } = classes;
+const { recipeCardContainer, recipeCardActionsContainer, recipeNutritionContainer, recipeNutritionDetails, viewIngredientContainer,
+    mineralsElectrolytesContainer, macroGrid, macroHighlight } = classes;
 
-const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, image, recipeName, description, servingSize, calories, macros, minerals }: RecipeRandomCardProps) => {
-
+const RecipeCard = ({
+    recipe: {
+        uri,
+        image,
+        label,
+        description,
+        servings,
+        calories,
+        macros,
+        minerals,
+        ingredientLines
+    },
+    showModal,
+    setSelectedRecipeIngredients
+}: RecipeCardProps) => {
     const convertNumber = (num: number) => Math.ceil(num);
 
     const getServingAmount = (quantity: number, servings: number) => {
@@ -21,7 +35,7 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
             {Object.entries(macros).map(([key, nutrient]) => (
                 <React.Fragment key={key}>
                     <div><b>{key.charAt(0).toUpperCase() + key.slice(1)}:</b></div>
-                    <div>{getServingAmount(convertNumber(nutrient.quantity), servingSize)}{nutrient.unit}</div>
+                    <div>{getServingAmount(convertNumber(nutrient.quantity), servings)}{nutrient.unit}</div>
                 </React.Fragment>
             ))}
         </div>
@@ -34,7 +48,7 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
                 {Object.entries(minerals).map(([key, nutrient]) => (
                     <React.Fragment key={key}>
                         <div>{key.charAt(0).toUpperCase() + key.slice(1)}:</div>
-                        <div>{getServingAmount(convertNumber(nutrient.quantity), servingSize)}{nutrient.unit}</div>
+                        <div>{getServingAmount(convertNumber(nutrient.quantity), servings)}{nutrient.unit}</div>
                     </React.Fragment>
                 ))}
             </div>
@@ -44,33 +58,38 @@ const RecipeCard = ({ setSelectedRecipeIngredients, ingredients, showModal, imag
     return (
         <div>
             <section className={recipeCardContainer}>
-                <Image src={image} alt={description} width={250} height={360} />
-                <h3>{recipeName}</h3>
+                <Image src={image} alt={description} width={250} height={370} />
+                <h3>{label}</h3>
                 <section className={recipeNutritionContainer}>
                     <div className={recipeNutritionDetails}>
                         <section className={recipeCardActionsContainer}>
-                            <div className={`${macroGrid} ${calorieProperties}`}>
+                            <div className={`${macroGrid}`}>
                                 <div>Calories</div>
                                 <div>{Math.floor(calories)}</div>
                                 <span>serving: </span>
-                                <div>{getServingAmount(calories, servingSize)}</div>
+                                <div>{getServingAmount(calories, servings)}</div>
+                                <span>serves:</span>
+                                <div>{servings}</div>
                             </div>
-                            <Button
-                                buttonType={ButtonTypes.VIEWINGREDIENTS}
-                                handleClick={() => {
-                                    if (setSelectedRecipeIngredients && ingredients) {
-                                        setSelectedRecipeIngredients(ingredients);
-                                    }
-                                    showModal();
-                                }}
-                            />
+                            <div className={viewIngredientContainer}>
+                                <Button
+                                    buttonType={ButtonTypes.VIEWINGREDIENTS}
+                                    handleClick={() => {
+                                        setSelectedRecipeIngredients(ingredientLines);
+                                        showModal();
+                                    }}
+                                />
+                            </div>
+                            <Link href={`/recipe/${encodeURIComponent(uri)}`}>
+                                <Button buttonType={ButtonTypes.VIEWRECIPE} />
+                            </Link>
                         </section>
                     </div>
                     <section>
                         <h5>Macros</h5>
                         {renderMacros()}
                     </section>
-                    <section>
+                    <section className={mineralsElectrolytesContainer}>
                         <h5>Minerals &amp; Electrolytes</h5>
                         {renderMinerals()}
                     </section>

@@ -1,0 +1,30 @@
+@import '../../styles/variables.scss';
+
+.nutritionLabelContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: .5rem .75rem;
+    border: 1.5px solid #000;
+
+    @media #{ $mq-smallScreen } {
+        margin-top: 1.5rem;
+    }
+}
+
+.nutritionDividerGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+
+    h3 {
+        margin: 1rem 0;
+    }
+
+    h4 {
+        margin: 0;
+    }
+}

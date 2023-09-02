@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '@/store/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState, AppDispatch } from '@/store/store';
+import { storeBasicRecipe } from '@/store/recipeSlice';
 import { RecipeData } from '@/interfaces/recipeTypes';
 import RecipeCard from '@/components/RecipeCard/RecipeCard';
+import { generateRecipeHash } from '@/helpers/hashHelpers';
 import Loading from '@/components/Loading/Loading';
 import Button, { ButtonTypes } from '../Button/Button';
 import classes from './QueryResults.module.scss';
@@ -21,6 +23,8 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const loading = useSelector((state: RootState) => state.search.loading);
     const error = useSelector((state: RootState) => state.search.error);
 
+    const dispatch = useDispatch<AppDispatch>();
+
     // component state for pagination
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
@@ -30,8 +34,10 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
     const currentItems = searchResults.slice(indexOfFirstItem, indexOfLastItem);
 
     useEffect(() => {
-        setCurrentPage(1);
-    }, [query]);
+        searchResults.forEach(recipe => {
+            dispatch(storeBasicRecipe({ recipe }));
+        });
+    }, [searchResults, dispatch]);
 
     return (
         <>
@@ -50,32 +56,40 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                     </section>
                     <section>
                         {error && <div>Error: {error}</div>}
-                        {currentItems.map((recipe, index) => (
-                            <RecipeCard
-                                key={index}
-                                image={recipe.image}
-                                recipeName={recipe.label}
-                                description=""
-                                ingredients={recipe.ingredientLines}
-                                setSelectedRecipeIngredients={setSelectedRecipeIngredients}
-                                showModal={showModal}
-                                calories={recipe.calories}
-                                servingSize={recipe.yield}
-                                macros={{
-                                    protein: recipe.totalNutrients.PROCNT,
-                                    fats: recipe.totalNutrients.FAT,
-                                    carbs: recipe.totalNutrients.CHOCDF
-                                }}
-                                minerals={{
-                                    cholesterol: recipe.totalNutrients.CHOLE,
-                                    sodium: recipe.totalNutrients.NA,
-                                    calcium: recipe.totalNutrients.CA,
-                                    magnesium: recipe.totalNutrients.MG,
-                                    potassium: recipe.totalNutrients.K,
-                                    iron: recipe.totalNutrients.FE
-                                }}
-                            />
-                        ))}
+                        {currentItems.map((recipe) => {
+                            const recipeHash = generateRecipeHash(recipe);  // Generate hash for the recipe key
+
+                            return (
+                                <RecipeCard
+                                    key={recipeHash}
+                                    recipe={{
+                                        uri: recipe.uri,
+                                        image: recipe.image,
+                                        label: recipe.label,
+                                        description: "",
+                                        ingredientLines: recipe.ingredientLines,
+                                        calories: recipe.calories,
+                                        totalNutrients: recipe.totalNutrients,
+                                        servings: recipe.yield ?? 1,
+                                        macros: {
+                                            protein: recipe.totalNutrients.PROCNT,
+                                            fats: recipe.totalNutrients.FAT,
+                                            carbs: recipe.totalNutrients.CHOCDF
+                                        },
+                                        minerals: {
+                                            cholesterol: recipe.totalNutrients.CHOLE,
+                                            sodium: recipe.totalNutrients.NA,
+                                            calcium: recipe.totalNutrients.CA,
+                                            magnesium: recipe.totalNutrients.MG,
+                                            potassium: recipe.totalNutrients.K,
+                                            iron: recipe.totalNutrients.FE
+                                        }
+                                    }}
+                                    setSelectedRecipeIngredients={setSelectedRecipeIngredients}
+                                    showModal={showModal}
+                                />
+                            )
+                        })}
                     </section>
                     <section className={paginationContainer}>
                         <Button

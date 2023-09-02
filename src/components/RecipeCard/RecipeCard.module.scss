@@ -3,6 +3,7 @@
 .recipeCardContainer {
     width: 100%;
     margin: 1.43rem 0;
+    background: #000;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 1.05);
     border-radius: 8px;
     display: grid;
@@ -11,9 +12,17 @@
         "food header"
         "food desc";
 
+    @media #{ $mq-smallScreen } {
+        display: block;
+    }
+
     img {
         border-radius: 8px 0 0 8px;
         grid-area: food;
+
+        @media #{ $mq-smallScreen } {
+            width: 100%;
+        }
     }
 
     h3 {
@@ -41,6 +50,11 @@
         grid-template-columns: repeat(2, 1fr);
         grid-area: desc;
 
+        @media #{ $mq-smallScreen } {
+            display: block;
+            padding: 1rem 0;
+        }
+
         section {
             padding: 0 1rem;
         }
@@ -64,6 +78,12 @@
     border-radius: 8px;
 }
 
-.calorieProperties {
-    // font-size: .85rem;
+
+// For now until can fix ingredients
+.viewIngredientContainer, .mineralsElectrolytesContainer {
+    display: block;
+
+    @media #{ $mq-smallScreen } {
+        display: none;
+    }
 }

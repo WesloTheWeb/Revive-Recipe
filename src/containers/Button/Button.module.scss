@@ -25,8 +25,8 @@
 
 .returnButton {
     border: 1px solid $neutral-900;
-    background-color: #fff;
-    color: $neutral-900;
+    background-color: $blue-300;
+    color: #fff;
 
     &:hover {
         background-color: $neutral-900;
@@ -36,12 +36,12 @@
 
 .guestButton {
     margin-top: 1.2rem;
-    background-color: $neutral-900;
-    color: $neutral-100;
+    background-color: $green-900;
+    color: $green-200;
     border: 2px solid $neutral-900;
 
     &:hover {
-        background-color: $neutral-800;
+        background-color: $green-800;
     }
 }
 
@@ -52,12 +52,12 @@
 
 .viewIngredientsButton {
     font-size: 1rem;
-    background-color: $blue-300;
-    color: $neutral-100;
+    background-color: $blue-100;
+    color: $blue-300;
     margin: 1rem auto;
 
     &:hover {
-        background-color: $blue-600;
+        background-color: $blue-200;
     }
 }
 
@@ -70,6 +70,16 @@
         background-color: $green-500-primary;
     }
 }
+
+.viewRecipeButton {
+    background-color: $green-700;
+    color: $green-100;
+
+    &:hover {
+        background-color: $green-600;
+    }
+}
+
 
 // Pagination Buttons
 .firstPage, .prevPage,  .nextPage, .lastPage {
