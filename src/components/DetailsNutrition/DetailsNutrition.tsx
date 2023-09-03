@@ -2,8 +2,7 @@ import React from 'react';
 import { Nutrient } from '@/interfaces/recipeTypes';
 import classes from './DetailsNutrition.module.scss';
 
-// Takes in calories macros nutirtion
-
+// Takes in calories macros nutrition
 interface DetailsNutritionProps {
     calories: number;
     servings: number;
