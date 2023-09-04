@@ -4,7 +4,7 @@ import classes from './Toast.module.scss';
 export enum NotificationType {
     NOTICE = 'notice',
     // ... add other types as needed ...
-}
+};
 
 // ? Works similar to Button component but trying something different and not destructuring all the classes.
 const { toastContainer, toastHeaderContainer } = classes;

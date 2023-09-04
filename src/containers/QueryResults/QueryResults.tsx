@@ -100,7 +100,6 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                                 window.scrollTo(0, 0);
                             }}
                         />
-
                         <Button
                             buttonType={ButtonTypes.PREVPAGE}
                             disabled={currentPage === 1}
@@ -109,7 +108,6 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                                 window.scrollTo(0, 0);
                             }}
                         />
-
                         <Button
                             buttonType={ButtonTypes.NEXTPAGE}
                             disabled={currentPage === Math.ceil(searchResults.length / itemsPerPage)}
@@ -118,7 +116,6 @@ const QueryResults = ({ showModal, setSelectedRecipeIngredients }: QueryResultsP
                                 window.scrollTo(0, 0);
                             }}
                         />
-
                         <Button
                             buttonType={ButtonTypes.LASTPAGE}
                             disabled={currentPage === Math.ceil(searchResults.length / itemsPerPage)}

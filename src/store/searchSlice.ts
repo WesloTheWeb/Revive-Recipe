@@ -14,7 +14,7 @@ interface RecipeSearchPayload {
     hits: {
         recipe: RecipeData;
     }[];
-}
+};
 
 export const searchRecipes = createAsyncThunk(
     'search/fetchRecipes',
@@ -73,5 +73,4 @@ const searchSlice = createSlice({
 });
 
 export const { setQuery, setSearchResults, setLoading, setError } = searchSlice.actions;
-
 export default searchSlice.reducer;

@@ -11,6 +11,6 @@ const useModal = () => {
         showModal,
         hideModal
     };
-}
+};
 
 export default useModal;

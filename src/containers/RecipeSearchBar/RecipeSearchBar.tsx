@@ -12,7 +12,6 @@ interface searchInputs {
 };
 
 const RecipeSearchBar = () => {
-
     const dispatch = useDispatch<AppDispatch>();
     const { register, handleSubmit } = useForm<searchInputs>();
 
@@ -33,7 +32,6 @@ const RecipeSearchBar = () => {
             >
                 <div className={searchBarFlex}>
                     <input placeholder="Recipe name"{...register("recipe", { required: true })} />
-                    {/* <button type="submit">Search</button> */}
                     <Button buttonType={ButtonTypes.RECIPESEARCH} />
                 </div>
             </form>

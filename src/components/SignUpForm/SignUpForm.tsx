@@ -34,7 +34,7 @@ const genderOptions: readonly { value: string, label: string }[] = [
 
 const SignUpForm = ({ }) => {
     // RHF Properties
-    const { register, handleSubmit, watch, control, formState: { errors } } = useForm<Inputs>();
+    const { register, handleSubmit, control, formState: { errors } } = useForm<Inputs>();
     const [showToast, setShowToast] = useState(false);
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {

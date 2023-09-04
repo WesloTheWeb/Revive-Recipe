@@ -130,10 +130,6 @@ footer {
     text-align: center !important;
 }
 
-.test {
-    font-family: $user-font-family;
-}
-
 .flex {
     display: flex;
 }
@@ -217,8 +213,8 @@ footer {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 1.05);
 
     @media #{ $mq-smallScreen } {
-       margin: 0;
-       margin-top: 1.43rem;
+        margin: 0;
+        margin-top: 1.43rem;
     }
 }
 

@@ -44,5 +44,4 @@ const recipeSlice = createSlice({
 });
 
 export const { storeRecipe, storeBasicRecipe } = recipeSlice.actions;
-
 export default recipeSlice.reducer;
