@@ -19,7 +19,6 @@ const Loading = ({ }) => {
             />
             Loading...
         </div>
-
     );
 };
 

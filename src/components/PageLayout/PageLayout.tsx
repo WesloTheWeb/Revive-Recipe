@@ -21,7 +21,6 @@ const PageLayout = ({ children }: PageLayoutProps) => {
                 {children}
             </main>
             <Footer />
-
         </div>
     );
 };

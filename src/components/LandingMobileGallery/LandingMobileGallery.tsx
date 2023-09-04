@@ -11,11 +11,11 @@ interface Photo {
     width: number;
     height: number;
     key: number;
-}
+};
 
 interface photoProps {
-    galleryPhotos: Photo[]
-}
+    galleryPhotos: Photo[];
+};
 
 const LandingMobileGallery = ({ galleryPhotos }: photoProps) => {
     const responsive = {

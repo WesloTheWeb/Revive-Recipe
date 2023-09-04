@@ -4,7 +4,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: .5rem .75rem;
-    border: 1.5px solid #000;
+    border: 1.5px solid $borderColors;
 
     @media #{ $mq-smallScreen } {
         margin-top: 1.5rem;

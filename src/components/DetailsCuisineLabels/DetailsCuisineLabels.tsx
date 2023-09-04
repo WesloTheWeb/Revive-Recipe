@@ -15,12 +15,11 @@ const DetailsCuisineLabels = ({ title, meal }: DetailsCuisineLabelsProps) => {
         displayLabel = title.join(", ");
     } else {
         displayLabel = title;
-    }
+    };
 
     return (
         <label className={`${container} ${meal ? mealTypeLabel : ''} `}>{displayLabel}</label>
     );
 };
-
 
 export default DetailsCuisineLabels;

@@ -25,7 +25,7 @@ const LoginForm = () => {
 
             return () => clearTimeout(timer);
         }
-    }, [showToast])
+    }, [showToast]);
 
     return (
         <>
@@ -44,7 +44,6 @@ const LoginForm = () => {
                 <Button buttonType={ButtonTypes.LOGIN} />
             </form>
         </>
-
     );
 };
 

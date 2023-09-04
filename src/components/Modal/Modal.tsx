@@ -16,6 +16,7 @@ const Modal = ({ title, ingredients, description, closeModal, content }: ModalPr
 
     const renderDescription = (desc: string) => <p>{desc}</p>;
 
+    // Use the function for the ingredient list 
     const renderIngredientList = (ingredientList: string[]) => {
         return (
             <section className={ingredientContainer}>
@@ -31,7 +32,7 @@ const Modal = ({ title, ingredients, description, closeModal, content }: ModalPr
             <div className={instructions}>
                 <h3>{title}</h3>
                 {ingredients && Array.isArray(description)
-                    ? renderIngredientList(description)  // Use the function for the ingredient list 
+                    ? renderIngredientList(description)
                     : renderDescription(description as string)}
             </div>
             {content}

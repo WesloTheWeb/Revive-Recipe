@@ -4,9 +4,9 @@ const { overlay } = classes;
 
 interface overlayProps {
     closeOverlay: (isVisible: boolean) => void;
-}
+};
 
-const Overlay = ({closeOverlay}: overlayProps) => {
+const Overlay = ({ closeOverlay }: overlayProps) => {
 
     const handleClose = () => {
         closeOverlay(false);

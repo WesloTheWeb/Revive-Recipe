@@ -21,7 +21,6 @@ interface DetailsNutritionProps {
     };
 };
 
-
 const { nutritionLabelContainer, nutritionDividerGrid } = classes;
 
 const DetailsNutrition = ({ servings, calories, minerals, macros }: DetailsNutritionProps) => {

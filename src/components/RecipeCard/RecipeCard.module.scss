@@ -78,9 +78,9 @@
     border-radius: 8px;
 }
 
-
 // For now until can fix ingredients
-.viewIngredientContainer, .mineralsElectrolytesContainer {
+.viewIngredientContainer,
+.mineralsElectrolytesContainer {
     display: block;
 
     @media #{ $mq-smallScreen } {
