@@ -7,6 +7,7 @@ import LoginForm from '../LoginForm/LoginForm';
 import useModal from '@/hooks/useModal';
 import Modal from '../Modal/Modal';
 import Overlay from '../Overlay/Overlay';
+import Tooltip from '@/containers/Tooltip/Tooltip';
 
 const { landingContainer, galleryContainer, mobileGalleryContainer, landingFlex, blurb, loginContainer } = classes;
 
@@ -87,6 +88,11 @@ const LandingContent = ({ }) => {
                         <p>
                             Join or log in now to start your journey to a nourished body and a vibrant community. Let&apos;s cook, stay fit, and make lasting connections together!
                         </p>
+                        <Tooltip message="sign in not yet enabled.">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#6C9BDB" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#1E487E" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                            </svg>
+                        </Tooltip>
                         <div className={loginContainer}>
                             <Link href="/signup">
                                 <Button buttonType={ButtonTypes.SIGNUP} />
@@ -95,6 +101,7 @@ const LandingContent = ({ }) => {
                             <Link href="/home">
                                 <Button buttonType={ButtonTypes.GUEST} />
                             </Link>
+
                         </div>
                     </section>
                 </div>

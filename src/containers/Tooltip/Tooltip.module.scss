@@ -1,0 +1,31 @@
+@import '../../styles/variables.scss';
+
+.tooltipContainer {
+    position: relative;
+    display: block;
+    width: 24px;
+    height: 24px;
+    z-index: 10;
+    
+    svg {
+        pointer-events: bounding-box;
+    }
+
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 11;
+    bottom: 2rem;
+    left: 5rem;
+    transform: translateX(-50%);
+    background-color: $blue-100;
+    color: $blue-600;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    white-space: nowrap;
+
+    @media #{ $mq-smallScreen } {
+        left: 5rem;
+    }
+}
