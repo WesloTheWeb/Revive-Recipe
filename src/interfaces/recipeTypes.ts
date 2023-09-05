@@ -31,6 +31,7 @@ export interface RecipeData {
     ingredientLines: string[];
     mealType?: string;
     dishType?: string[];
+    url?: string;
 };
 
 export interface ExtendedRecipeData extends RecipeData {

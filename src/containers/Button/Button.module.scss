@@ -71,6 +71,15 @@
     }
 }
 
+.seeMoreButton {
+    background-color: $blue-800;
+    color: $neutral-100;
+
+    &:hover {
+        background-color: $blue-600;
+    }
+}
+
 .viewRecipeButton {
     background-color: $green-700;
     color: $green-100;

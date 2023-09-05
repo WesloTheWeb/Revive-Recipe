@@ -23,8 +23,6 @@ const RecipeCarousel = ({ recipes, showModal, setSelectedRecipeIngredients }: Re
         }
     };
 
-    const convertedCalorie = (num: number) => Math.ceil(num);
-
     return (
         <Carousel responsive={responsive}>
             {recipes.map((hit, index) => {

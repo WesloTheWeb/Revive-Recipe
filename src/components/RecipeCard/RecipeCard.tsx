@@ -81,7 +81,7 @@ const RecipeCard = ({
                                 />
                             </div>
                             <Link href={`/recipe/${encodeURIComponent(uri)}`}>
-                                <Button buttonType={ButtonTypes.VIEWRECIPE} />
+                                <Button buttonType={ButtonTypes.SEEMORE} />
                             </Link>
                         </section>
                     </div>

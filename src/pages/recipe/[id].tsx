@@ -22,10 +22,10 @@ const RecipeDetails = () => {
   // Use the useSelector hook to get the recipe from the Redux store
   const recipeFromStore = useSelector((state: RootState) => state.recipe.recipes[id as string]);
 
-  // debug to check
-  console.log('ID:', id, 'URI:', recipeFromStore?.uri);
+  // TODO: Unit test to debug to check URIs 
+  // console.log('ID:', id, 'URI:', recipeFromStore?.uri);
   const actualId = Array.isArray(id) ? id[0] : id;
-  console.log('Decoded URI:', id); // check
+  // console.log('Decoded URI:', id); // check
 
   useEffect(() => {
     if (actualId && recipeFromStore?.uri) {
@@ -80,6 +80,10 @@ const RecipeDetails = () => {
         <Link href="/home">
           <Button buttonType={ButtonTypes.RETURN} />
         </Link>
+        <Button
+          buttonType={ButtonTypes.VIEWRECIPE}
+          handleClick={() => window.open(recipe.url, "_blank")}
+        />
         {/* Render other recipe details as needed */}
         <section className='detailed-recipe-body'>
           <div className='cuisine-labels'>

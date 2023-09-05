@@ -3,7 +3,7 @@ import classes from './Button.module.scss';
 const { loginButton, signUpButton, guestButton,
     returnButton, cancelButton, viewIngredientsButton,
     recipeSearchButton, viewRecipeButton, firstPage, prevPage, nextPage,
-    lastPage } = classes;
+    lastPage, seeMoreButton } = classes;
 
 interface ButtonProps {
     buttonType: ButtonTypes;
@@ -25,7 +25,8 @@ export enum ButtonTypes {
     PREVPAGE = 'prevPage',
     NEXTPAGE = 'nextPage',
     LASTPAGE = 'lastPage',
-    VIEWRECIPE = 'viewRecipeButton'
+    SEEMORE = 'seeMoreButton',
+    VIEWRECIPE = 'viewRecipeButton',
 };
 
 // binds CSS classes to whatever prop is passed:
@@ -42,6 +43,7 @@ const buttonPaths = {
     [ButtonTypes.PREVPAGE]: prevPage,
     [ButtonTypes.NEXTPAGE]: nextPage,
     [ButtonTypes.LASTPAGE]: lastPage,
+    [ButtonTypes.SEEMORE]: seeMoreButton,
     [ButtonTypes.VIEWRECIPE]: viewRecipeButton
 };
 
@@ -73,6 +75,8 @@ const Button = ({ buttonType, handleClick, disabled }: ButtonProps) => {
                 return buttonPaths[ButtonTypes.NEXTPAGE];
             case ButtonTypes.LASTPAGE:
                 return buttonPaths[ButtonTypes.LASTPAGE];
+            case ButtonTypes.SEEMORE:
+                return buttonPaths[ButtonTypes.SEEMORE];
             case ButtonTypes.VIEWRECIPE:
                 return buttonPaths[ButtonTypes.VIEWRECIPE];
             default:
@@ -107,6 +111,8 @@ const Button = ({ buttonType, handleClick, disabled }: ButtonProps) => {
                 return 'Next'
             case ButtonTypes.LASTPAGE:
                 return 'Last'
+            case ButtonTypes.SEEMORE:
+                return 'See More'
             case ButtonTypes.VIEWRECIPE:
                 return 'View Recipe'
             default:
