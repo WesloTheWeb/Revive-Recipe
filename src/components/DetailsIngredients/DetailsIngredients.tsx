@@ -1,3 +1,4 @@
+import React from 'react';
 import classes from './DetailsIngredients.module.scss';
 
 const {container} = classes;

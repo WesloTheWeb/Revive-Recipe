@@ -1,3 +1,4 @@
+import React from 'react';
 import { NotificationProps, notificationTypes } from '@/interfaces/notificationTypes';
 import classes from './Toast.module.scss';
 

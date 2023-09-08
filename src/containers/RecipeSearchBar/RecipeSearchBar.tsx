@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store/store';
 import { setQuery, searchRecipes } from '@/store/searchSlice';
