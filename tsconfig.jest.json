@@ -1,0 +1,8 @@
+// ? Please use this file to edit any configs related to jest testing.
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+    "types": ["jest", "@testing-library/jest-dom"]
+  }
+}
