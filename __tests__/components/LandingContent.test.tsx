@@ -14,13 +14,14 @@ jest.mock('next/image', () => {
 
 describe('<LandingContent />', () => {
     it('renders without crashing', () => {
-        const { getByText } = render(<LandingContent />);
-        expect(getByText('Get cooking')).toBeInTheDocument();
+        const { getByRole } = render(<LandingContent />);
+        const heading = getByRole('heading', { level: 1 });
+        expect(heading).toHaveTextContent('Get cooking');
     });
 
     it('shows login modal when login button is clicked', () => {
-        const { getByText, queryByText } = render(<LandingContent />);
-        const loginButton = getByText(/login/i); 
+        const { getByRole, queryByText } = render(<LandingContent />);
+        const loginButton = getByRole('button', { name: /Log In/i });
 
         // Before clicking, the modal title shouldn't be in the document
         expect(queryByText('Log in')).not.toBeInTheDocument();
